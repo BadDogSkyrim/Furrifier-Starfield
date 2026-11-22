@@ -1,0 +1,81 @@
+# Hyena race definition (from FSFFoxRace.toml, 2026-11-16)
+#
+# Names here must exist in the plugins; the furrifier reads textures and colours from the AVMD
+# groups they name and stops at startup if one is missing.
+
+[race]
+editorid = "FSFHyenaRace"
+plugin = "FSF.esm"
+crowd_race_editorid = "FSFHyenaCrowdRace"
+# sf_tintbake's manifests, one per sex: the crowd heads
+crowd_manifests = [
+    "../../crowd/hyena/CrowdHead_hyena_male.variants.json",
+    "../../crowd/hyena/CrowdHead_hyena_female.variants.json",
+]
+# Holds the hyena's own Dermaesthetic/Complexion lists. Only read for their contents, not a master.
+# A path, because only the active player option is deployed; it's taken out of the load order.
+tint_plugin = "FSFPlayer_HYENA.esm"
+# Hyena tones: the fox's 0-10 (no fennec tones).
+skin_tones = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+skin_tones_female = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+# Parts the RACE HEAD list doesn't carry
+extra_parts_male = ["FSFCanine_Male_Tongue"]
+extra_parts_female = ["FSFCanine_Female_Tongue"]
+
+# -- Tint layers -- (see FSFFoxRace.toml for the format)
+[[tint_layers]]
+slot = "Dermaesthetic"
+probability = 1.0
+options = [
+    "male_hyena_derm01",
+    "male_hyena_derm02",
+    "male_hyena_derm03",
+    "male_hyena_derm04",
+    "male_hyena_derm05",
+    "male_hyena_derm06",
+    "male_hyena_derm07",
+    "male_hyena_derm08",
+]
+
+[[tint_layers]]
+slot = "Complexion1"
+probability = 0
+options = []
+
+[[tint_layers]]
+slot = "ComplexionMask1"
+probability = 0.8
+options = ["Complexion_Ears"]
+
+# -- Morph ranges -- (the fox's numbers, to be tuned once the hyena morphs exist)
+[morph_defaults.male_hyena_md1]
+Chin = { min = 0.5, max = 1.0 }
+Ears = { min = 0.85, max = 1.0 }
+Nose = { min = 0.5, max = 1.0 }
+Neck = { min = 0.0, max = 0.5 }
+
+[morph_defaults.male_hyena_md2]
+Chin = { min = 0.5, max = 1.0 }
+Ears = { min = 0.85, max = 1.0 }
+Nose = { min = 0.5, max = 1.0 }
+Neck = { min = 0.0, max = 0.5 }
+
+[morph_defaults.female_hyena_md1]
+Chin = { min = 1.0, max = 1.0 }
+Ears = { min = 0.85, max = 1.0 }
+Nose = { min = 0.5, max = 1.0 }
+Neck = { min = 0.0, max = 1.0 }
+
+[morph_defaults.female_hyena_md2]
+Chin = { min = 1.0, max = 1.0 }
+Ears = { min = 0.85, max = 1.0 }
+Nose = { min = 0.5, max = 1.0 }
+Neck = { min = 0.0, max = 1.0 }
+
+# -- Breeds --
+[[breeds]]
+name = "hyena"
+weight = 100
+crowd_heads = ["Crowd_Hyena_*", "crowdf_hyena_*"]
+phenotypes_male = [["male_hyena_md1", 50], ["male_hyena_md2", 50]]
+phenotypes_female = [["female_hyena_md1", 50], ["female_hyena_md2", 50]]

@@ -1,0 +1,542 @@
+{
+  "race": "FSFHyenaRace",
+  "sex": "female",
+  "variants": [
+    {
+      "name": "crowdf_hyena_md1_sk0_d5c1be3t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 0,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk0_d5c1be3t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk0_d5c1be3t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk0_d5c1be3t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk0_d5c1be3t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk0_d5c1be3t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk0_d5c1be3t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk0_d8c0e10t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 0,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk0_d8c0e10t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk0_d8c0e10t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk0_d8c0e10t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk0_d8c0e10t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk0_d8c0e10t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk0_d8c0e10t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk2_d6c0e6t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk2_d6c0e6t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk2_d6c0e6t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk2_d6c0e6t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk2_d6c0e6t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk2_d6c0e6t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk2_d6c0e6t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk3_d1c1ce6t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk3_d1c1ce6t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk3_d1c1ce6t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk3_d1c1ce6t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk3_d1c1ce6t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk3_d1c1ce6t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk3_d1c1ce6t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk3_d2c1be11t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk3_d2c1be11t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk3_d2c1be11t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk3_d2c1be11t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk3_d2c1be11t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk3_d2c1be11t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk3_d2c1be11t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk3_d4c1ce2t2b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk3_d4c1ce2t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk3_d4c1ce2t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk3_d4c1ce2t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk3_d4c1ce2t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk3_d4c1ce2t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk3_d4c1ce2t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk4_d2c1be12t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk4_d2c1be12t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk4_d2c1be12t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk4_d2c1be12t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk4_d2c1be12t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk4_d2c1be12t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk4_d2c1be12t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk4_d5c1de9t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk4_d5c1de9t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk4_d5c1de9t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk4_d5c1de9t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk4_d5c1de9t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk4_d5c1de9t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk4_d5c1de9t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk5_d1c0e3t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk5_d1c0e3t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk5_d1c0e3t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk5_d1c0e3t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk5_d1c0e3t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk5_d1c0e3t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk5_d1c0e3t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk5_d3c1be7t2b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk5_d3c1be7t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk5_d3c1be7t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk5_d3c1be7t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk5_d3c1be7t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk5_d3c1be7t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk5_d3c1be7t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk5_d6c1ce11t2b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk5_d6c1ce11t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk5_d6c1ce11t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk5_d6c1ce11t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk5_d6c1ce11t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk5_d6c1ce11t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk5_d6c1ce11t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk7_d1c0e7t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk7_d1c0e7t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk7_d1c0e7t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk7_d1c0e7t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk7_d1c0e7t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk7_d1c0e7t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk7_d1c0e7t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk7_d5c1be9t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk7_d5c1be9t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk7_d5c1be9t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk7_d5c1be9t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk7_d5c1be9t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk7_d5c1be9t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk7_d5c1be9t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk7_d8c1de5t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk7_d8c1de5t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk7_d8c1de5t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk7_d8c1de5t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk7_d8c1de5t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk7_d8c1de5t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk7_d8c1de5t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk8_d2c0e6t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 8,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk8_d2c0e6t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk8_d2c0e6t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk8_d2c0e6t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk8_d2c0e6t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk8_d2c0e6t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk8_d2c0e6t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk8_d6c1ce9t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 8,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk8_d6c1ce9t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk8_d6c1ce9t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk8_d6c1ce9t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk8_d6c1ce9t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk8_d6c1ce9t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk8_d6c1ce9t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk8_d8c1ce10t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 8,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk8_d8c1ce10t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk8_d8c1ce10t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk8_d8c1ce10t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk8_d8c1ce10t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk8_d8c1ce10t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk8_d8c1ce10t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk9_d1c0e9t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d1c0e9t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d1c0e9t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d1c0e9t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d1c0e9t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk9_d1c0e9t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk9_d1c0e9t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk9_d2c1ce12t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d2c1ce12t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d2c1ce12t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d2c1ce12t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d2c1ce12t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk9_d2c1ce12t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk9_d2c1ce12t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk9_d2c1de6t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d2c1de6t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d2c1de6t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d2c1de6t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d2c1de6t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk9_d2c1de6t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk9_d2c1de6t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk9_d5c1ce4t2b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d5c1ce4t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d5c1ce4t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d5c1ce4t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d5c1ce4t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk9_d5c1ce4t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk9_d5c1ce4t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md1_sk9_d6c1be4t1b0",
+      "head": "crowdf_hyena_md1.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d6c1be4t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d6c1be4t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d6c1be4t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md1_sk9_d6c1be4t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md1_sk9_d6c1be4t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md1_sk9_d6c1be4t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk0_d6c1ce2t2b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 0,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk0_d6c1ce2t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk0_d6c1ce2t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk0_d6c1ce2t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk0_d6c1ce2t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk0_d6c1ce2t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk0_d6c1ce2t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk0_d7c1de3t2b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 0,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk0_d7c1de3t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk0_d7c1de3t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk0_d7c1de3t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk0_d7c1de3t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk0_d7c1de3t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk0_d7c1de3t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk1_d3c1ae6t2b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk1_d3c1ae6t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk1_d3c1ae6t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk1_d3c1ae6t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk1_d3c1ae6t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk1_d3c1ae6t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk1_d3c1ae6t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk1_d4c1ae3t2b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk1_d4c1ae3t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk1_d4c1ae3t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk1_d4c1ae3t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk1_d4c1ae3t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk1_d4c1ae3t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk1_d4c1ae3t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk2_d4c1de11t2b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk2_d4c1de11t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk2_d4c1de11t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk2_d4c1de11t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk2_d4c1de11t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk2_d4c1de11t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk2_d4c1de11t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk3_d1c0e6t1b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk3_d1c0e6t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk3_d1c0e6t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk3_d1c0e6t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk3_d1c0e6t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk3_d1c0e6t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk3_d1c0e6t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk3_d2c1ae6t2b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk3_d2c1ae6t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk3_d2c1ae6t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk3_d2c1ae6t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk3_d2c1ae6t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk3_d2c1ae6t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk3_d2c1ae6t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk4_d4c0e5t1b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk4_d4c0e5t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk4_d4c0e5t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk4_d4c0e5t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk4_d4c0e5t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk4_d4c0e5t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk4_d4c0e5t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk5_d3c1ce11t2b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk5_d3c1ce11t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk5_d3c1ce11t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk5_d3c1ce11t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk5_d3c1ce11t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk5_d3c1ce11t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk5_d3c1ce11t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk5_d4c0e10t1b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk5_d4c0e10t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk5_d4c0e10t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk5_d4c0e10t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk5_d4c0e10t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk5_d4c0e10t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk5_d4c0e10t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk5_d7c1be4t1b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk5_d7c1be4t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk5_d7c1be4t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk5_d7c1be4t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk5_d7c1be4t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk5_d7c1be4t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk5_d7c1be4t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk6_d7c1ce2t2b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk6_d7c1ce2t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk6_d7c1ce2t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk6_d7c1ce2t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk6_d7c1ce2t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk6_d7c1ce2t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk6_d7c1ce2t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk7_d6c1ce3t2b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk7_d6c1ce3t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk7_d6c1ce3t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk7_d6c1ce3t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk7_d6c1ce3t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk7_d6c1ce3t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk7_d6c1ce3t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk8_d2c1ce3t2b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 8,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d2c1ce3t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d2c1ce3t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d2c1ce3t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d2c1ce3t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk8_d2c1ce3t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk8_d2c1ce3t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk8_d5c1be5t1b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 8,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d5c1be5t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d5c1be5t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d5c1be5t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d5c1be5t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk8_d5c1be5t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk8_d5c1be5t1_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk8_d6c1ce9t2b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 8,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d6c1ce9t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d6c1ce9t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d6c1ce9t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d6c1ce9t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk8_d6c1ce9t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk8_d6c1ce9t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk8_d7c1ce2t2b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 8,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d7c1ce2t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d7c1ce2t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d7c1ce2t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk8_d7c1ce2t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk8_d7c1ce2t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk8_d7c1ce2t2_color.dds"
+    },
+    {
+      "name": "crowdf_hyena_md2_sk9_d7c1ce5t1b0",
+      "head": "crowdf_hyena_md2.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk9_d7c1ce5t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk9_d7c1ce5t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk9_d7c1ce5t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Female\\Variants\\crowdf_hyena_md2_sk9_d7c1ce5t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_hyena_md2_sk9_d7c1ce5t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_hyena_md2_sk9_d7c1ce5t1_color.dds"
+    }
+  ],
+  "beard_colors": "FSFHyena_Crowd_Beard_Colors",
+  "tail": {
+    "addon": "FSFHyena_AA_Naked_Tail",
+    "nifs": {
+      "0": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaFemTail_sk0.nif",
+      "1": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaFemTail_sk1.nif",
+      "2": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaFemTail_sk2.nif",
+      "3": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaFemTail_sk3.nif",
+      "4": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaFemTail_sk4.nif",
+      "5": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaFemTail_sk5.nif",
+      "6": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaFemTail_sk6.nif",
+      "7": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaFemTail_sk7.nif",
+      "8": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaFemTail_sk8.nif",
+      "9": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaFemTail_sk9.nif"
+    }
+  }
+}

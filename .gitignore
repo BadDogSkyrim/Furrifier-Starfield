@@ -1,0 +1,15 @@
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+# Test output. tests/out/data_view is a merged view of the game's Data made of directory junctions:
+# delete it with fsftools.overlay.clear_view (or Explorer), never `rm -r`, which can follow them.
+tests/out/
+# Bethesda's own assets, copied from the game for the human FaceGen tests: not ours to publish.
+# Rebuild with tests/make_vanilla_fixture.py (needs the unpacked game assets).
+tests/fixtures/vanilla/
+# esplib keeps the previous plugin as .bak when it saves over one.
+*.bak
+# The CK bake of the four chargen presets, replaced by ck_bake/fsftest (2026-11-22).
+tests/fixtures/ck_bake/presets/
+# From the Felid race (another author's mod): kept out until cleared for publishing.
+tests/fixtures/pynifly/felidmalehead.nif

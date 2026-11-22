@@ -1,0 +1,785 @@
+{
+  "race": "FSFFoxRace",
+  "sex": "male",
+  "variants": [
+    {
+      "name": "Crowd_Fen_md1_sk11_d2c3e12t2bRuff04",
+      "head": "Crowd_Fen_md1.nif",
+      "tone": 11,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk11_d2c3e12t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk11_d2c3e12t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk11_d2c3e12t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk11_d2c3e12t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fen_md1_sk11_d2c3e12t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fen_md1_sk11_d2c3e12t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fen_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fen_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fen_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fen_md1_sk11_d6c1e12t2bRuff04",
+      "head": "Crowd_Fen_md1.nif",
+      "tone": 11,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk11_d6c1e12t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk11_d6c1e12t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk11_d6c1e12t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk11_d6c1e12t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fen_md1_sk11_d6c1e12t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fen_md1_sk11_d6c1e12t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fen_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fen_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fen_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fen_md1_sk12_d2c2e7t2bRuff04",
+      "head": "Crowd_Fen_md1.nif",
+      "tone": 12,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk12_d2c2e7t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk12_d2c2e7t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk12_d2c2e7t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk12_d2c2e7t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fen_md1_sk12_d2c2e7t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fen_md1_sk12_d2c2e7t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fen_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fen_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fen_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fen_md1_sk12_d3c3e7t2bRuff04",
+      "head": "Crowd_Fen_md1.nif",
+      "tone": 12,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk12_d3c3e7t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk12_d3c3e7t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk12_d3c3e7t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fen_md1_sk12_d3c3e7t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fen_md1_sk12_d3c3e7t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fen_md1_sk12_d3c3e7t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fen_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fen_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fen_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk0_d4c4e11t2bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 0,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk0_d4c4e11t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk0_d4c4e11t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk0_d4c4e11t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk0_d4c4e11t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk0_d4c4e11t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk0_d4c4e11t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk0_d6c2e12t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 0,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk0_d6c2e12t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk0_d6c2e12t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk0_d6c2e12t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk0_d6c2e12t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk0_d6c2e12t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk0_d6c2e12t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk10_d2c1e12t2bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 10,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk10_d2c1e12t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk10_d2c1e12t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk10_d2c1e12t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk10_d2c1e12t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk10_d2c1e12t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk10_d2c1e12t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk1_d2c2e5t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d2c2e5t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d2c2e5t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d2c2e5t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d2c2e5t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk1_d2c2e5t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk1_d2c2e5t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk1_d4c1e4t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d4c1e4t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d4c1e4t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d4c1e4t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d4c1e4t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk1_d4c1e4t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk1_d4c1e4t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk1_d4c1e6t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d4c1e6t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d4c1e6t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d4c1e6t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d4c1e6t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk1_d4c1e6t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk1_d4c1e6t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk1_d6c4e3t2bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d6c4e3t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d6c4e3t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d6c4e3t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk1_d6c4e3t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk1_d6c4e3t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk1_d6c4e3t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk2_d3c4e10t2bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk2_d3c4e10t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk2_d3c4e10t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk2_d3c4e10t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk2_d3c4e10t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk2_d3c4e10t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk2_d3c4e10t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk3_d1c2e7t2bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk3_d1c2e7t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk3_d1c2e7t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk3_d1c2e7t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk3_d1c2e7t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk3_d1c2e7t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk3_d1c2e7t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk3_d3c4e10t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk3_d3c4e10t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk3_d3c4e10t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk3_d3c4e10t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk3_d3c4e10t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk3_d3c4e10t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk3_d3c4e10t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk4_d5c3e10t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk4_d5c3e10t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk4_d5c3e10t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk4_d5c3e10t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk4_d5c3e10t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk4_d5c3e10t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk4_d5c3e10t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk5_d5c4e2t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk5_d5c4e2t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk5_d5c4e2t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk5_d5c4e2t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk5_d5c4e2t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk5_d5c4e2t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk5_d5c4e2t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk6_d3c4e4t2bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk6_d3c4e4t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk6_d3c4e4t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk6_d3c4e4t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk6_d3c4e4t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk6_d3c4e4t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk6_d3c4e4t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk6_d4c4e2t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk6_d4c4e2t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk6_d4c4e2t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk6_d4c4e2t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk6_d4c4e2t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk6_d4c4e2t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk6_d4c4e2t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk6_d6c2e6t2bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk6_d6c2e6t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk6_d6c2e6t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk6_d6c2e6t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk6_d6c2e6t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk6_d6c2e6t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk6_d6c2e6t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk7_d2c1e2t2bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d2c1e2t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d2c1e2t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d2c1e2t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d2c1e2t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk7_d2c1e2t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk7_d2c1e2t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk7_d4c2e10t2bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d4c2e10t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d4c2e10t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d4c2e10t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d4c2e10t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk7_d4c2e10t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk7_d4c2e10t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk7_d5c1e11t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d5c1e11t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d5c1e11t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d5c1e11t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d5c1e11t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk7_d5c1e11t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk7_d5c1e11t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk7_d6c1e12t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d6c1e12t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d6c1e12t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d6c1e12t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d6c1e12t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk7_d6c1e12t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk7_d6c1e12t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk7_d6c2e5t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d6c2e5t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d6c2e5t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d6c2e5t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk7_d6c2e5t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk7_d6c2e5t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk7_d6c2e5t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk9_d2c2e11t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk9_d2c2e11t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk9_d2c2e11t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk9_d2c2e11t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk9_d2c2e11t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk9_d2c2e11t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk9_d2c2e11t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk9_d4c1e12t2bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk9_d4c1e12t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk9_d4c1e12t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk9_d4c1e12t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk9_d4c1e12t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk9_d4c1e12t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk9_d4c1e12t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md1_sk9_d6c4e9t1bRuff04",
+      "head": "Crowd_Fox_md1.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk9_d6c4e9t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk9_d6c4e9t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk9_d6c4e9t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md1_sk9_d6c4e9t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md1_sk9_d6c4e9t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md1_sk9_d6c4e9t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md1_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk0_d3c1e10t1bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 0,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk0_d3c1e10t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk0_d3c1e10t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk0_d3c1e10t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk0_d3c1e10t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk0_d3c1e10t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk0_d3c1e10t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk0_d4c1e4t1bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 0,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk0_d4c1e4t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk0_d4c1e4t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk0_d4c1e4t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk0_d4c1e4t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk0_d4c1e4t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk0_d4c1e4t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk10_d3c3e9t2bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 10,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk10_d3c3e9t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk10_d3c3e9t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk10_d3c3e9t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk10_d3c3e9t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk10_d3c3e9t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk10_d3c3e9t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk10_d4c4e12t2bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 10,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk10_d4c4e12t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk10_d4c4e12t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk10_d4c4e12t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk10_d4c4e12t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk10_d4c4e12t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk10_d4c4e12t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk1_d6c2e11t2bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk1_d6c2e11t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk1_d6c2e11t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk1_d6c2e11t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk1_d6c2e11t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk1_d6c2e11t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk1_d6c2e11t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk2_d1c2e5t2bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk2_d1c2e5t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk2_d1c2e5t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk2_d1c2e5t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk2_d1c2e5t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk2_d1c2e5t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk2_d1c2e5t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk2_d6c1e9t2bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk2_d6c1e9t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk2_d6c1e9t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk2_d6c1e9t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk2_d6c1e9t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk2_d6c1e9t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk2_d6c1e9t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk3_d4c2e10t1bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk3_d4c2e10t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk3_d4c2e10t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk3_d4c2e10t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk3_d4c2e10t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk3_d4c2e10t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk3_d4c2e10t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk4_d1c3e6t1bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk4_d1c3e6t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk4_d1c3e6t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk4_d1c3e6t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk4_d1c3e6t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk4_d1c3e6t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk4_d1c3e6t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk5_d4c4e5t1bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk5_d4c4e5t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk5_d4c4e5t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk5_d4c4e5t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk5_d4c4e5t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk5_d4c4e5t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk5_d4c4e5t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk5_d6c4e11t2bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk5_d6c4e11t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk5_d6c4e11t2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk5_d6c4e11t2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk5_d6c4e11t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk5_d6c4e11t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk5_d6c4e11t2_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk6_d1c4e4t1bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk6_d1c4e4t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk6_d1c4e4t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk6_d1c4e4t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk6_d1c4e4t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk6_d1c4e4t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk6_d1c4e4t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    },
+    {
+      "name": "Crowd_Fox_md2_sk8_d6c1e9t1bRuff04",
+      "head": "Crowd_Fox_md2.nif",
+      "tone": 8,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk8_d6c1e9t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk8_d6c1e9t1.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk8_d6c1e9t1_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Variants\\Crowd_Fox_md2_sk8_d6c1e9t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\Crowd_Fox_md2_sk8_d6c1e9t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\Crowd_Fox_md2_sk8_d6c1e9t1_color.dds",
+      "beard": "Ruff04",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Male\\Beards\\Crowd_Fox_md2_Ruff04_Thin.nif"
+      }
+    }
+  ],
+  "beard_colors": "FSFFox_Crowd_Beard_Colors",
+  "tail": {
+    "addon": "FSFCanine_AA_Naked_Tail",
+    "nifs": {
+      "0": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk0.nif",
+      "1": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk1.nif",
+      "2": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk2.nif",
+      "3": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk3.nif",
+      "4": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk4.nif",
+      "5": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk5.nif",
+      "6": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk6.nif",
+      "7": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk7.nif",
+      "8": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk8.nif",
+      "9": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk9.nif",
+      "10": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk10.nif",
+      "11": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk11.nif",
+      "12": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineMaleTailBrush_sk12.nif"
+    }
+  }
+}

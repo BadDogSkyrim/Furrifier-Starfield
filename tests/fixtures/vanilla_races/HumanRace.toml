@@ -1,0 +1,5 @@
+# Vanilla humans, for baking vanilla NPCs as they stand (tests only). No tint layers to roll.
+[race]
+editorid = "HumanRace"
+plugin = "Starfield.esm"
+skin_tones = [0, 1, 2, 3, 4, 5, 6, 7, 8]

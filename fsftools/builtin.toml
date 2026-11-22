@@ -1,0 +1,91 @@
+# Classification rules — first match wins.
+# Fields: RACE, FACTION, KEYWORD, EDITORID, NAME, LOCATION
+
+# Skip: player, chargen presets, audio-only, templates
+[[class_match]]
+class = "CLASS_SKIP"
+field = "EDITORID"
+pattern = "Player"
+
+[[class_match]]
+class = "CLASS_SKIP"
+field = "EDITORID"
+pattern = "Chargen*"
+
+[[class_match]]
+class = "CLASS_SKIP"
+field = "EDITORID"
+pattern = "*AUDIOONLY*"
+
+[[class_match]]
+class = "CLASS_SKIP"
+field = "EDITORID"
+pattern = "*TEMPLATE*"
+
+[[class_match]]
+class = "CLASS_SKIP"
+field = "EDITORID"
+pattern = "*_NoAppearanceData*"
+
+# Major factions
+[[class_match]]
+class = "CLASS_UC_MILITARY"
+field = "FACTION"
+pattern = "*OccupationFaction_Military_UC*"
+
+[[class_match]]
+class = "CLASS_UC_VANGUARD"
+field = "FACTION"
+pattern = "*UC_Vanguard*"
+
+[[class_match]]
+class = "CLASS_CONSTELLATION"
+field = "FACTION"
+pattern = "ConstellationFaction"
+
+[[class_match]]
+class = "CLASS_FREESTAR"
+field = "FACTION"
+pattern = "FreestarFaction"
+
+[[class_match]]
+class = "CLASS_FREESTAR"
+field = "FACTION"
+pattern = "FreestarRangerFaction"
+
+[[class_match]]
+class = "CLASS_FREESTAR"
+field = "FACTION"
+pattern = "FreestarSecurityFaction"
+
+[[class_match]]
+class = "CLASS_CRIMSON"
+field = "FACTION"
+pattern = "GroupFactionCrimsonFleet"
+
+[[class_match]]
+class = "CLASS_CRIMSON"
+field = "FACTION"
+pattern = "CrimeFactionCrimsonFleet"
+
+[[class_match]]
+class = "CLASS_RYUJIN"
+field = "FACTION"
+pattern = "RyujinIndustriesFaction"
+
+# Location-based (Neon NPCs from EditorID prefix)
+[[class_match]]
+class = "CLASS_NEON"
+field = "EDITORID"
+pattern = "FC_Neon_*"
+
+[[class_match]]
+class = "CLASS_NEON"
+field = "EDITORID"
+pattern = "*Neon*"
+
+# Catch-all
+[[class_match]]
+class = "CLASS_CITIZEN"
+field = "RACE"
+pattern = "*"

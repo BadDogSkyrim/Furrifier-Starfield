@@ -1,0 +1,8 @@
+# The mods this snapshot stands in for: their deployed files are hidden.
+replaces = [
+    "C:/Modding/Starfield/Mods/FSF",
+    "C:/Modding/Starfield/Mods/FSFPlayer_Fox",
+    "C:/Modding/Starfield/Mods/FSFPlayer_Hyena",
+]
+# Data paths hidden by name, whichever mod deploys them.
+hide = ["FSFNPC.esm", "FSFNPC_test.esm"]

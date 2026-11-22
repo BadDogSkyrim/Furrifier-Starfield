@@ -1,0 +1,11 @@
+# Test scheme: every NPC a fox. The tests that check fox appearance rely on it; crowd tests write
+# their own schemes.
+
+exclude_npcs = []
+
+[proportions]
+FSFFoxRace = 100
+
+[npc_assignments]
+
+[families]

@@ -1,0 +1,31 @@
+# Lint config for FSFTools: PyNifly's rule set, which these scripts were held to before they moved.
+#
+#     ruff check .
+#
+# The rule set is chosen so that `ruff check .` passes at ZERO, so a new finding is a signal.
+
+target-version = "py311"
+line-length = 100                 # advisory; E501 is not enabled
+
+exclude = [
+    "tests/fixtures",
+    "tests/out",
+]
+
+[lint]
+select = [
+    "F",      # pyflakes -- undefined names, duplicate definitions, unused imports
+    "E4",     # import placement
+    "E7",     # comparison and statement errors
+    "E9",     # syntax / IO errors
+    "W6",     # deprecated constructs, incl. W605 invalid escape sequences
+    "B006",   # mutable argument default
+    "B023",   # function definition captures a loop variable
+]
+
+ignore = [
+    "F403", "F405",   # star imports: the Blender tests build on PyNifly's `from ...common import *`
+    "E701", "E702",   # Bad Dog's house style: `if x: return`, semicolon-separated statements
+    "E741",           # ambiguous variable names (l, I, O)
+    "E402",           # imports after sys.path setup, which every tool does
+]

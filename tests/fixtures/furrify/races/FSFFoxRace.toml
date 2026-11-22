@@ -1,0 +1,130 @@
+# Fox race definition
+#
+# Names here must exist in the plugins; the furrifier reads textures and colours from the AVMD
+# groups they name and stops at startup if one is missing.
+
+[race]
+editorid = "FSFFoxRace"
+plugin = "FSF.esm"
+crowd_race_editorid = "FSFFoxCrowdRace"
+# sf_tintbake's manifests, one per sex: the crowd heads
+crowd_manifests = [
+    "../../crowd/fox/CrowdHead_fox_male.variants.json",
+    "../../crowd/fox/Crowdf_fox_01.variants.json",
+]
+# Holds the fox's own Dermaesthetic/Complexion lists. Only read for their contents, not a master.
+# A path, because only the active player option is deployed; it's taken out of the load order.
+tint_plugin = "FSFPlayer_FOX.esm"
+# Fox tones. 11 is arctic fox. 12 and 13 are the fennec tones (female fennec has only 5).
+skin_tones = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+skin_tones_female = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+# Parts the RACE HEAD list doesn't carry
+extra_parts_male = ["FSFCanine_Male_Tongue"]
+extra_parts_female = ["FSFCanine_Female_Tongue"]
+
+# -- Tint layers --
+# Each entry: slot, options (keys in the slot's Simple group), probability (1.0 = always),
+# intensity (1-128; 64 is the fox presets' value and vanilla's commonest).
+# A slot with a Modulation group (the masks) gets a random colour from it; optional colors = [...]
+# narrows that to the listed keys.
+[[tint_layers]]
+slot = "Dermaesthetic"
+probability = 1.0
+options = [
+    "male_fox_derm01",
+    "male_fox_derm02",
+    "male_fox_derm03",
+    "male_fox_derm04",
+    "male_fox_derm05",
+    "male_fox_derm06",
+]
+
+[[tint_layers]]
+slot = "Complexion1"
+probability = 1.0
+options = ["Complexion01", "Complexion02", "Complexion03", "Complexion04"]
+
+[[tint_layers]]
+slot = "ComplexionMask1"
+probability = 0.25
+options = ["Complexion_All", "Complexion_EyeSpots", "Complexion_Muzzle", "Complexion_Face"]
+
+# -- Morph ranges --
+# [morph_defaults.<phenotype>] names a region; the morph is <phenotype>_<region>, which must be on
+# the race. A region not listed isn't written, and that also matters for textures: a region's weight
+# picks its normal, rough and base colour maps, and with no key it gets <sex>_default's. So a key that
+# barely moves a vertex (Chin below) can still be doing real work. Each NPC rolls every key:
+#   chance  percent, default 100; a miss leaves the key unwritten
+#   min/max value range within 0-1, default 0-1
+#   skew    "even" (default), "low" (v*v) or "high" (1-(1-v)*(1-v)), as in the FO4 furrifier
+# A breed changes these with [breeds.morphs.<phenotype>], region by region. [breeds.blend.<phenotype>]
+# adds keys from another phenotype of the same sex, scaled so a region's total stays within 1.0.
+#
+# These numbers are first guesses, to be tuned on screen.
+[morph_defaults.male_fox_md1]
+Chin = { min = 0.5, max = 1.0 }
+Ears = { min = 0.85, max = 1.0 }
+Nose = { min = 0.5, max = 1.0 }
+Neck = { min = 0.0, max = 0.5 }
+
+[morph_defaults.female_fox_md1]
+Chin = { min = 1.0, max = 1.0 }
+Ears = { min = 0.85, max = 1.0 }
+Nose = { min = 0.0, max = 1.0 }
+Neck = { min = 0.0, max = 1.0 }
+
+[morph_defaults.male_fennec_md1]
+Chin = { min = 1.0, max = 1.0 }
+Neck = { min = 1.0, max = 1.0 }
+Jaw = { min = 1.0, max = 1.0 }
+Ears = { min = 0.9, max = 1.0 }
+Nose = { min = 0.9, max = 1.0 }
+Cheeks = { min = 0.8, max = 1.0 }
+Eyes = { min = 1.0, max = 1.0 }
+
+[morph_defaults.female_fennec_md1]
+Chin = { min = 1.0, max = 1.0 }
+Neck = { min = 1.0, max = 1.0 }
+Jaw = { min = 1.0, max = 1.0 }
+Ears = { min = 0.9, max = 1.0 }
+Nose = { min = 0.9, max = 1.0 }
+Cheeks = { min = 0.8, max = 1.0 }
+Eyes = { min = 1.0, max = 1.0 }
+
+# -- Breeds --
+# Each breed lists its allowed phenotypes with weights. The race defines only md1 and fennec_md1.
+# crowd_heads names its crowd variants by glob; each sex's tones (skin_tone_override, else the race's
+# skin_tones) narrow them, and the sexes needn't share tones. Weights are relative. Arctic and silver sit at 0 for now, with no crowd heads.
+[[breeds]]
+name = "red_fox"
+weight = 90
+crowd_heads = ["Crowd_Fox_*", "crowdf_fox_*"]
+phenotypes_male = [["male_fox_md1", 100]]
+phenotypes_female = [["female_fox_md1", 100]]
+
+[[breeds]]
+name = "arctic_fox"
+weight = 0
+skin_tone_override = [0, 1]
+phenotypes_male = [["male_fox_md1", 100]]
+phenotypes_female = [["female_fox_md1", 100]]
+[breeds.morphs.male_fox_md1]
+Ears = { min = 0.5, max = 0.8 }
+[breeds.morphs.female_fox_md1]
+Ears = { min = 0.5, max = 0.8 }
+
+[[breeds]]
+name = "silver_fox"
+weight = 0
+phenotypes_male = [["male_fox_md1", 100]]
+phenotypes_female = [["female_fox_md1", 100]]
+
+[[breeds]]
+# Test fixture: fennec is off, and tone 40 is past every tone list. The skin-tone tests turn it
+# on to see the bad tone caught, and rely on it being ignored while off.
+name = "fennec"
+weight = 0
+crowd_heads = ["Crowd_Fen_*", "crowdf_fennec_*"]
+skin_tone_override = [11, 40]
+phenotypes_male = [["male_fennec_md1", 100]]
+phenotypes_female = [["female_fennec_md1", 100]]

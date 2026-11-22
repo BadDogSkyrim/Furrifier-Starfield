@@ -1,0 +1,82 @@
+# A new species copied from an existing one: race_copy.py reads this.
+#
+# The new species gets its own copy of each record in `copy`, with a new FormID, its strings rewritten
+# by [strings] then [words], and its references to other copied records pointed at their copies.
+# Records in `shared` stay one record: the new species is added wherever the source species is
+# listed (as a race, an additional race or a form-list entry). Fennec and the fox's second female
+# phenotype don't carry over: entries matching `drop` are removed from the copies, and so are
+# references to the records in `drop_records`.
+
+plugin = "FSF.esm"
+player_from = "FSFPlayer_FOX.esm"
+player_to = "FSFPlayer_HYENA.esm"
+
+# Source race -> new race, by EditorID. Shared records gain the new race wherever the source is listed.
+[races]
+FSFFoxRace = "FSFHyenaRace"
+FSFFoxCrowdRace = "FSFHyenaCrowdRace"
+
+# Exact substrings, replaced first.
+[strings]
+"FSFCanine_AA_Naked_Tail" = "FSFHyena_AA_Naked_Tail"
+"FSFCanine_Skin_Naked" = "FSFHyena_Skin_Naked"
+"FSFox_Skin_Crowd" = "FSFHyena_Skin_Crowd"
+"Crowd_Fen_md1" = "Crowd_Hyena_md1"
+"Foxes" = "Hyenas"
+
+# Words replaced anywhere, keeping case (fox, Fox, FOX).
+[words]
+fox = "hyena"
+
+[copy]
+records = [
+    "FSFFoxRace",
+    "FSFFoxCrowdRace",
+    "SimpleGroup_FSFFox_Body_Skin_Tones",
+    "SimpleGroup_FSFFox_Female_Body_Skin_Tones",
+    "SimpleGroup_FSFFox_Male_Hands",
+    "SimpleGroup_FSFFox_Female_Hands",
+    "ComplexGroup_FSFFoxFaceSkinTones",
+    "SimpleGroup_FSFFaceSkinTones_male_fox",
+    "SimpleGroup_FSFFoxFaceSkinTones_*",
+    "SimpleGroup_chargen_FSFFoxDermaestheticSkinTone*",
+    "FSFCanine_AA_Naked_Tail",
+    "FSFCanine_Skin_Naked",
+    "FSFox_Skin_Crowd_Base_Body_NOTPLAYABLE",
+    "FSF_AA_CrowdHead_fox_md1_NOTPLAYABLE",
+    "MORPH_FSFFox_Crowd_Male_Fox_md1_Head",
+    "MORPH_FSFFox_Crowd_Female_Fox_md1",
+    "_FSFFoxChargenPreset*",
+]
+# Strings (case-insensitive regex) marking list entries that don't carry over.
+drop = "fennec|_fen_|fox_md2"
+drop_records = [
+    "SimpleGroup_FSFFaceSkinTones_male_fennec",
+    "SimpleGroup_chargen_FSFFoxDermaestheticSkinTone11",
+    "SimpleGroup_chargen_FSFFoxDermaestheticSkinTone12",
+    "_FSFFoxChargenPresetMale04",
+    "_FSFFoxChargenPresetFemale04",
+    "_FSFFoxMaleTest",
+]
+
+[shared]
+records = [
+    "FSFCanine_AA_Naked_Body",
+    "FSFCanine_AA_Naked_Hands",
+    "FSFCanine_AA_Spacesuit_*",
+    "FSFFox_AA_Clothes_*",
+    "HeadPartsFSFCanineRace",
+]
+# Shared records renamed on the way (they were never fox-only).
+[shared.rename]
+"FSFFox_AA_Clothes_" = "FSF_AA_Clothes_"
+
+# Player plugin records left exactly as they are: the fox ruffs' follicle masks, shared by the hyena.
+[player]
+keep = ["SimpleGroup_BeardFollicleMask"]
+
+# One-off fixes to source records.
+[[fix]]
+record = "FSFFoxCrowdRace"
+sub = "SNAM"
+value = "Foxes"

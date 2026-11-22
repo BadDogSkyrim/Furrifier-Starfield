@@ -1,0 +1,784 @@
+{
+  "race": "FSFFoxRace",
+  "sex": "female",
+  "variants": [
+    {
+      "name": "crowdf_fennec_01_sk12_d1c1e5bRuff02",
+      "head": "crowdf_fennec_01.nif",
+      "tone": 12,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fennec_01_sk12_d1c1e5.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fennec_01_sk12_d1c1e5.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fennec_01_sk12_d1c1e5_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fennec_01_sk12_d1c1e5_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fennec_01_sk12_d1c1e5.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fennec_01_sk12_d1c1e5_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fennec_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fennec_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fennec_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fennec_01_sk12_d5c2e12bRuff02",
+      "head": "crowdf_fennec_01.nif",
+      "tone": 12,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fennec_01_sk12_d5c2e12.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fennec_01_sk12_d5c2e12.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fennec_01_sk12_d5c2e12_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fennec_01_sk12_d5c2e12_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fennec_01_sk12_d5c2e12.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fennec_01_sk12_d5c2e12_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fennec_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fennec_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fennec_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk0_d4c3e3bRuff01",
+      "head": "crowdf_fox_01.nif",
+      "tone": 0,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk0_d4c3e3.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk0_d4c3e3.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk0_d4c3e3_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk0_d4c3e3_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk0_d4c3e3.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk0_d4c3e3_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk0_d6c4e6bRuff01",
+      "head": "crowdf_fox_01.nif",
+      "tone": 0,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk0_d6c4e6.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk0_d6c4e6.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk0_d6c4e6_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk0_d6c4e6_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk0_d6c4e6.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk0_d6c4e6_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk10_d1c3e6bRuff02",
+      "head": "crowdf_fox_01.nif",
+      "tone": 10,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d1c3e6.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d1c3e6.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d1c3e6_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d1c3e6_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk10_d1c3e6.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk10_d1c3e6_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk10_d1c4e3bRuff02",
+      "head": "crowdf_fox_01.nif",
+      "tone": 10,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d1c4e3.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d1c4e3.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d1c4e3_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d1c4e3_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk10_d1c4e3.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk10_d1c4e3_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk10_d1c4e7bRuff01",
+      "head": "crowdf_fox_01.nif",
+      "tone": 10,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d1c4e7.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d1c4e7.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d1c4e7_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d1c4e7_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk10_d1c4e7.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk10_d1c4e7_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk10_d6c1e9bRuff02",
+      "head": "crowdf_fox_01.nif",
+      "tone": 10,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d6c1e9.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d6c1e9.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d6c1e9_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk10_d6c1e9_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk10_d6c1e9.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk10_d6c1e9_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk1_d4c3e2bRuff01",
+      "head": "crowdf_fox_01.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d4c3e2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d4c3e2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d4c3e2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d4c3e2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk1_d4c3e2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk1_d4c3e2_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk1_d5c2e12bRuff02",
+      "head": "crowdf_fox_01.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d5c2e12.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d5c2e12.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d5c2e12_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d5c2e12_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk1_d5c2e12.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk1_d5c2e12_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk1_d5c2e2bRuff01",
+      "head": "crowdf_fox_01.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d5c2e2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d5c2e2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d5c2e2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d5c2e2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk1_d5c2e2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk1_d5c2e2_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk1_d6c4e10bRuff01",
+      "head": "crowdf_fox_01.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d6c4e10.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d6c4e10.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d6c4e10_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk1_d6c4e10_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk1_d6c4e10.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk1_d6c4e10_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk2_d1c2e12bRuff01",
+      "head": "crowdf_fox_01.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk2_d1c2e12.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk2_d1c2e12.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk2_d1c2e12_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk2_d1c2e12_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk2_d1c2e12.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk2_d1c2e12_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk2_d4c2e6bRuff01",
+      "head": "crowdf_fox_01.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk2_d4c2e6.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk2_d4c2e6.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk2_d4c2e6_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk2_d4c2e6_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk2_d4c2e6.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk2_d4c2e6_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk3_d5c3e3bRuff02",
+      "head": "crowdf_fox_01.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk3_d5c3e3.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk3_d5c3e3.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk3_d5c3e3_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk3_d5c3e3_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk3_d5c3e3.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk3_d5c3e3_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk4_d1c1e12bRuff02",
+      "head": "crowdf_fox_01.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk4_d1c1e12.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk4_d1c1e12.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk4_d1c1e12_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk4_d1c1e12_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk4_d1c1e12.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk4_d1c1e12_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk4_d3c3e2bRuff01",
+      "head": "crowdf_fox_01.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk4_d3c3e2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk4_d3c3e2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk4_d3c3e2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk4_d3c3e2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk4_d3c3e2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk4_d3c3e2_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk4_d4c1e11bRuff01",
+      "head": "crowdf_fox_01.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk4_d4c1e11.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk4_d4c1e11.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk4_d4c1e11_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk4_d4c1e11_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk4_d4c1e11.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk4_d4c1e11_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk5_d5c1e10bRuff02",
+      "head": "crowdf_fox_01.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk5_d5c1e10.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk5_d5c1e10.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk5_d5c1e10_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk5_d5c1e10_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk5_d5c1e10.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk5_d5c1e10_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk6_d2c4e12bRuff01",
+      "head": "crowdf_fox_01.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk6_d2c4e12.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk6_d2c4e12.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk6_d2c4e12_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk6_d2c4e12_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk6_d2c4e12.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk6_d2c4e12_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk6_d6c3e10bRuff02",
+      "head": "crowdf_fox_01.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk6_d6c3e10.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk6_d6c3e10.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk6_d6c3e10_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk6_d6c3e10_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk6_d6c3e10.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk6_d6c3e10_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk7_d1c4e10bRuff02",
+      "head": "crowdf_fox_01.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk7_d1c4e10.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk7_d1c4e10.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk7_d1c4e10_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk7_d1c4e10_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk7_d1c4e10.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk7_d1c4e10_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk7_d3c2e4bRuff02",
+      "head": "crowdf_fox_01.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk7_d3c2e4.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk7_d3c2e4.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk7_d3c2e4_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk7_d3c2e4_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk7_d3c2e4.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk7_d3c2e4_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk8_d6c3e6bRuff02",
+      "head": "crowdf_fox_01.nif",
+      "tone": 8,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk8_d6c3e6.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk8_d6c3e6.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk8_d6c3e6_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk8_d6c3e6_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk8_d6c3e6.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk8_d6c3e6_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk8_d6c3e9bRuff01",
+      "head": "crowdf_fox_01.nif",
+      "tone": 8,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk8_d6c3e9.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk8_d6c3e9.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk8_d6c3e9_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk8_d6c3e9_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk8_d6c3e9.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk8_d6c3e9_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff01_Thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_01_sk9_d2c4e2bRuff02",
+      "head": "crowdf_fox_01.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk9_d2c4e2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk9_d2c4e2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk9_d2c4e2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_01_sk9_d2c4e2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_01_sk9_d2c4e2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_01_sk9_d2c4e2_color.dds",
+      "beard": "Ruff02",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_01_Ruff02_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk0_d1c4e5bRuff03",
+      "head": "crowdf_fox_02.nif",
+      "tone": 0,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk0_d1c4e5.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk0_d1c4e5.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk0_d1c4e5_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk0_d1c4e5_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk0_d1c4e5.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk0_d1c4e5_color.dds",
+      "beard": "Ruff03",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk1_d4c4e9bRuff03",
+      "head": "crowdf_fox_02.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk1_d4c4e9.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk1_d4c4e9.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk1_d4c4e9_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk1_d4c4e9_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk1_d4c4e9.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk1_d4c4e9_color.dds",
+      "beard": "Ruff03",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk2_d1c1e10bRuff01",
+      "head": "crowdf_fox_02.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk2_d1c1e10.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk2_d1c1e10.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk2_d1c1e10_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk2_d1c1e10_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk2_d1c1e10.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk2_d1c1e10_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk2_d2c2e10bRuff01",
+      "head": "crowdf_fox_02.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk2_d2c2e10.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk2_d2c2e10.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk2_d2c2e10_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk2_d2c2e10_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk2_d2c2e10.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk2_d2c2e10_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk3_d1c3e7bRuff03",
+      "head": "crowdf_fox_02.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d1c3e7.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d1c3e7.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d1c3e7_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d1c3e7_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk3_d1c3e7.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk3_d1c3e7_color.dds",
+      "beard": "Ruff03",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk3_d2c4e11bRuff03",
+      "head": "crowdf_fox_02.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d2c4e11.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d2c4e11.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d2c4e11_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d2c4e11_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk3_d2c4e11.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk3_d2c4e11_color.dds",
+      "beard": "Ruff03",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk3_d5c2e10bRuff03",
+      "head": "crowdf_fox_02.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d5c2e10.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d5c2e10.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d5c2e10_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d5c2e10_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk3_d5c2e10.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk3_d5c2e10_color.dds",
+      "beard": "Ruff03",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk3_d6c2e3bRuff03",
+      "head": "crowdf_fox_02.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d6c2e3.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d6c2e3.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d6c2e3_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk3_d6c2e3_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk3_d6c2e3.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk3_d6c2e3_color.dds",
+      "beard": "Ruff03",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk4_d1c1e12bRuff03",
+      "head": "crowdf_fox_02.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk4_d1c1e12.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk4_d1c1e12.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk4_d1c1e12_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk4_d1c1e12_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk4_d1c1e12.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk4_d1c1e12_color.dds",
+      "beard": "Ruff03",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk5_d2c2e2bRuff01",
+      "head": "crowdf_fox_02.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk5_d2c2e2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk5_d2c2e2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk5_d2c2e2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk5_d2c2e2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk5_d2c2e2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk5_d2c2e2_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk5_d5c3e10bRuff01",
+      "head": "crowdf_fox_02.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk5_d5c3e10.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk5_d5c3e10.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk5_d5c3e10_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk5_d5c3e10_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk5_d5c3e10.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk5_d5c3e10_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk7_d1c3e11bRuff03",
+      "head": "crowdf_fox_02.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk7_d1c3e11.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk7_d1c3e11.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk7_d1c3e11_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk7_d1c3e11_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk7_d1c3e11.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk7_d1c3e11_color.dds",
+      "beard": "Ruff03",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk7_d5c2e2bRuff01",
+      "head": "crowdf_fox_02.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk7_d5c2e2.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk7_d5c2e2.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk7_d5c2e2_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk7_d5c2e2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk7_d5c2e2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk7_d5c2e2_color.dds",
+      "beard": "Ruff01",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff01_thin.nif"
+      }
+    },
+    {
+      "name": "crowdf_fox_02_sk7_d6c2e8bRuff03",
+      "head": "crowdf_fox_02.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk7_d6c2e8.nif",
+      "nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk7_d6c2e8.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk7_d6c2e8_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Variants\\crowdf_fox_02_sk7_d6c2e8_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFFox\\Crowd\\Variants\\crowdf_fox_02_sk7_d6c2e8.mat",
+      "texture": "Data\\Textures\\Actors\\FSFFox\\crowd\\variants\\crowdf_fox_02_sk7_d6c2e8_color.dds",
+      "beard": "Ruff03",
+      "beard_nifs": {
+        "average": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03.nif",
+        "overweight": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_overweight.nif",
+        "thin": "Actors\\FSFFox_Crowd\\Mesh\\Female\\Beards\\crowdf_fox_02_Ruff03_thin.nif"
+      }
+    }
+  ],
+  "beard_colors": "FSFFox_Crowd_Beard_Colors",
+  "tail": {
+    "addon": "FSFCanine_AA_Naked_Tail",
+    "nifs": {
+      "0": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineFemTailBrush_sk0.nif",
+      "1": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineFemTailBrush_sk1.nif",
+      "2": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineFemTailBrush_sk2.nif",
+      "3": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineFemTailBrush_sk3.nif",
+      "4": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineFemTailBrush_sk4.nif",
+      "5": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineFemTailBrush_sk5.nif",
+      "6": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineFemTailBrush_sk6.nif",
+      "7": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineFemTailBrush_sk7.nif",
+      "8": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineFemTailBrush_sk8.nif",
+      "9": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineFemTailBrush_sk9.nif",
+      "10": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineFemTailBrush_sk10.nif",
+      "12": "Actors\\fsfcanine\\Mesh\\TAIL\\Variants\\CanineFemTailBrush_sk12.nif"
+    }
+  }
+}

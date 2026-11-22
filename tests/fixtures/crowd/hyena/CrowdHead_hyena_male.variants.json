@@ -1,0 +1,542 @@
+{
+  "race": "FSFHyenaRace",
+  "sex": "male",
+  "variants": [
+    {
+      "name": "Crowd_Hyena_md1_sk1_d4c1be3t1b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk1_d4c1be3t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk1_d4c1be3t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk1_d4c1be3t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk1_d4c1be3t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk1_d4c1be3t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk1_d4c1be3t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk1_d6c1ae10t1b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk1_d6c1ae10t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk1_d6c1ae10t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk1_d6c1ae10t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk1_d6c1ae10t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk1_d6c1ae10t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk1_d6c1ae10t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk1_d7c1ae2t2b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk1_d7c1ae2t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk1_d7c1ae2t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk1_d7c1ae2t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk1_d7c1ae2t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk1_d7c1ae2t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk1_d7c1ae2t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk2_d2c1de12t1b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d2c1de12t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d2c1de12t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d2c1de12t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d2c1de12t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk2_d2c1de12t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk2_d2c1de12t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk2_d6c0e11t2b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d6c0e11t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d6c0e11t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d6c0e11t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d6c0e11t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk2_d6c0e11t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk2_d6c0e11t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk2_d6c1ae2t2b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d6c1ae2t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d6c1ae2t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d6c1ae2t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d6c1ae2t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk2_d6c1ae2t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk2_d6c1ae2t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk2_d7c0e9t1b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d7c0e9t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d7c0e9t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d7c0e9t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d7c0e9t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk2_d7c0e9t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk2_d7c0e9t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk2_d7c1be5t2b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d7c1be5t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d7c1be5t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d7c1be5t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d7c1be5t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk2_d7c1be5t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk2_d7c1be5t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk2_d7c1de3t1b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 2,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d7c1de3t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d7c1de3t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d7c1de3t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk2_d7c1de3t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk2_d7c1de3t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk2_d7c1de3t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk4_d3c1ae9t2b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk4_d3c1ae9t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk4_d3c1ae9t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk4_d3c1ae9t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk4_d3c1ae9t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk4_d3c1ae9t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk4_d3c1ae9t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk4_d5c1ce11t2b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk4_d5c1ce11t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk4_d5c1ce11t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk4_d5c1ce11t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk4_d5c1ce11t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk4_d5c1ce11t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk4_d5c1ce11t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk4_d6c1be3t1b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk4_d6c1be3t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk4_d6c1be3t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk4_d6c1be3t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk4_d6c1be3t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk4_d6c1be3t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk4_d6c1be3t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk6_d4c1ae12t2b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk6_d4c1ae12t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk6_d4c1ae12t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk6_d4c1ae12t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk6_d4c1ae12t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk6_d4c1ae12t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk6_d4c1ae12t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk6_d8c0e11t2b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk6_d8c0e11t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk6_d8c0e11t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk6_d8c0e11t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk6_d8c0e11t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk6_d8c0e11t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk6_d8c0e11t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk6_d8c0e3t1b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk6_d8c0e3t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk6_d8c0e3t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk6_d8c0e3t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk6_d8c0e3t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk6_d8c0e3t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk6_d8c0e3t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk7_d3c0e2t2b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk7_d3c0e2t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk7_d3c0e2t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk7_d3c0e2t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk7_d3c0e2t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk7_d3c0e2t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk7_d3c0e2t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk8_d5c1be3t1b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 8,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk8_d5c1be3t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk8_d5c1be3t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk8_d5c1be3t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk8_d5c1be3t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk8_d5c1be3t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk8_d5c1be3t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk9_d2c0e2t1b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk9_d2c0e2t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk9_d2c0e2t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk9_d2c0e2t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk9_d2c0e2t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk9_d2c0e2t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk9_d2c0e2t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk9_d2c0e5t2b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk9_d2c0e5t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk9_d2c0e5t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk9_d2c0e5t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk9_d2c0e5t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk9_d2c0e5t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk9_d2c0e5t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md1_sk9_d7c1be11t2b0",
+      "head": "Crowd_Hyena_md1.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk9_d7c1be11t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk9_d7c1be11t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk9_d7c1be11t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md1_sk9_d7c1be11t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md1_sk9_d7c1be11t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md1_sk9_d7c1be11t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk0_d3c1de3t2b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 0,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk0_d3c1de3t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk0_d3c1de3t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk0_d3c1de3t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk0_d3c1de3t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk0_d3c1de3t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk0_d3c1de3t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk1_d3c1ce12t1b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk1_d3c1ce12t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk1_d3c1ce12t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk1_d3c1ce12t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk1_d3c1ce12t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk1_d3c1ce12t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk1_d3c1ce12t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk1_d7c1de4t1b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 1,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk1_d7c1de4t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk1_d7c1de4t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk1_d7c1de4t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk1_d7c1de4t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk1_d7c1de4t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk1_d7c1de4t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk3_d3c1be7t2b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk3_d3c1be7t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk3_d3c1be7t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk3_d3c1be7t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk3_d3c1be7t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk3_d3c1be7t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk3_d3c1be7t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk3_d5c1ce6t1b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk3_d5c1ce6t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk3_d5c1ce6t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk3_d5c1ce6t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk3_d5c1ce6t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk3_d5c1ce6t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk3_d5c1ce6t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk3_d7c0e6t1b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 3,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk3_d7c0e6t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk3_d7c0e6t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk3_d7c0e6t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk3_d7c0e6t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk3_d7c0e6t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk3_d7c0e6t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk4_d7c1ae3t1b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 4,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk4_d7c1ae3t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk4_d7c1ae3t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk4_d7c1ae3t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk4_d7c1ae3t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk4_d7c1ae3t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk4_d7c1ae3t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk5_d2c1ce5t2b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d2c1ce5t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d2c1ce5t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d2c1ce5t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d2c1ce5t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk5_d2c1ce5t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk5_d2c1ce5t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk5_d3c1be11t1b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d3c1be11t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d3c1be11t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d3c1be11t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d3c1be11t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk5_d3c1be11t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk5_d3c1be11t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk5_d7c1de4t2b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d7c1de4t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d7c1de4t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d7c1de4t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d7c1de4t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk5_d7c1de4t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk5_d7c1de4t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk5_d8c1ae3t2b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 5,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d8c1ae3t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d8c1ae3t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d8c1ae3t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk5_d8c1ae3t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk5_d8c1ae3t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk5_d8c1ae3t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk6_d4c1de10t1b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d4c1de10t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d4c1de10t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d4c1de10t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d4c1de10t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk6_d4c1de10t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk6_d4c1de10t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk6_d6c0e11t2b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d6c0e11t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d6c0e11t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d6c0e11t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d6c0e11t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk6_d6c0e11t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk6_d6c0e11t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk6_d7c1ce4t1b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d7c1ce4t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d7c1ce4t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d7c1ce4t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d7c1ce4t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk6_d7c1ce4t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk6_d7c1ce4t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk6_d8c1ce8t1b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 6,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d8c1ce8t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d8c1ce8t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d8c1ce8t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk6_d8c1ce8t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk6_d8c1ce8t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk6_d8c1ce8t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk7_d5c1de3t2b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 7,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk7_d5c1de3t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk7_d5c1de3t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk7_d5c1de3t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk7_d5c1de3t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk7_d5c1de3t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk7_d5c1de3t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk8_d2c1be5t1b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 8,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk8_d2c1be5t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk8_d2c1be5t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk8_d2c1be5t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk8_d2c1be5t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk8_d2c1be5t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk8_d2c1be5t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk9_d1c1ce5t1b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk9_d1c1ce5t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk9_d1c1ce5t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk9_d1c1ce5t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk9_d1c1ce5t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk9_d1c1ce5t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk9_d1c1ce5t1_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk9_d3c1de5t2b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk9_d3c1de5t2.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk9_d3c1de5t2.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk9_d3c1de5t2_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk9_d3c1de5t2_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk9_d3c1de5t2.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk9_d3c1de5t2_color.dds"
+    },
+    {
+      "name": "Crowd_Hyena_md2_sk9_d5c1ae10t1b0",
+      "head": "Crowd_Hyena_md2.nif",
+      "tone": 9,
+      "nif": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk9_d5c1ae10t1.nif",
+      "nifs": {
+        "average": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk9_d5c1ae10t1.nif",
+        "overweight": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk9_d5c1ae10t1_overweight.nif",
+        "thin": "Actors\\FSFHyena_Crowd\\Mesh\\Male\\Variants\\Crowd_Hyena_md2_sk9_d5c1ae10t1_thin.nif"
+      },
+      "material": "Materials\\Actors\\FSFHyena\\Crowd\\Variants\\Crowd_Hyena_md2_sk9_d5c1ae10t1.mat",
+      "texture": "Data\\Textures\\Actors\\FSFHyena\\crowd\\variants\\Crowd_Hyena_md2_sk9_d5c1ae10t1_color.dds"
+    }
+  ],
+  "beard_colors": "Modulation_ComplexionMask1",
+  "tail": {
+    "addon": "FSFHyena_AA_Naked_Tail",
+    "nifs": {
+      "0": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaMaleTail_sk0.nif",
+      "1": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaMaleTail_sk1.nif",
+      "2": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaMaleTail_sk2.nif",
+      "3": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaMaleTail_sk3.nif",
+      "4": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaMaleTail_sk4.nif",
+      "5": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaMaleTail_sk5.nif",
+      "6": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaMaleTail_sk6.nif",
+      "7": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaMaleTail_sk7.nif",
+      "8": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaMaleTail_sk8.nif",
+      "9": "actors\\FSFHyena\\mesh\\tail\\Variants\\HyenaMaleTail_sk9.nif"
+    }
+  }
+}
