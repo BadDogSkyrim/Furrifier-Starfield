@@ -7,16 +7,27 @@ The tools have a home of their own: `sf_racecheck`, `sf_tintbake`, `uv_transfer`
 through `fsftools/deps.py`: the `PYNIFLY` environment variable, a development checkout, or the
 PyNifly extension installed in Blender. esplib comes from pip.
 
-- **Human hair fitted to a race's head** (`fsftools.hair_stage`, `fsftools.hair_fit`). Each hair
-  is reshaped so it sits on the new head as it sat on the human one, with its `_facebones`
-  companion. It gets a morph key for each of the head's keys that moves it: Bethesda's own key plus
-  the difference between the heads where both have it, otherwise the head's key copied onto the
-  hair. The ears move the hair under every key (`--ears-fixed` stops that); the hair's own shape is
-  fitted with the ears hidden. Races sharing a head share the hairs: `Human_Female_Hair_Bob`
-  becomes `FSFCanine_Female_Hair_Bob`, in a separate hair plugin. Hairs with cloth or extra parts
-  aren't fitted yet.
+- **sf_furrify's output goes in one folder.** `--out` is that folder, or a plugin in it: a folder
+  gets `FSFNPC.esm`, a plugin name alone still goes in Data, and no `--out` is Data as before.
+  Everything a run writes goes there. So **`--facegen` and `--crowd-skeleton` no longer take a
+  folder**: they're switches, and write into the output folder. A name without a plugin extension
+  is now a folder, not a plugin to add `.esm` to.
+- **`--hair` fits the human hair to each race's head** before the NPCs are furrified (`--hair-only`
+  stops there). Each hair is reshaped so it sits on the new head as it sat on the human one, with
+  its `_facebones` companion. It gets a morph key for each of the head's keys that moves it:
+  Bethesda's own key plus the difference between the heads where both have it, otherwise the head's
+  key copied onto the hair. The ears move the hair under every key (`--ears-fixed` stops that); the
+  hair's own shape is fitted with the ears hidden.
+  - Races sharing a head share the hairs: `Human_Female_Hair_Bob` becomes
+    `FSFCanine_Female_Hair_Bob`, in `FSFHair.esm` in the output folder.
+  - A race's TOML picks its hairs: `[hair] include = [...]`, `exclude = [...]`, EditorID globs.
+  - Hairs from mods in the load order are fitted too.
+  - A rerun fits only the hairs whose sources changed, and rewrites records in place under their
+    FormIDs, so a player's chosen hair survives. A hair no longer wanted loses its records.
+  - Hairs with cloth or extra parts aren't fitted yet.
 - **`--keep-hair` keeps the fitted copy** of an NPC's hair when the load order has one, and says
-  how many hairs had none.
+  how many hairs had none. The FaceGen bake reads the fitted hair from the output folder, so it
+  needn't be deployed first.
 
 - **`--overlay DIR`** (sf_furrify, sf_racecheck, sf_tintbake): a folder laid out like Data whose
   files win over Data's, like a mod installed but not deployed. Run against an undeployed mod, or

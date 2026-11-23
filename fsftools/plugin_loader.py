@@ -113,6 +113,25 @@ def load_plugins(data_dir: Path, order: List[str], verbose: bool = False) -> Plu
     return plugins
 
 
+def use_plugin_file(plugins: PluginSet, order: List[str], path: Path):
+    """Load the plugin at `path` into the set, last in the load order, in place of any loaded copy
+    of the same name (a deployed copy older than the one just written). `order` is updated too."""
+    path = Path(path)
+    plugin = Plugin.load(str(path), only_signatures=GROUPS)
+    plugin.plugin_set = plugins
+    names = plugins.load_order.plugins
+    for i in reversed(range(len(names))):
+        if names[i].lower() == path.name.lower():
+            plugins._plugins.pop(names[i], None)
+            del names[i]
+    order[:] = [n for n in order if n.lower() != path.name.lower()] + [path.name]
+    names.append(path.name)
+    plugins._plugins[path.name] = plugin
+    plugins._loaded_full[path.name] = True
+    plugins.invalidate()
+    return plugin
+
+
 def winning_records(plugins: PluginSet, sig: str, order: List[str] = None):
     """Yield all winning-override records of a given signature, deduplicated.
     order should be the list of plugin names in load order."""

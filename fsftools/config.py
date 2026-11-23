@@ -136,6 +136,8 @@ class RaceConfig:
     skin_tones_female: Optional[List[int]] = None                 # else skin_tones serves both
     extra_parts_male: List[str] = field(default_factory=list)     # parts not in RACE HEAD
     extra_parts_female: List[str] = field(default_factory=list)
+    hair_include: List[str] = field(default_factory=list)   # source hair EditorIDs/globs; empty = all
+    hair_exclude: List[str] = field(default_factory=list)
     tint_layers: List[TintLayerDef] = field(default_factory=list)
     morph_defaults: Dict[str, Dict[str, MorphRange]] = field(default_factory=dict)
     breeds: List[BreedDef] = field(default_factory=list)
@@ -195,7 +197,12 @@ def _load_one_race(path: Path) -> RaceConfig:
         skin_tones_female=r.get('skin_tones_female'),
         extra_parts_male=list(r.get('extra_parts_male', [])),
         extra_parts_female=list(r.get('extra_parts_female', [])),
+        hair_include=list(raw.get('hair', {}).get('include', [])),
+        hair_exclude=list(raw.get('hair', {}).get('exclude', [])),
     )
+    unknown = set(raw.get('hair', {})) - {'include', 'exclude'}
+    if unknown:
+        cfg.problems.append(f"[hair]: unknown setting {sorted(unknown)}")
 
     # Tint layers
     for entry in raw.get('tint_layers', []):

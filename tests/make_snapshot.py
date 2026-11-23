@@ -32,7 +32,8 @@ PLUGINS = ['FSF.esm', 'FSFPlayer_FOX.esm', 'FSFPlayer_HYENA.esm']
 HIDE = ['FSFNPC.esm', 'FSFNPC_test.esm']
 LIST_LIMIT = 400
 # Read as a set, stopping at the first missing one, so a trace finds them one per run: take them whole.
-ALWAYS = ['Textures/Actors/*/faces/chargen/FCT_*_mask.dds']
+ALWAYS = ['Textures/Actors/*/faces/chargen/FCT_*_mask.dds',
+          'Meshes/morphs/*/*/performance/*Head/morph.dat']      # HideEar, for the hair fit
 
 
 VIEW = os.path.join(os.path.dirname(HERE), 'tests', 'out', 'data_view')

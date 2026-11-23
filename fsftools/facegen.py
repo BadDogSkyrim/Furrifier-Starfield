@@ -185,9 +185,11 @@ def _load_morphs(path: Path) -> Dict[str, MorphKey]:
     return out
 
 
-def find_asset(rel: Path, data_dir: Path, assets: Optional[Path]) -> Path:
-    """A game file, loose in Data first, else in the unpacked vanilla assets (--assets). The Data
-    path when neither has it, so reading it raises as before."""
+def find_asset(rel: Path, data_dir: Path, assets: Optional[Path], first: Optional[Path] = None) -> Path:
+    """A game file: in `first` (this run's output, not yet deployed), else loose in Data, else in the
+    unpacked vanilla assets (--assets). The Data path when none has it, so reading it raises."""
+    if first is not None and (Path(first) / rel).exists():
+        return Path(first) / rel
     loose = Path(data_dir) / rel
     if loose.exists() or assets is None:
         return loose
@@ -195,12 +197,14 @@ def find_asset(rel: Path, data_dir: Path, assets: Optional[Path]) -> Path:
     return unpacked if unpacked.exists() else loose
 
 
-def load_part_source(data_dir: Path, hdpt, plugins, assets: Optional[Path] = None) -> PartSource:
+def load_part_source(data_dir: Path, hdpt, plugins, assets: Optional[Path] = None,
+                     first: Optional[Path] = None) -> PartSource:
     """Read a head part's own nif and mesh. Fox parts are loose; a vanilla part (a kept hair) is in
-    a BA2, so it's read from the unpacked assets; missing from both raises."""
+    a BA2, so it's read from the unpacked assets; a fitted hair may be in the run's output (`first`),
+    not yet deployed. Missing from all raises."""
     data_dir = Path(data_dir)
     modl = _text(hdpt.get_subrecord('MODL'))
-    nif = read_nif(find_asset(Path('Meshes') / modl, data_dir, assets).read_bytes())
+    nif = read_nif(find_asset(Path('Meshes') / modl, data_dir, assets, first).read_bytes())
     found = [i for i, (t, _) in enumerate(nif.blocks) if t == 'BSGeometry']
     if len(found) != 1:
         raise ValueError(f"{hdpt.editor_id}: {modl} has {len(found)} shapes; expected one")
@@ -210,7 +214,7 @@ def load_part_source(data_dir: Path, hdpt, plugins, assets: Optional[Path] = Non
     mesh_len = struct.unpack_from('<I', geo, fields['mesh'] + 12)[0]
     mesh_name = geo[fields['mesh'] + 16:fields['mesh'] + 16 + mesh_len].decode('latin1')
     tri_size, num_verts = struct.unpack_from('<II', geo, fields['mesh'])
-    mesh = find_asset(Path('Geometries') / (mesh_name + '.mesh'), data_dir, assets).read_bytes()
+    mesh = find_asset(Path('Geometries') / (mesh_name + '.mesh'), data_dir, assets, first).read_bytes()
     instance = nif.blocks[fields['skin']][1]
     shader = nif.blocks[fields['shader']][1]
     source = PartSource(
@@ -223,7 +227,7 @@ def load_part_source(data_dir: Path, hdpt, plugins, assets: Optional[Path] = Non
     if mnam is not None:
         mrph = plugins.resolve_reference(hdpt, 'MNAM')
         tcmp = mrph.get_subrecord('TCMP') if mrph is not None else None
-        path = find_asset(Path(_text(tcmp)) / 'morph.dat', data_dir, assets) if tcmp is not None else None
+        path = find_asset(Path(_text(tcmp)) / 'morph.dat', data_dir, assets, first) if tcmp is not None else None
         if path is not None and path.exists():
             source.morphs = _load_morphs(path)
     return source
@@ -733,7 +737,7 @@ def bake_all(changes, appearances, plugins, data_dir, out_dir, log=print,
                     continue
                 if hdpt.editor_id not in sources:
                     try:
-                        sources[hdpt.editor_id] = load_part_source(data_dir, hdpt, plugins, assets)
+                        sources[hdpt.editor_id] = load_part_source(data_dir, hdpt, plugins, assets, out_dir)
                     except (OSError, ValueError) as e:
                         if hdpt.editor_id not in kept:
                             raise

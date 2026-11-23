@@ -253,10 +253,10 @@ def test_unmorphed_part_stays_close_to_the_ck(world):
 
 
 def run_cli(out_dir, *only):
-    plugin = out_dir / 'test.esm'
+    plugin = out_dir / 'mod' / 'test.esm'          # the FaceGen goes beside it
     cmd = [sys.executable, str(ROOT / 'sf_furrify.py'), '--data', str(game_data()), '--plugin', 'FSF.esm', '--out', str(plugin),
            '--scheme', str(SCHEME), '--builtin', str(BUILTIN),
-           '--races', str(RACES), '--facegen', str(out_dir / 'mod')]
+           '--races', str(RACES), '--facegen']
     for n in only:
         cmd += ['--only', n]
     return subprocess.run(cmd, capture_output=True, text=True, cwd=ROOT)

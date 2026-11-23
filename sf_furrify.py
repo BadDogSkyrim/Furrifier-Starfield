@@ -1,10 +1,12 @@
 """Starfield Furrifier — make the NPC population furry.
 
 Usage:
-    python sf_furrify.py [--scheme scheme.toml] [--races DIR] [--data DATA_DIR ...] [--out FSFNPC.esm]
-                         [--dry-run] [--verbose]
+    python sf_furrify.py [--out FOLDER | FOLDER\\Plugin.esm] [--hair] [--facegen] [--keep-hair] ...
 
-The scheme and the race definitions default to Data\\FSFTools\\furrify, where a mod ships them.
+--out is the output folder, or a plugin file in it (a folder gets FSFNPC.esm; no --out is the game's
+Data folder). Everything the run writes goes there: the plugin, the fitted hair and its plugin
+(--hair), the FaceGen (--facegen), the crowd skeleton (--crowd-skeleton). The scheme and the race
+definitions come from Data\\FSFTools\\furrify, where a mod ships them, unless --scheme/--races say.
 
 Reads the active load order (or a specific plugin tree), classifies every HumanRace NPC, assigns
 furry races by weighted probability, and writes one ESM with the NPC overrides, the crowd outfits
@@ -33,14 +35,18 @@ from fsftools.race_data import RaceAppearance, avm_index, race_avm, tint_plugin_
 
 
 PLUGIN_EXTENSIONS = ('.esm', '.esp', '.esl')
+DEFAULT_PLUGIN = 'FSFNPC.esm'
 
 
-def plugin_path(path: Path) -> Path:
-    """The output name with a plugin extension: .esm added when it has none, since the plugin is
-    written flagged master and light. A dot in the name isn't taken for an extension."""
-    if path.suffix.lower() in PLUGIN_EXTENSIONS:
-        return path
-    return path.with_name(path.name + '.esm')
+def resolve_out(out, data_dir: Path):
+    """(output folder, plugin name) from --out: a path ending in a plugin extension is the plugin
+    (a bare name goes in Data), anything else a folder that gets the default plugin; none is Data."""
+    if out is None:
+        return Path(data_dir), DEFAULT_PLUGIN
+    out = Path(out)
+    if out.suffix.lower() in PLUGIN_EXTENSIONS:
+        return (Path(data_dir) if out.parent == Path('.') else out.parent), out.name
+    return out, DEFAULT_PLUGIN
 
 
 HERE = Path(__file__).resolve().parent
@@ -63,31 +69,35 @@ def parse_args():
     p.add_argument('--overlay', type=Path, metavar='DIR',
                    help='A folder laid out like Data whose files win over Data\'s, like a mod installed '
                         'but not deployed (an overlay.toml there can hide the mods it replaces)')
-    p.add_argument('--out', type=Path, default=Path('FSFNPC.esm'),
-                   help='Output plugin filename (.esm added if it has no plugin extension)')
+    p.add_argument('--out', type=Path, default=None,
+                   help=f'Output folder, or a plugin in it (a folder gets {DEFAULT_PLUGIN}; a name alone '
+                        f'goes in Data). Default: Data\\{DEFAULT_PLUGIN}')
     p.add_argument('--only', action='append', default=[], metavar='GLOB',
                    help='Only furrify NPCs whose EditorID matches (repeatable), and leave crowds '
                         'alone unless --crowd-test; for test plugins')
     p.add_argument('--crowd-test', action='store_true',
                    help='Also write test NPCs, one per sex and body type, and a console batch that '
                         'places them: bat fsfnpc_crowd')
-    p.add_argument('--crowd-skeleton', type=Path, metavar='DIR',
-                   help='Copy the crowd skeleton with tail bones over vanilla\'s, under this folder, '
-                        'laid out like Data')
-    p.add_argument('--facegen', type=Path, metavar='DIR',
-                   help='Also bake each NPC\'s FaceGen under this folder, laid out like Data')
+    p.add_argument('--crowd-skeleton', action='store_true',
+                   help='Copy the crowd skeleton with tail bones over vanilla\'s, in the output folder')
+    p.add_argument('--facegen', action='store_true',
+                   help='Also bake each NPC\'s FaceGen, in the output folder')
+    p.add_argument('--hair', action='store_true',
+                   help='Fit the human hair to each race\'s head first, into the output folder and its '
+                        'hair plugin (only the hairs whose sources changed are fitted again)')
+    p.add_argument('--hair-only', action='store_true', help='Fit the hair and stop')
+    p.add_argument('--ears-fixed', action='store_true',
+                   help='The fitted hair doesn\'t follow the ears (default: it does)')
     p.add_argument('--keep-hair', action='store_true',
-                   help='Experiment: furrified NPCs keep their own hair part and crowds their outfit\'s '
-                        'hair list. The hair keeps its human shape; the face morphs don\'t move it')
+                   help='Furrified NPCs keep their own hair, fitted to the race\'s head where the load '
+                        'order has a fitted copy (--hair makes them), and crowds their outfit\'s hair list')
     p.add_argument('--assets', type=Path, metavar='DIR',
                    help='Unpacked vanilla assets, laid out like Data: the FaceGen bake reads vanilla '
                         'parts (a kept hair) from here when they aren\'t loose in Data')
     p.add_argument('--dry-run', action='store_true',
                    help='Classify and assign but do not write the plugin')
     p.add_argument('--verbose', '-v', action='store_true')
-    args = p.parse_args()
-    args.out = plugin_path(args.out)
-    return args
+    return p.parse_args()
 
 
 def main():
@@ -100,6 +110,8 @@ def main():
     if args.overlay:
         from fsftools.overlay import overlay_roots
         data_dir = Path(overlay_roots([data_dir], args.overlay)[0][0])
+    out_dir, out_name = resolve_out(args.out, data_dir)
+    print(f"Output: {out_dir / out_name}")
     if args.scheme is None:
         args.scheme = Path(data_dir) / TOOLS_DATA / 'scheme.toml'
     if args.races is None:
@@ -140,7 +152,7 @@ def main():
     else:
         order = load_full_order(data_dir)
     # Our own previous output must not count as an override: its NPCs are no longer human.
-    order = [n for n in order if n.lower() != args.out.name.lower()]
+    order = [n for n in order if n.lower() != out_name.lower()]
     if crowds and crowds.races and RETIRED_PLUGIN.lower() in (n.lower() for n in order):
         print(f"  WARNING: {RETIRED_PLUGIN} is in the load order. This plugin replaces it: disable it.")
     # The player plugins are alternatives; whichever is active must not change the result.
@@ -165,6 +177,24 @@ def main():
     for appearance in appearances.values():
         for line in appearance.warnings:
             print(f"  WARNING: {line}")
+
+    # Hair first: --keep-hair takes the fitted copies, so they must be in the load order.
+    if args.hair or args.hair_only:
+        from fsftools import hair_stage
+        from fsftools.plugin_loader import use_plugin_file
+        t_hair = time.time()
+        print("\nFitting hair:")
+        try:
+            hair_plugin = hair_stage.run(plugins, data_dir, list(races.values()), out_dir, assets=args.assets,
+                                         ears_move_hair=not args.ears_fixed, dry_run=args.dry_run)
+        except ValueError as e:
+            print(f"ERROR: {e}")
+            return 2
+        print(f"  ({time.time() - t_hair:.0f}s)")
+        if args.hair_only:
+            return 0
+        if hair_plugin is not None:
+            use_plugin_file(plugins, order, hair_plugin)
 
     # Classify and assign all human NPCs
     t1 = time.time()
@@ -265,7 +295,8 @@ def main():
         if unfitted and args.verbose:
             print('    ' + ', '.join(unfitted))
 
-    out_path = data_dir / args.out if not args.out.is_absolute() else args.out
+    out_path = out_dir / out_name
+    out_dir.mkdir(parents=True, exist_ok=True)
     test_npcs, crowd_counts, crowd_notes = [], {}, []
     piece_counts, piece_notes = {}, []
 
@@ -283,7 +314,7 @@ def main():
         written, errors = write_output(
             out_path, individual_changes, plugins, masters,
             data_dir=data_dir, verbose=args.verbose, extend=extend)
-        skeleton = copy_skeleton(plugins, crowds, data_dir, args.crowd_skeleton) \
+        skeleton = copy_skeleton(plugins, crowds, data_dir, out_dir) \
             if crowds and args.crowd_skeleton else []
     except CrowdError as e:
         print(f"ERROR: {e}")
@@ -300,7 +331,7 @@ def main():
         for line in crowd_notes:
             print(f"  ISSUE: {line}")
         if skeleton:
-            print(f"Crowd skeleton: {len(skeleton)} files under {args.crowd_skeleton}")
+            print(f"Crowd skeleton: {len(skeleton)} files under {out_dir}")
         else:
             # Vanilla's crowd skeleton is only in a BA2: a loose one at its path is the copy with tails.
             missing = [p for p in crowd_skeleton_paths(plugins, data_dir) if not p.exists()]
@@ -318,9 +349,9 @@ def main():
         from fsftools.facegen import bake_all
         bakeable = [c for c in individual_changes if c.written]
         t2 = time.time()
-        baked, problems = bake_all(bakeable, appearances, plugins, data_dir, args.facegen,
+        baked, problems = bake_all(bakeable, appearances, plugins, data_dir, out_dir,
                                    assets=args.assets)
-        print(f"\nFaceGen: baked {baked} of {len(individual_changes)} NPCs in {time.time()-t2:.1f}s under {args.facegen}")
+        print(f"\nFaceGen: baked {baked} of {len(individual_changes)} NPCs in {time.time()-t2:.1f}s under {out_dir}")
         for line in problems:
             print(f"  WARNING: {line}")
 

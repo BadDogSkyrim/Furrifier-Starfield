@@ -425,9 +425,9 @@ def test_two_runs_are_identical(all_fox, tmp_path, game):
 
 def test_skeleton_is_copied_over_vanillas_path(tmp_path, game):
     data = game_data()
-    mod = tmp_path / 'mod'
-    _, proc = run(tmp_path, 'skel', scheme(('FSFFoxRace', 100)), '--crowd-skeleton', str(mod))
+    out, proc = run(tmp_path, 'skel', scheme(('FSFFoxRace', 100)), '--crowd-skeleton')
     assert proc.returncode == 0, proc.stdout + proc.stderr
+    mod = out.parent           # the skeleton goes in the output folder
     root = mod / 'Meshes' / 'Actors' / 'human_crowd' / 'CharacterAssets'
     source = data / 'Meshes' / 'actors' / 'FSFCanine_Crowd' / 'characterassets'
     for rel in ('skeleton.nif', 'skeleton_facebones.nif', 'Female/skeleton.nif', 'Female/skeleton_facebones.nif'):

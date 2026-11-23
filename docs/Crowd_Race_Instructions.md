@@ -80,11 +80,11 @@ The furrifier builds crowds along with everything else, into one plugin. Crowd a
     - In the race's TOML, `crowd_manifests` under `[race]` lists every recipe's manifest from the bake (one per recipe, so one per UV layout per sex).
     - Each breed with a weight has `crowd_heads`, globs on variant names, e.g. `["Crowd_Fen_*", "crowdf_fennec_*"]`. Its tones narrow them, per sex: `skin_tone_override` (and `skin_tone_override_female`), else the race's `skin_tones` (and `skin_tones_female`).
     - In `scheme.toml`, `[proportions]` gives each race, and `_HUMAN` if you want humans, a relative weight. A race alone means all of them.
-23. Build, from `C:\Modding\Starfield\sf_furrify`:
+23. Build, from `C:\Modding\Starfield\FSFTools`:
     ```
-    python sf_furrify.py --crowd-test --crowd-skeleton C:\Modding\Starfield\Mods\FSF_test
+    python sf_furrify.py --out C:\Modding\Starfield\Mods\FSF_test --crowd-test --crowd-skeleton
     ```
-    It writes `FSFNPC.esm` to Data (master + light), holding the outfit overrides, mix lists, head lists and armors, tails and beard addons. `--crowd-skeleton` copies the crowd skeleton, which has the tail bones, over vanilla's `Actors\human_crowd\CharacterAssets` under that folder. `--crowd-test` adds six test NPCs and a batch file. To test crowds alone, add `--only NoSuchNPC`: `--only` leaves out the named NPCs it doesn't match. Add `FSFNPC.esm` to the load order and disable `FSFNPC_Fox.esm` if it's still there, then deploy in Vortex.
+    It writes `FSFNPC.esm` (master + light) to the `--out` folder, holding the outfit overrides, mix lists, head lists and armors, tails and beard addons. `--crowd-skeleton` copies the crowd skeleton, which has the tail bones, over vanilla's `Actors\human_crowd\CharacterAssets` in the same folder. `--crowd-test` adds six test NPCs and a batch file. To test crowds alone, add `--only NoSuchNPC`: `--only` leaves out the named NPCs it doesn't match. Add `FSFNPC.esm` to the load order and disable `FSFNPC_Fox.esm` if it's still there, then deploy in Vortex.
 24. Check it:
     ```
     python C:\Modding\Starfield\FSFTools\sf_racecheck.py --data "C:\Steam\steamapps\common\Starfield\Data,C:\Modding\Starfield\00StarfieldAssets" --plugin FSFNPC.esm --race HumanCrowdRace
