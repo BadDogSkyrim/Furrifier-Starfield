@@ -1,7 +1,9 @@
 # FSFTools
 
+**WIP Not ready for prime time**
+
 Tools for building furry races for Starfield, and for putting them into the game's population.
-They ship with FSF (Furry Starfield), and work for any custom race.
+They ship with FSF (Furry Starfield), and work for any custom race. Well, theoretically, anyway. Starfield is its very own special kind of weird. Instructions to come.
 
 | Tool | What it does |
 |---|---|
