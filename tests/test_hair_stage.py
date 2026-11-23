@@ -99,6 +99,45 @@ def test_hair_only_fits_the_included_hairs(fitted):
     assert (out / 'FSFTools' / 'hair_fit' / 'FSFHair.json').is_file()
 
 
+CHARGEN_LISTS = {'MALE': 0x3D9AF, 'FEMALE': 0x3D9B0}     # HeadPartsChargenOptionsMale/Female
+
+
+def chargen_list(recs, fid):
+    found = [r for (sig, _), r in recs.items() if sig == 'FLST' and int(r.form_id.value) == fid]
+    assert len(found) == 1, f'{fid:08X} overridden {len(found)} times'
+    return [int.from_bytes(s.data[:4], 'little') for s in found[0].get_subrecords('LNAM')]
+
+
+def named(plugin, values):
+    """FormIDs in a plugin as (the file each belongs to, object ID)."""
+    masters = list(plugin.header.masters) + [plugin.file_path.name]
+    return [(masters[v >> 24].lower(), v & 0xFFFFFF) for v in values]
+
+
+def test_fitted_hairs_are_chargen_options(fitted):
+    """The chargen lists offer what the player plugin's do, then each sex's fitted hairs. The test
+    player plugins make the same changes to vanilla's (FSF.esm's eyes and ruffs in, the human male
+    eyes out), so the hair plugin's list is either one's in its order. No player plugin is a master:
+    only one of them is active."""
+    from esplib import Plugin
+    _, out, _ = fitted
+    plugin, recs = records(out / 'FSFHair.esm')
+    assert not [m for m in plugin.header.masters if m.lower().startswith('fsfplayer')]
+    for sex, fid in CHARGEN_LISTS.items():
+        lists = []
+        for name in ('Starfield.esm', 'FSFPlayer_FOX.esm', 'FSFPlayer_HYENA.esm'):
+            src = Plugin.load(str(game_data() / name), only_signatures=['FLST'])
+            rec = next(r for r in src if int(r.form_id.value) == fid)
+            lists.append(named(src, [int.from_bytes(s.data[:4], 'little') for s in rec.get_subrecords('LNAM')]))
+        vanilla, fox, hyena = lists
+        assert fox == hyena and set(fox) != set(vanilla)
+        mine = [int(recs[('HDPT', f'FSFCanine_{sex.capitalize()}_Hair_{h}')].form_id.value)
+                for h in ('Cropped', 'Flat_Top')]
+        got = named(plugin, chargen_list(recs, fid))
+        assert set(got) == set(fox) | set(named(plugin, mine))
+        assert got[-2:] == named(plugin, mine)
+
+
 def test_a_rerun_fits_nothing_and_keeps_formids(fitted):
     tmp, out, _ = fitted
     before = {k: int(r.form_id.value) for k, r in records(out / 'FSFHair.esm')[1].items()}
@@ -120,3 +159,6 @@ def test_an_excluded_hair_loses_its_records(fitted):
     assert ('MRPH', 'MORPH_FSFCanine_Male_Hair_Flat_Top') not in recs
     assert int(recs[('HDPT', 'FSFCanine_Female_Hair_Cropped')].form_id.value) == \
         before[('HDPT', 'FSFCanine_Female_Hair_Cropped')]
+    ids = chargen_list(recs, CHARGEN_LISTS['FEMALE'])
+    assert int(recs[('HDPT', 'FSFCanine_Female_Hair_Cropped')].form_id.value) in ids
+    assert before[('HDPT', 'FSFCanine_Female_Hair_Flat_Top')] not in ids, 'a dropped hair leaves chargen'

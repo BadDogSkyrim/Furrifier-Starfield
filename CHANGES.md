@@ -28,6 +28,10 @@ PyNifly extension installed in Blender. esplib comes from pip.
     with its particle, and each collision capsule's radius by how far its particles moved from
     its axis (never so far that one starts inside). The cloth bones stay at their binds, so at
     rest the hair shows as fitted.
+  - The fitted hairs are offered in the character creator. The hair plugin overrides
+    `HeadPartsChargenOptionsMale`/`Female` with what the active player plugin's lists hold, plus
+    each sex's fitted hairs. It takes in every race's player plugin's changes but masters none, as
+    only one is active, so **load the hair plugin after the player plugins**.
   - Hairs with extra parts aren't fitted yet.
 - **`--log FILE`** (sf_furrify) writes everything printed to a file as well, errors and tracebacks
   included, headed by the command line.

@@ -13,6 +13,10 @@ same EditorID is rewritten in place under its FormID, so a player's saved choice
 Each fitted hair records a digest of what it was made from. A rerun fits only the hairs whose digest
 changed; the rest keep their files. A hair's cloth moves with it (hair_fit.fit_cloth). Hairs with
 extra parts aren't fitted yet.
+
+The hair plugin also overrides the character creator's head-part lists with the winning list, what
+each race's player plugin adds to it, and each sex's fitted hairs. The player plugins are alternatives,
+only one active (race_data), so none is a master: the hair plugin must load after them.
 """
 import fnmatch
 import hashlib
@@ -35,6 +39,9 @@ SEXES = ('MALE', 'FEMALE')
 FIRST_ID = 0x800
 SOURCE_RACE = 'HumanRace'
 HAIR_PLUGIN = 'FSFHair.esm'
+# The head parts the character creator offers, by sex (Starfield.esm FLSTs). A race sees those
+# whose race list names it.
+CHARGEN_LISTS = {'MALE': 0x3D9AF, 'FEMALE': 0x3D9B0}   # HeadPartsChargenOptionsMale/Female
 FITTER_VERSION = 1            # bump when a change to the fit should refit every hair
 # Every subrecord vanilla's hairs carry, plus TNAM. A hair with another (scripts, conditions) is
 # skipped: its references wouldn't be remapped.
@@ -249,6 +256,7 @@ class Fitted:
     edid: str
     model: str                 # relative to Meshes
     races: List                # the target races that want it
+    sex: str = 'FEMALE'
     morphs: Dict[str, str] = field(default_factory=dict)   # kind -> folder, relative to Data
     mobc: bytes = b'\xff\x00\x00\x00'
     files: Dict[Path, bytes] = field(default_factory=dict)
@@ -261,7 +269,7 @@ def plan_hair(plugins, hdpt, target: HeadShape, prefix: str, folder: str, sex: s
     model = _text(hdpt.get_subrecord('MODL'))
     name = Path(model.replace('\\', '/')).name
     rel = str(Path('Actors') / folder / 'Hair' / sex.capitalize() / name).replace('/', '\\')
-    out = Fitted(hdpt, fitted_edid(hdpt.editor_id, prefix), rel, list(races))
+    out = Fitted(hdpt, fitted_edid(hdpt.editor_id, prefix), rel, list(races), sex)
     for kind in MORPH_SUBS:
         out.morphs[kind] = str(Path(target.morph_dirs[kind].replace('\\', '/')).parent
                                / Path(name).stem).replace('/', '\\')
@@ -365,9 +373,11 @@ def _open_plugin(path: Path, masters: List[str], author: str):
 
 
 def write_records(path: Path, masters: List[str], groups, plugins, strings_for, author: str,
-                  prune: List[str] = ()):
+                  prune: List[str] = (), chargen: Optional[Dict] = None):
     """Create or update the hair plugin. `groups`: (prefix, every race on that head, [Fitted]).
-    `prune`: prefixes whose hairs not in `groups` are removed. Returns the plugin's masters."""
+    `prune`: prefixes whose hairs not in `groups` are removed. `chargen`: sex -> (the plugin the
+    winning chargen list is in, [(FormID, the plugin it's in)]) (chargen_lists), which our override
+    lists before that sex's hairs. Returns the plugin's masters."""
     from esplib import Record, SubRecord
     from esplib.utils import FormID
     from fsftools.formid_remap import Remapper
@@ -434,8 +444,32 @@ def write_records(path: Path, masters: List[str], groups, plugins, strings_for, 
             refs.append((sub, morph))
             subs.append(sub)
             put('HDPT', f.edid, subs)
+    overrides = []                 # (record, its entries); a new one is added once masters settle
+    for sex, (winner, entries) in sorted((chargen or {}).items()):
+        fid = CHARGEN_LISTS[sex]
+        rec = next((r for r in out if r.signature == 'FLST' and int(r.form_id.value) == fid), None)
+        hairs = [r for _, _, fitted in groups for f in fitted if f.sex == sex
+                 for r in [existing[('HDPT', f.edid)]]]
+        if not hairs:
+            if rec is not None:
+                out.remove_record(rec)
+            continue
+        remapper._index(winner)                            # so our override loads after it
+        subs = [SubRecord('EDID', _z(f'HeadPartsChargenOptions{sex.capitalize()}'))]
+        for raw, plugin in entries:
+            subs.append(SubRecord('LNAM', struct.pack('<I', remapper.remap(raw, plugin))))
+        for h in hairs:
+            sub = SubRecord('LNAM', b'\0' * 4)
+            refs.append((sub, h))
+            subs.append(sub)
+        if rec is None:
+            rec = Record('FLST', FormID(fid))
+            overrides.append(rec)
+        rec.subrecords[:] = subs
     # The remapper adds masters for hairs from other plugins; our records follow.
     _grow_masters(out, masters)
+    for rec in overrides:
+        out.add_record(rec)
     own = len(masters) << 24
     for rec in pending:
         rec.form_id = FormID(own | int(rec.form_id.value))
@@ -458,6 +492,13 @@ def write_records(path: Path, masters: List[str], groups, plugins, strings_for, 
         out.save(str(scratch))
         _patch_sf_light_flag(scratch)
     return list(out.header.masters)
+
+
+def _home(value: int, plugin) -> str:
+    """The file a FormID in `plugin` belongs to."""
+    have = list(plugin.header.masters)
+    index = value >> 24
+    return have[index] if index < len(have) else Path(plugin.file_path).name
 
 
 def _grow_masters(out, masters: List[str]):
@@ -486,6 +527,55 @@ def _grow_masters(out, masters: List[str]):
 
 
 # ----- the stage ---------------------------------------------------------------------------------
+
+def _list_entries(rec) -> Dict:
+    """An FLST's entries, keyed (the file each belongs to, object ID), in order: (FormID, plugin)."""
+    out = {}
+    for sr in rec.get_subrecords('LNAM'):
+        raw = struct.unpack('<I', sr.data[:4])[0]
+        out.setdefault((_home(raw, rec.plugin).lower(), raw & 0xFFFFFF), (raw, rec.plugin))
+    return out
+
+
+def chargen_lists(plugins, plugin_name: str, player_plugins=()) -> Dict:
+    """sex -> (the plugin with the winning chargen list, [(FormID, its plugin)]): the winner's
+    entries, other than our own override's, changed as each player plugin's override changes them.
+    (They take out the human male eyes.) Entries a player plugin defines itself are left out, as the
+    hair plugin can't master it."""
+    out = {}
+    mine = plugin_name.lower()
+    for sex, fid in CHARGEN_LISTS.items():
+        chain = plugins.get_override_chain(fid)
+        if chain is None:
+            raise ValueError(f'HeadPartsChargenOptions{sex.capitalize()} ({fid:08X}) not in the load order')
+        names, recs = chain.plugin_names, chain.records
+        i = max(j for j, n in enumerate(names) if n.lower() != mine)
+        winner = _list_entries(recs[i])
+        entries = {k: v for k, v in winner.items() if k[0] != mine}
+        for pp in player_plugins:
+            rec = next((r for r in pp.get_records_by_signature('FLST') if int(r.form_id.value) == fid), None)
+            if rec is None:
+                continue
+            theirs = _list_entries(rec)
+            for k in [k for k in entries if k in winner and k not in theirs]:
+                del entries[k]
+            for k, v in theirs.items():
+                if k not in winner and k[0] not in (mine, Path(pp.file_path).name.lower()):
+                    entries.setdefault(k, v)
+        out[sex] = (names[i], list(entries.values()))
+    return out
+
+
+def player_plugins(races, data_dir: Path) -> List:
+    """Each race's player (tint) plugin, loaded for its FLSTs."""
+    from esplib import Plugin
+    from fsftools.race_data import tint_plugin_path
+    out = []
+    for cfg in races:
+        if cfg.tint_plugin:
+            out.append(Plugin.load(str(tint_plugin_path(cfg.tint_plugin, data_dir)), only_signatures={'FLST'}))
+    return out
+
 
 def _manifest_path(out_dir: Path, plugin_name: str) -> Path:
     return Path(out_dir) / 'FSFTools' / 'hair_fit' / (Path(plugin_name).stem + '.json')
@@ -586,7 +676,8 @@ def run(plugins, data_dir: Path, races, out_dir: Path, plugin_name: str = HAIR_P
                 tables[stem] = load_all_string_tables(Path(data_dir), stem)
             return tables[stem]
     write_records(plugin_path, masters, [(p, a, f) for p, (a, f) in sorted(by_prefix.items())],
-                  plugins, strings_for, 'FSFTools hair fit', prune=list(by_prefix))
+                  plugins, strings_for, 'FSFTools hair fit', prune=list(by_prefix),
+                  chargen=chargen_lists(plugins, plugin_name, player_plugins(races, data_dir)))
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(json.dumps(dict(sorted(fresh.items())), indent=1), encoding='utf-8')
     log(f'  Hair: {total} fitted hairs in {plugin_path} ({refit} refitted, {kept} up to date); '
