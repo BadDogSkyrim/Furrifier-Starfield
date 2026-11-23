@@ -11,7 +11,8 @@ the output folder and the records into the hair plugin there, created if missing
 same EditorID is rewritten in place under its FormID, so a player's saved choice survives a rerun.
 
 Each fitted hair records a digest of what it was made from. A rerun fits only the hairs whose digest
-changed; the rest keep their files. Hairs with cloth or extra parts aren't fitted yet.
+changed; the rest keep their files. A hair's cloth moves with it (hair_fit.fit_cloth). Hairs with
+extra parts aren't fitted yet.
 """
 import fnmatch
 import hashlib
@@ -282,13 +283,24 @@ def fit_hair(plugins, assets: Assets, f: Fitted, source: HeadShape, target: Head
     pieces = [(shape, rel)]
     companion = hair_fit.companion_path(nif_path)
     if companion is not None:
-        other = hair_fit.load_shape(companion, assets.mesh)
+        other = hair_fit.load_shape(companion, assets.mesh, like=shape)
         if len(other.positions) != len(shape.positions) or \
                 np.abs(other.positions - shape.positions).max() > hair_fit.EPSILON:
             raise ValueError(f'{companion.name}: its vertices differ from {rel.name}')
         pieces.append((other, rel.with_name(companion.name)))
+    cloths = {}                     # a cloth tagfile -> its fitted one (base and companion share it)
+    cloth_note = ''
     for piece, path in pieces:
         nif, mesh_name, mesh = hair_fit.fit_files(piece, fit.offsets)
+        blob = hair_fit.cloth_blob(nif)
+        if blob is not None:
+            if blob not in cloths:
+                cloths[blob] = hair_fit.fit_cloth(blob, part, fit.offsets)
+                c = cloths[blob]
+                cloth_note = f'; cloth particles moved up to {c.moved * 1000:.1f} mm' + ''.join(
+                    f', {name} radius {old * 1000:.0f}->{new * 1000:.0f} mm' for name, old, new in c.capsules
+                    if abs(new - old) > hair_fit.EPSILON)
+            nif = hair_fit.with_cloth(nif, cloths[blob].blob)
         f.files[Path('Meshes') / path] = nif
         f.files[Path('Geometries') / (mesh_name + '.mesh')] = mesh
     part_keys, _, _ = load_part_keys(plugins, assets, f.source, len(shape.positions))
@@ -303,7 +315,7 @@ def fit_hair(plugins, assets: Assets, f: Fitted, source: HeadShape, target: Head
         counts.append(f'{len(keys)} {kind}')
     moved = np.linalg.norm(fit.offsets, axis=1)
     f.stats = (f'offset mean {moved.mean() * 1000:.1f} mm, max {moved.max() * 1000:.1f} mm, '
-               f'{fit.missed} rays missed; keys {", ".join(counts)}')
+               f'{fit.missed} rays missed; keys {", ".join(counts)}{cloth_note}')
 
 
 def skip_reason(assets: Assets, hdpt) -> Optional[str]:
@@ -316,8 +328,6 @@ def skip_reason(assets: Assets, hdpt) -> Optional[str]:
     if not nif.exists():
         return f'{nif.name} not found' + (' in Data or the unpacked assets' if assets.assets else
                                           ' (give --assets for parts in BA2s)')
-    if b'BSClothExtraData' in nif.read_bytes():
-        return 'has cloth (not fitted yet)'
     return None
 
 
@@ -483,7 +493,7 @@ def _manifest_path(out_dir: Path, plugin_name: str) -> Path:
 
 def run(plugins, data_dir: Path, races, out_dir: Path, plugin_name: str = HAIR_PLUGIN,
         assets: Optional[Path] = None, ears_move_hair: bool = True, dry_run: bool = False,
-        strings_for=None, log=print) -> Optional[Path]:
+        strings_for=None, log=print, verbose: bool = False) -> Optional[Path]:
     """Fit hair for the races (RaceConfigs) into out_dir and write the hair plugin there.
     Returns the plugin's path, or None if no race takes any hair (or on a dry run)."""
     from fsftools.progress import Progress
@@ -548,6 +558,8 @@ def run(plugins, data_dir: Path, races, out_dir: Path, plugin_name: str = HAIR_P
                         dest.parent.mkdir(parents=True, exist_ok=True)
                         dest.write_bytes(data)
                     refit += 1
+                    if verbose:
+                        log(f'    {f.edid}: {f.stats}')
                 fitted.append(f)
                 bar.update(1, f.edid)
         by_prefix.setdefault(prefix, [all_races, []])[1].extend(fitted)

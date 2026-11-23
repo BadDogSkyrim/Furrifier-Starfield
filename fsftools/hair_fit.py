@@ -218,8 +218,10 @@ class Shape:
         return (v @ self.rotation) / self.scale
 
 
-def load_shape(nif_path: Path, mesh_path_for) -> Shape:
-    """Read a one-shape nif and its mesh; `mesh_path_for(name)` finds a .mesh by its nif name."""
+def load_shape(nif_path: Path, mesh_path_for, like: Optional[Shape] = None) -> Shape:
+    """Read a one-shape nif and its mesh; `mesh_path_for(name)` finds a .mesh by its nif name.
+    `like`: a shape whose mesh space this one shares (a _facebones companion, which may be skinned
+    to face bones only), whose bone transform it takes if it has none of its own."""
     from pyn.pynifly import NifFile
     nif = Path(nif_path).read_bytes()
     name = nif_mesh_name(nif)
@@ -227,7 +229,9 @@ def load_shape(nif_path: Path, mesh_path_for) -> Shape:
     _, pos, tris = mesh_arrays(mesh)
     shape = NifFile(str(nif_path)).shapes[0]
     if BONE not in list(shape.bone_names or []):
-        raise ValueError(f'{nif_path}: not skinned to {BONE}')
+        if like is None:
+            raise ValueError(f'{nif_path}: not skinned to {BONE}')
+        return Shape(nif, mesh, pos, tris, like.rotation, like.scale, like.translation)
     xf = shape.get_shape_skin_to_bone(BONE)
     # The bind is in game units (PyNifly reads it as the nif holds it); the raw .mesh is metres.
     t = np.array(xf.translation[:], np.float64) / HAVOC_SCALE_FACTOR
@@ -477,3 +481,111 @@ def fit_keys(target_keys: Dict[str, Key], source_keys: Dict[str, Key], part_keys
         if name not in target_keys and name not in source_keys and pk.moved().any():
             out[name] = pk
     return out
+
+
+# ----- cloth -------------------------------------------------------------------------------------
+
+def cloth_blob(nif: bytes) -> Optional[bytes]:
+    """The nif's BSClothExtraData tagfile, or None. The block is a length and the tagfile."""
+    layout = nif_layout(nif)
+    found = [i for i in range(len(layout.sizes)) if layout.type_of(i) == 'BSClothExtraData']
+    if not found:
+        return None
+    if len(found) > 1:
+        raise ValueError(f'{len(found)} cloth blocks')
+    block = layout.block(found[0])
+    n = struct.unpack_from('<I', block)[0]
+    if 4 + n != len(block):
+        raise ValueError('unexpected BSClothExtraData layout')
+    return block[4:]
+
+
+def with_cloth(nif: bytes, blob: bytes) -> bytes:
+    """The nif with its cloth tagfile replaced."""
+    layout = nif_layout(nif)
+    i = next(i for i in range(len(layout.sizes)) if layout.type_of(i) == 'BSClothExtraData')
+    return layout.with_blocks({i: struct.pack('<I', len(blob)) + blob})
+
+
+def _segment_distance(p: np.ndarray, a: np.ndarray, b: np.ndarray) -> np.ndarray:
+    d = b - a
+    t = np.clip(((p - a) @ d) / max(float(d @ d), 1e-12), 0.0, 1.0)
+    return np.linalg.norm(p - (a + t[:, None] * d), axis=1)
+
+
+@dataclass
+class ClothFit:
+    blob: bytes
+    moved: float                  # metres: the largest particle move
+    capsules: List[Tuple[str, float, float]]   # (name, old radius, new radius)
+
+
+def fit_cloth(blob: bytes, part_bone: np.ndarray, offsets_bone: np.ndarray, k: int = 4) -> ClothFit:
+    """The part's cloth moved with it. `part_bone`/`offsets_bone`: the part's vertices and their
+    offsets, in the bone's (C_Head's) space.
+
+    - Each particle moves by the inverse-distance mean offset of its k nearest part vertices.
+    - Each bone-plane record shifts by its particle's move along the plane's normal, so the particle
+      keeps its distance from the plane.
+    - A capsule's radius changes by the median change in its particles' distance from its axis, but
+      never so far that a particle starts inside it that didn't before.
+    - The builder recomputes the rest: skinning, links, hinges, and each driven bone's place on its
+      triangle, so at rest every cloth bone stays at its bind and the part shows as fitted.
+    """
+    from pyn import sf_cloth, sf_cloth_build
+    model = sf_cloth.read_model(blob)
+    names = [b[0] for b in model.skeleton]
+    binds = [np.array(m) for m in sf_cloth.bind_matrices(model.skeleton)]
+    if BONE not in names:
+        raise ValueError(f'the cloth has no {BONE}')
+    head = binds[names.index(BONE)]
+    head_inv = np.linalg.inv(head)
+    moves, olds = [], []
+    for sim in model.sims:
+        pos = np.array(sim.positions, np.float64)
+        bone_pos = pos @ head_inv[:3, :3].T + head_inv[:3, 3]
+        src = sources(part_bone, bone_pos, k=k)
+        o_bone = (offsets_bone[src.index] * src.weight[..., None]).sum(1)
+        o_model = o_bone @ head[:3, :3].T
+        olds.append(pos)
+        moves.append(o_model)
+        sim.positions = [tuple(p) for p in pos + o_model]
+        planes = []
+        for plane in sim.planes:
+            n, d = np.array(plane['equation'][:3]), plane['equation'][3]
+            frame = binds[names.index(plane['bone'])] if plane['bone'] in names else head
+            to_plane = np.linalg.inv(frame)[:3, :3]
+            groups: Dict[float, list] = {}
+            for i in plane['particles']:
+                shift = float(n @ (to_plane @ o_model[i]))
+                groups.setdefault(round(shift, 7), []).append(i)
+            for shift, particles in groups.items():
+                planes.append(dict(plane, equation=tuple(n) + (d - shift,), particles=particles))
+        sim.planes = planes
+    capsules = []
+    for c, col in enumerate(model.collidables):
+        if col.shape != 'capsule':
+            continue
+        frame = np.array(col.transform)
+        to_col = np.linalg.inv(frame)
+        a, b, r = np.array(col.params['start']), np.array(col.params['end']), col.params['radius']
+        before, after = [], []
+        for sim, old, move in zip(model.sims, olds, moves):
+            if c not in sim.collidable_ids:
+                continue
+            bit = 1 << sim.collidable_ids.index(c)
+            hit = [i for i, mask in enumerate(sim.collision_masks) if mask & bit]
+            for pts, out in ((old[hit], before), (old[hit] + move[hit], after)):
+                local = pts @ to_col[:3, :3].T + to_col[:3, 3]
+                out.extend(_segment_distance(local, a, b))
+        if not before:
+            continue
+        before, after = np.array(before), np.array(after)
+        grow = float(np.median(after - before))
+        limit = float((after - np.minimum(before - r, 0.0)).min())
+        new_r = min(r + grow, limit)
+        col.params = dict(col.params, radius=new_r)
+        capsules.append((col.name, r, new_r))
+    out = sf_cloth_build.build_cloth(model)
+    moved = max((float(np.linalg.norm(m, axis=1).max()) for m in moves if len(m)), default=0.0)
+    return ClothFit(out, moved, capsules)

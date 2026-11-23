@@ -191,7 +191,8 @@ def main():
         print("\nFitting hair:")
         try:
             hair_plugin = hair_stage.run(plugins, data_dir, list(races.values()), out_dir, assets=args.assets,
-                                         ears_move_hair=not args.ears_fixed, dry_run=args.dry_run)
+                                         ears_move_hair=not args.ears_fixed, dry_run=args.dry_run,
+                                         verbose=args.verbose)
         except ValueError as e:
             print(f"ERROR: {e}")
             return 2

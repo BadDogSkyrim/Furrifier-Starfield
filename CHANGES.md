@@ -24,7 +24,11 @@ PyNifly extension installed in Blender. esplib comes from pip.
   - Hairs from mods in the load order are fitted too.
   - A rerun fits only the hairs whose sources changed, and rewrites records in place under their
     FormIDs, so a player's chosen hair survives. A hair no longer wanted loses its records.
-  - Hairs with cloth or extra parts aren't fitted yet.
+  - A hair's cloth moves with it: each particle by its nearby hair's offset, each bone plane
+    with its particle, and each collision capsule's radius by how far its particles moved from
+    its axis (never so far that one starts inside). The cloth bones stay at their binds, so at
+    rest the hair shows as fitted.
+  - Hairs with extra parts aren't fitted yet.
 - **`--log FILE`** (sf_furrify) writes everything printed to a file as well, errors and tracebacks
   included, headed by the command line.
 - **The FaceGen bake finds vanilla textures in `--assets`**, as it finds vanilla meshes.

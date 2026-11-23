@@ -205,3 +205,86 @@ def test_canine_fit_keeps_the_gap():
     ok = ~np.isnan(gap_before) & ~np.isnan(gap_after)
     assert ok.mean() > 0.99
     assert np.abs(gap_after[ok] - gap_before[ok]).max() <= hair_fit.EPSILON + 1e-9   # the cutoff
+
+
+# ----- cloth -------------------------------------------------------------------------------------
+
+# A head capsule; two neck capsules and three skin bones; bone planes (182) and a head capsule.
+CLOTH_HAIRS = [r'actors\human\mesh\hairs\bob\bob_f.nif', r'actors\human\mesh\hairs\shaggy\shaggy_m.nif',
+               r'actors\human\mesh\hairs\choppy_bob\choppy_bob_f.nif']
+
+
+def cloth_case(rel):
+    from pyn import sf_cloth
+    hair = vanilla(rel)
+    blob = hair_fit.cloth_blob(hair.nif)
+    return hair, blob, sf_cloth.read_model(blob)
+
+
+def plane_values(model):
+    """{(particle, bone): n.x + d} for every bone-plane record, x in the plane bone's frame."""
+    from pyn import sf_cloth
+    names = [b[0] for b in model.skeleton]
+    binds = [np.array(m) for m in sf_cloth.bind_matrices(model.skeleton)]
+    out = {}
+    for sim in model.sims:
+        for p in sim.planes:
+            inv = np.linalg.inv(binds[names.index(p['bone'])])
+            n, d = np.array(p['equation'][:3]), p['equation'][3]
+            for i in p['particles']:
+                x = inv[:3, :3] @ np.array(sim.positions[i]) + inv[:3, 3]
+                out[(i, p['bone'])] = float(n @ x + d)
+    return out
+
+
+@tt.requires_assets('SF')
+def test_cloth_unmoved_reads_back_the_same():
+    """No offsets: the rebuilt cloth has the same particles, planes and capsules."""
+    from pyn import sf_cloth
+    for rel in CLOTH_HAIRS:
+        hair, blob, before = cloth_case(rel)
+        pts = hair.to_bone(hair.positions)
+        fit = hair_fit.fit_cloth(blob, pts, np.zeros_like(pts))
+        after = sf_cloth.read_model(fit.blob)
+        assert fit.moved == 0.0
+        for s1, s2 in zip(before.sims, after.sims):
+            assert np.abs(np.array(s1.positions) - np.array(s2.positions)).max() < 1e-5, rel
+        assert all(abs(old - new) < 1e-6 for _n, old, new in fit.capsules), fit.capsules
+        a, b = plane_values(before), plane_values(after)
+        assert set(a) == set(b) and all(abs(a[k] - b[k]) < 1e-5 for k in a), rel
+
+
+@tt.requires_assets('SF')
+def test_cloth_moves_with_the_hair():
+    """Every particle moves by its nearest hair vertices' offset (here the same for all), keeps its
+    distance from each bone plane, and no particle starts inside a capsule it was clear of."""
+    from pyn import sf_cloth
+    move = np.array([0.012, 0.003, -0.002])            # C_Head space, metres
+    for rel in CLOTH_HAIRS:
+        hair, blob, before = cloth_case(rel)
+        pts = hair.to_bone(hair.positions)
+        fit = hair_fit.fit_cloth(blob, pts, np.tile(move, (len(pts), 1)))
+        after = sf_cloth.read_model(fit.blob)
+        names = [b[0] for b in before.skeleton]
+        head = np.array(sf_cloth.bind_matrices(before.skeleton)[names.index('C_Head')])
+        want = head[:3, :3] @ move
+        for s1, s2 in zip(before.sims, after.sims):
+            got = np.array(s2.positions) - np.array(s1.positions)
+            assert np.abs(got - want).max() < 1e-4, (rel, np.abs(got - want).max())
+        a, b = plane_values(before), plane_values(after)
+        assert set(a) == set(b) and all(abs(a[k] - b[k]) < 1e-4 for k in a), rel
+        for col_b, col_a in zip(before.collidables, after.collidables):
+            inv = np.linalg.inv(np.array(col_a.transform))
+            for sim_b, sim_a in zip(before.sims, after.sims):
+                if before.collidables.index(col_b) not in sim_b.collidable_ids:
+                    continue
+                bit = 1 << sim_b.collidable_ids.index(before.collidables.index(col_b))
+                hit = [i for i, m in enumerate(sim_b.collision_masks) if m & bit]
+                for pos, col in ((sim_b.positions, col_b), (sim_a.positions, col_a)):
+                    local = np.array([pos[i] for i in hit]) @ inv[:3, :3].T + inv[:3, 3]
+                    gap = hair_fit._segment_distance(local, np.array(col.params['start']),
+                                                     np.array(col.params['end'])) - col.params['radius']
+                    if col is col_b:
+                        clear_before = gap
+                    else:
+                        assert (gap >= np.minimum(clear_before, 0) - 1e-5).all(), (rel, col.name)
