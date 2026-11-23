@@ -32,7 +32,10 @@ PyNifly extension installed in Blender. esplib comes from pip.
     `HeadPartsChargenOptionsMale`/`Female` with what the active player plugin's lists hold, plus
     each sex's fitted hairs. It takes in every race's player plugin's changes but masters none, as
     only one is active, so **load the hair plugin after the player plugins**.
-  - Hairs with extra parts aren't fitted yet.
+  - A hair's extra parts (a hair tie, beads, the buzz cut's front) are fitted with it, as one
+    piece, so a tie stays on its ponytail. The fitted hair names the fitted parts.
+  - A part with no morph keys of a kind gets no morph file for it: an empty `morph.dat` crashes
+    the CK.
 - **`--log FILE`** (sf_furrify) writes everything printed to a file as well, errors and tracebacks
   included, headed by the command line.
 - **The FaceGen bake finds vanilla textures in `--assets`**, as it finds vanilla meshes.

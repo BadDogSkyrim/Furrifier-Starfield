@@ -67,6 +67,9 @@ def records(path: Path):
     return p, {(r.signature, r.editor_id): r for r in p}
 
 
+HAIRS = ['Human_*_Hair_Cropped', 'Human_*_Hair_Even_Buzz_Back', 'Human_*_Hair_Flat_Top']
+
+
 @pytest.fixture(scope='module')
 def fitted(tmp_path_factory):
     """One --hair-only run, shared by the tests below, which run in order: rerun, then exclude."""
@@ -74,13 +77,13 @@ def fitted(tmp_path_factory):
         pytest.fail(f'asset folder missing: {tt.SF_ASSETS}')
     tmp = tmp_path_factory.mktemp('hair')
     out = tmp / 'mod'
-    log = hair_only(out, races_with(tmp, ['Human_*_Hair_Cropped', 'Human_*_Hair_Flat_Top']))
+    log = hair_only(out, races_with(tmp, HAIRS))
     return tmp, out, log
 
 
 def test_hair_only_fits_the_included_hairs(fitted):
     _, out, log = fitted
-    assert '4 refitted' in log, log
+    assert '6 refitted' in log, log
     plugin, recs = records(out / 'FSFHair.esm')
     assert plugin.header.masters == ['Starfield.esm', 'FSF.esm']
     for edid in ('FSFCanine_Female_Hair_Cropped', 'FSFCanine_Male_Hair_Cropped',
@@ -94,6 +97,12 @@ def test_hair_only_fits_the_included_hairs(fitted):
         for sig in ('TCMP', 'TMPP'):
             folder = mrph.get_subrecord(sig).data.rstrip(b'\0').decode().replace('\\', '/')
             assert (out / folder / 'morph.dat').is_file(), folder
+    from pyn.sf_morph import MorphFile
+    for (sig, edid), mrph in recs.items():      # every morph file named exists and has keys
+        for sr in mrph.subrecords if sig == 'MRPH' else []:
+            if sr.signature in ('TCMP', 'TMPP'):
+                dat = out / sr.data.rstrip(b'\0').decode().replace('\\', '/') / 'morph.dat'
+                assert dat.is_file() and MorphFile.from_bytes(dat.read_bytes()).morph_names, (edid, dat)
     races = recs[('FLST', 'FSFCanine_HairRaces')]
     assert len(races.get_subrecords('LNAM')) == 2     # fox and hyena share the canine head
     assert (out / 'FSFTools' / 'hair_fit' / 'FSFHair.json').is_file()
@@ -132,17 +141,34 @@ def test_fitted_hairs_are_chargen_options(fitted):
         vanilla, fox, hyena = lists
         assert fox == hyena and set(fox) != set(vanilla)
         mine = [int(recs[('HDPT', f'FSFCanine_{sex.capitalize()}_Hair_{h}')].form_id.value)
-                for h in ('Cropped', 'Flat_Top')]
+                for h in ('Cropped', 'Even_Buzz_Back', 'Flat_Top')]
         got = named(plugin, chargen_list(recs, fid))
-        assert set(got) == set(fox) | set(named(plugin, mine))
-        assert got[-2:] == named(plugin, mine)
+        assert set(got) == set(fox) | set(named(plugin, mine)), 'extra parts come with their hair'
+        assert got[-3:] == named(plugin, mine)
+
+
+def test_extra_parts_are_fitted_with_their_hair(fitted):
+    """Even_Buzz_Back's front part is fitted too, and the fitted hair names the fitted part."""
+    _, out, log = fitted
+    assert 'Even_Buzz' not in log, log          # nothing skipped
+    _, recs = records(out / 'FSFHair.esm')
+    for sex in ('Female', 'Male'):
+        hair = recs[('HDPT', f'FSFCanine_{sex}_Hair_Even_Buzz_Back')]
+        part = recs[('HDPT', f'FSFCanine_{sex}_Hair_Even_Buzz_Front')]
+        assert [int.from_bytes(s.data, 'little') for s in hair.get_subrecords('HNAM')] == [int(part.form_id.value)]
+        assert part.get_subrecord('RNAM').data == hair.get_subrecord('RNAM').data
+        model = part.get_subrecord('MODL').data.rstrip(b'\0').decode().replace('\\', '/')
+        assert (out / 'Meshes' / model).is_file(), model
+        assert (out / 'Meshes' / model).with_name(Path(model).stem.lower() + '_facebones.nif').is_file()
+        mrph = recs[('MRPH', f'MORPH_FSFCanine_{sex}_Hair_Even_Buzz_Front')]
+        assert int.from_bytes(part.get_subrecord('MNAM').data, 'little') == int(mrph.form_id.value)
 
 
 def test_a_rerun_fits_nothing_and_keeps_formids(fitted):
     tmp, out, _ = fitted
     before = {k: int(r.form_id.value) for k, r in records(out / 'FSFHair.esm')[1].items()}
     log = hair_only(out, tmp / 'races')
-    assert '0 refitted, 4 up to date' in log, log
+    assert '0 refitted, 6 up to date' in log, log
     after = {k: int(r.form_id.value) for k, r in records(out / 'FSFHair.esm')[1].items()}
     assert after == before
 
@@ -152,8 +178,8 @@ def test_an_excluded_hair_loses_its_records(fitted):
     before = {k: int(r.form_id.value) for k, r in records(out / 'FSFHair.esm')[1].items()}
     again = tmp / 'again'
     again.mkdir()
-    log = hair_only(out, races_with(again, ['Human_*_Hair_Cropped', 'Human_*_Hair_Flat_Top'], ['*Flat_Top']))
-    assert '0 refitted, 2 up to date' in log, log
+    log = hair_only(out, races_with(again, HAIRS, ['*Flat_Top']))
+    assert '0 refitted, 4 up to date' in log, log
     _, recs = records(out / 'FSFHair.esm')
     assert ('HDPT', 'FSFCanine_Female_Hair_Flat_Top') not in recs
     assert ('MRPH', 'MORPH_FSFCanine_Male_Hair_Flat_Top') not in recs

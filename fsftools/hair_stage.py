@@ -11,8 +11,9 @@ the output folder and the records into the hair plugin there, created if missing
 same EditorID is rewritten in place under its FormID, so a player's saved choice survives a rerun.
 
 Each fitted hair records a digest of what it was made from. A rerun fits only the hairs whose digest
-changed; the rest keep their files. A hair's cloth moves with it (hair_fit.fit_cloth). Hairs with
-extra parts aren't fitted yet.
+changed; the rest keep their files. A hair's cloth moves with it (hair_fit.fit_cloth). A hair's
+extra parts (a hair tie, beads) are fitted with it, as one, and its fitted copy names their fitted
+copies.
 
 The hair plugin also overrides the character creator's head-part lists with the winning list, what
 each race's player plugin adds to it, and each sex's fitted hairs. The player plugins are alternatives,
@@ -262,6 +263,8 @@ class Fitted:
     files: Dict[Path, bytes] = field(default_factory=dict)
     digest: str = ''
     stats: str = ''
+    extras: List['Fitted'] = field(default_factory=list)    # its fitted extra parts, in HNAM order
+    gone: List[Path] = field(default_factory=list)          # files it no longer has (morphs with no keys)
 
 
 def plan_hair(plugins, hdpt, target: HeadShape, prefix: str, folder: str, sex: str, races) -> Fitted:
@@ -276,17 +279,36 @@ def plan_hair(plugins, hdpt, target: HeadShape, prefix: str, folder: str, sex: s
     mrph = _mrph(plugins, hdpt)
     if mrph is not None and mrph.get_subrecord('MOBC') is not None:
         out.mobc = bytes(mrph.get_subrecord('MOBC').data)
+    for sr in hdpt.get_subrecords('HNAM'):
+        extra = plugins.resolve_form_id(sr.get_form_id(0), hdpt.plugin)
+        out.extras.append(plan_hair(plugins, extra, target, prefix, folder, sex, races))
     return out
 
 
 def fit_hair(plugins, assets: Assets, f: Fitted, source: HeadShape, target: HeadShape,
              ears_move_hair: bool = True):
-    """Fill in the fitted hair's files: its nif, companion, their meshes and the morphs."""
-    model = _text(f.source.get_subrecord('MODL'))
-    nif_path = assets.find(Path('Meshes') / model)
-    shape = assets.shape(model)
-    part = shape.to_bone(shape.positions)
-    fit = hair_fit.fit_offsets(source.head, target.head, part, shape.tris)
+    """Fill in the fitted hair's files, and its extra parts': nif, companion, their meshes and the
+    morphs. The hair and its extra parts are fitted as one, so a tie on a ponytail moves with it."""
+    members = [f] + f.extras
+    shapes = [assets.shape(_text(m.source.get_subrecord('MODL'))) for m in members]
+    parts = [s.to_bone(s.positions) for s in shapes]
+    starts = np.cumsum([0] + [len(p) for p in parts])
+    fit = hair_fit.fit_offsets(source.head, target.head, np.concatenate(parts),
+                               np.concatenate([np.asarray(s.tris) + o for s, o in zip(shapes, starts)]))
+    notes = []
+    for i, (m, shape, part) in enumerate(zip(members, shapes, parts)):
+        note = _fit_part(plugins, assets, m, shape, part, fit.offsets[starts[i]:starts[i + 1]], source,
+                         target, ears_move_hair)
+        notes.append(note if not i else f'{m.edid}: {note}')
+    moved = np.linalg.norm(fit.offsets, axis=1)
+    f.stats = (f'offset mean {moved.mean() * 1000:.1f} mm, max {moved.max() * 1000:.1f} mm, '
+               f'{fit.missed} rays missed; ' + '; '.join(notes))
+
+
+def _fit_part(plugins, assets: Assets, f: Fitted, shape, part, offsets, source: HeadShape,
+              target: HeadShape, ears_move_hair: bool) -> str:
+    """One part's files, moved by its offsets (bone space), and its morphs. Returns a note on them."""
+    nif_path = assets.find(Path('Meshes') / _text(f.source.get_subrecord('MODL')))
     rel = Path(f.model.replace('\\', '/'))
     pieces = [(shape, rel)]
     companion = hair_fit.companion_path(nif_path)
@@ -299,11 +321,11 @@ def fit_hair(plugins, assets: Assets, f: Fitted, source: HeadShape, target: Head
     cloths = {}                     # a cloth tagfile -> its fitted one (base and companion share it)
     cloth_note = ''
     for piece, path in pieces:
-        nif, mesh_name, mesh = hair_fit.fit_files(piece, fit.offsets)
+        nif, mesh_name, mesh = hair_fit.fit_files(piece, offsets)
         blob = hair_fit.cloth_blob(nif)
         if blob is not None:
             if blob not in cloths:
-                cloths[blob] = hair_fit.fit_cloth(blob, part, fit.offsets)
+                cloths[blob] = hair_fit.fit_cloth(blob, part, offsets)
                 c = cloths[blob]
                 cloth_note = f'; cloth particles moved up to {c.moved * 1000:.1f} mm' + ''.join(
                     f', {name} radius {old * 1000:.0f}->{new * 1000:.0f} mm' for name, old, new in c.capsules
@@ -312,26 +334,37 @@ def fit_hair(plugins, assets: Assets, f: Fitted, source: HeadShape, target: Head
         f.files[Path('Meshes') / path] = nif
         f.files[Path('Geometries') / (mesh_name + '.mesh')] = mesh
     part_keys, _, _ = load_part_keys(plugins, assets, f.source, len(shape.positions))
-    target_src = target.sources(part + fit.offsets, ears_move_hair)
+    target_src = target.sources(part + offsets, ears_move_hair)
     source_src = source.sources(part, ears_move_hair)
     counts = []
     for kind in MORPH_SUBS:
         keys = hair_fit.fit_keys(target.keys[kind], source.keys[kind], part_keys[kind], target_src,
                                  source_src, target.shape, source.shape, shape, ear_key=is_ear_key)
-        f.files[Path(f.morphs[kind].replace('\\', '/')) / 'morph.dat'] = \
-            hair_fit.write_keys(keys, len(shape.positions))
+        if keys:
+            f.files[Path(f.morphs[kind].replace('\\', '/')) / 'morph.dat'] = \
+                hair_fit.write_keys(keys, len(shape.positions))
+        else:                       # an empty morph.dat crashes the CK; vanilla leaves it out
+            f.gone.append(Path(f.morphs.pop(kind).replace('\\', '/')) / 'morph.dat')
         counts.append(f'{len(keys)} {kind}')
-    moved = np.linalg.norm(fit.offsets, axis=1)
-    f.stats = (f'offset mean {moved.mean() * 1000:.1f} mm, max {moved.max() * 1000:.1f} mm, '
-               f'{fit.missed} rays missed; keys {", ".join(counts)}{cloth_note}')
+    return f'keys {", ".join(counts)}{cloth_note}'
 
 
-def skip_reason(assets: Assets, hdpt) -> Optional[str]:
+def skip_reason(plugins, assets: Assets, hdpt, extra: bool = False) -> Optional[str]:
+    """Why a hair (or one of its extra parts) can't be fitted, or None."""
     unknown = sorted({s.signature for s in hdpt.subrecords} - KNOWN_SUBS)
     if unknown:
         return f'has {", ".join(unknown)}, which isn\'t copied'
-    if hdpt.get_subrecord('HNAM') is not None:
-        return 'has extra parts (not fitted yet)'
+    for sr in hdpt.get_subrecords('HNAM'):
+        part = plugins.resolve_form_id(sr.get_form_id(0), hdpt.plugin)
+        if extra:
+            return 'an extra part with extra parts of its own'
+        if part is None:
+            return f'extra part {sr.get_form_id(0)} not in the load order'
+        why = skip_reason(plugins, assets, part, extra=True)
+        if why:
+            return f'extra part {part.editor_id}: {why}'
+    if hdpt.get_subrecord('MODL') is None:
+        return 'no model'
     nif = assets.find(Path('Meshes') / _text(hdpt.get_subrecord('MODL')))
     if not nif.exists():
         return f'{nif.name} not found' + (' in Data or the unpacked assets' if assets.assets else
@@ -404,6 +437,49 @@ def write_records(path: Path, masters: List[str], groups, plugins, strings_for, 
 
     used = set()
     refs = []                     # (subrecord, own record): own references, set once masters settle
+
+    def write_hdpt(f: Fitted, race_list):
+        """f's MRPH and HDPT, and its extra parts' before it. Returns the HDPT."""
+        extras = [write_hdpt(e, race_list) for e in f.extras]
+        k = iter(range(len(extras)))
+        morph = put('MRPH', f'MORPH_{f.edid}',
+                    [SubRecord(sig, _z(f.morphs[kind])) for kind, sig in (('performance', 'TMPP'),
+                                                                         ('chargen', 'TCMP'))
+                     if kind in f.morphs] + [SubRecord('MOBC', f.mobc)])
+        used.update({('MRPH', f'MORPH_{f.edid}'), ('HDPT', f.edid)})
+        source = f.source
+        localized = bool(source.plugin.is_localized)
+        subs = []
+        for sr in source.subrecords:
+            sig = sr.signature
+            if sig in ('EDID', 'MNAM', 'NAM3'):    # NAM3: a mask for the human face's UVs
+                continue
+            if sig == 'FULL':
+                if localized and len(sr.data) == 4:      # a string ID: our plugin isn't localized
+                    text = strings_for(source.plugin).get(struct.unpack('<I', sr.data)[0])
+                    subs.append(SubRecord('FULL', _z(text or f.edid)))
+                else:
+                    subs.append(SubRecord('FULL', bytes(sr.data)))
+            elif sig == 'MODL':
+                subs.append(SubRecord('MODL', _z(f.model)))
+            elif sig == 'RNAM':
+                sub = SubRecord('RNAM', b'\0' * 4)
+                refs.append((sub, race_list))
+                subs.append(sub)
+            elif sig == 'HNAM' and f.extras:
+                sub = SubRecord('HNAM', b'\0' * 4)
+                refs.append((sub, extras[next(k)]))
+                subs.append(sub)
+            elif sig in REFERENCE_SUBS:
+                value = remapper.remap(struct.unpack('<I', sr.data)[0], source.plugin)
+                subs.append(SubRecord(sig, struct.pack('<I', value)))
+            else:
+                subs.append(SubRecord(sig, bytes(sr.data)))
+        sub = SubRecord('MNAM', b'\0' * 4)
+        refs.append((sub, morph))
+        subs.append(sub)
+        return put('HDPT', f.edid, subs)
+
     for prefix, all_races, fitted in groups:
         lists = {}
         for f in fitted:
@@ -412,39 +488,8 @@ def write_records(path: Path, masters: List[str], groups, plugins, strings_for, 
                 lists[name] = put('FLST', name, [SubRecord('LNAM', struct.pack('<I', _output_form_id(r, masters)))
                                                  for r in sorted(f.races, key=lambda r: r.editor_id)])
                 used.add(('FLST', name))
-            morph = put('MRPH', f'MORPH_{f.edid}',
-                        [SubRecord('TMPP', _z(f.morphs['performance'])),
-                         SubRecord('TCMP', _z(f.morphs['chargen'])), SubRecord('MOBC', f.mobc)])
-            used.update({('MRPH', f'MORPH_{f.edid}'), ('HDPT', f.edid)})
-            source = f.source
-            localized = bool(source.plugin.is_localized)
-            subs = []
-            for sr in source.subrecords:
-                sig = sr.signature
-                if sig in ('EDID', 'MNAM', 'NAM3'):    # NAM3: a mask for the human face's UVs
-                    continue
-                if sig == 'FULL':
-                    if localized and len(sr.data) == 4:      # a string ID: our plugin isn't localized
-                        text = strings_for(source.plugin).get(struct.unpack('<I', sr.data)[0])
-                        subs.append(SubRecord('FULL', _z(text or f.edid)))
-                    else:
-                        subs.append(SubRecord('FULL', bytes(sr.data)))
-                elif sig == 'MODL':
-                    subs.append(SubRecord('MODL', _z(f.model)))
-                elif sig == 'RNAM':
-                    sub = SubRecord('RNAM', b'\0' * 4)
-                    refs.append((sub, lists[name]))
-                    subs.append(sub)
-                elif sig in REFERENCE_SUBS:
-                    value = remapper.remap(struct.unpack('<I', sr.data)[0], source.plugin)
-                    subs.append(SubRecord(sig, struct.pack('<I', value)))
-                else:
-                    subs.append(SubRecord(sig, bytes(sr.data)))
-            sub = SubRecord('MNAM', b'\0' * 4)
-            refs.append((sub, morph))
-            subs.append(sub)
-            put('HDPT', f.edid, subs)
-    overrides = []                 # (record, its entries); a new one is added once masters settle
+            write_hdpt(f, lists[name])
+    overrides = []                 # new chargen list overrides, added once the masters settle
     for sex, (winner, entries) in sorted((chargen or {}).items()):
         fid = CHARGEN_LISTS[sex]
         rec = next((r for r in out if r.signature == 'FLST' and int(r.form_id.value) == fid), None)
@@ -618,7 +663,7 @@ def run(plugins, data_dir: Path, races, out_dir: Path, plugin_name: str = HAIR_P
             takers = [r for r, cfg in members if wants(hdpt.editor_id, cfg.hair_include, cfg.hair_exclude)]
             if not takers:
                 continue
-            why = skip_reason(files, hdpt)
+            why = skip_reason(plugins, files, hdpt)
             if why:
                 skipped.append((hdpt.editor_id, why))
                 continue
@@ -634,16 +679,24 @@ def run(plugins, data_dir: Path, races, out_dir: Path, plugin_name: str = HAIR_P
         with Progress(f'Fitting {prefix} {sex} hair', len(candidates)) as bar:
             for hdpt, takers in candidates:
                 f = plan_hair(plugins, hdpt, target, prefix, head_folder(head), sex, takers)
-                f.digest = _digest(FITTER_VERSION, ears_move_hair, source.digest, target.digest, f.model,
-                                   *[f'{s.signature}:{bytes(s.data).hex()}' for s in hdpt.subrecords],
-                                   *part_files(plugins, files, hdpt))
+                members = [f] + f.extras
+                f.digest = _digest(FITTER_VERSION, ears_move_hair, source.digest, target.digest,
+                                   *[x for m in members for x in
+                                     [m.model, *[f'{s.signature}:{bytes(s.data).hex()}' for s in m.source.subrecords],
+                                      *part_files(plugins, files, m.source)]])
                 fresh[f.edid] = f.digest
-                done = manifest.get(f.edid) == f.digest and (out_dir / 'Meshes' / f.model.replace('\\', '/')).exists()
+                done = manifest.get(f.edid) == f.digest and all(
+                    (out_dir / 'Meshes' / m.model.replace('\\', '/')).exists() for m in members)
                 if done or dry_run:
                     kept += done
+                    for m in members:         # a kind with no keys wasn't written
+                        m.morphs = {k: v for k, v in m.morphs.items()
+                                    if (out_dir / v.replace('\\', '/') / 'morph.dat').exists()}
                 else:
                     fit_hair(plugins, files, f, source, target, ears_move_hair)
-                    for rel, data in f.files.items():
+                    for gone in [g for m in members for g in m.gone]:
+                        (out_dir / gone).unlink(missing_ok=True)
+                    for rel, data in [x for m in members for x in m.files.items()]:
                         dest = out_dir / rel
                         dest.parent.mkdir(parents=True, exist_ok=True)
                         dest.write_bytes(data)
