@@ -18,6 +18,7 @@ ROOT = Path(__file__).resolve().parent.parent
 from fsfdata import BUILTIN, RACES, SCHEME, game_data  # noqa: E402
 sys.path.insert(0, str(ROOT))
 from fsftools import facegen  # noqa: E402
+import tt  # noqa: E402
 from fsftools.plugin_loader import load_order_for_plugin, load_plugins  # noqa: E402
 
 CK = ROOT / 'tests' / 'fixtures' / 'ck_bake'
@@ -71,6 +72,31 @@ def test_a_mask_with_no_colour_paints_black(world):
     full = mask >= mask.max() - 1e-6
     # Black laid on in linear light at the mask's strength (0.3 here): about 0.85 of the sRGB value.
     assert got[full].mean() < bare[full].mean() * 0.9, "darkened where the mask is strongest"
+
+
+VANILLA_SCALP = r'textures\actors\human\faces\chargen\postblenddetails\scalp\croppedbang_cap_mask.dds'
+
+
+@tt.requires_assets('SF')
+def test_a_layer_only_in_the_unpacked_assets_is_found():
+    """A kept human hair's scalp mask (its NAM3) is vanilla, so in a BA2: the bake reads it from
+    --assets, as it reads vanilla meshes. Data stops a full furrify run otherwise (2026-11-23)."""
+    data = game_data()
+    assert not (data / VANILLA_SCALP.replace('\\', '/')).exists(), 'only in the BA2'
+    got = facegen._load(data, VANILLA_SCALP, {}, assets=Path(tt.SF_ASSETS))
+    assert got.ndim == 3 and got.shape[0] > 0
+    face = facegen.composite_face(data, SK3, [(VANILLA_SCALP, NO_COLOR, 63)], {}, assets=Path(tt.SF_ASSETS))
+    assert face.shape[-1] == 3
+
+
+def test_a_kept_hair_paints_no_follicle_mask():
+    """A kept human hair's NAM3 mask is drawn on the human face's UVs: on a furry face it would land
+    in the wrong place, so only the race's own parts paint masks (Bad Dog, 2026-11-23)."""
+    class P:
+        def __init__(self, edid):
+            self.editor_id = edid
+    ruff, hair, head = P('FSFFox_Male_Ruff02'), P('Human_Male_Hair_Shaggy'), P('FSFCanine_Male_Head')
+    assert facegen.mask_painting_parts([head, ruff, hair], {'Human_Male_Hair_Shaggy'}) == [head, ruff]
 
 
 def test_a_facial_hairs_follicle_mask_is_painted_in_its_colour(world):

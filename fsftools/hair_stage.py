@@ -4,7 +4,8 @@ Races sharing a head share the fitted hair: one fit per head and sex, named for 
 (Human_Female_Hair_Bob -> FSFCanine_Female_Hair_Bob), listing the races that want it. A race's TOML
 picks its hairs with [hair] include/exclude (EditorID globs; no include means every hair).
 
-A fitted HDPT is a copy of the source one with a new EditorID, model, race list and morphs. Its
+A fitted HDPT is a copy of the source one with a new EditorID, model, race list and morphs, and
+without its scalp mask (NAM3), which is drawn for the human face's UVs. Its
 morphs have a key for each of the head's keys that moves it (hair_fit.fit_keys). The files go under
 the output folder and the records into the hair plugin there, created if missing; a record with the
 same EditorID is rewritten in place under its FormID, so a player's saved choice survives a rerun.
@@ -400,7 +401,7 @@ def write_records(path: Path, masters: List[str], groups, plugins, strings_for, 
             subs = []
             for sr in source.subrecords:
                 sig = sr.signature
-                if sig in ('EDID', 'MNAM'):
+                if sig in ('EDID', 'MNAM', 'NAM3'):    # NAM3: a mask for the human face's UVs
                     continue
                 if sig == 'FULL':
                     if localized and len(sr.data) == 4:      # a string ID: our plugin isn't localized

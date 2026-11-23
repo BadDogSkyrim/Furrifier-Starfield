@@ -374,10 +374,14 @@ def _linear_to_srgb(a: np.ndarray) -> np.ndarray:
     return np.where(a <= 0.0031308, a * 12.92, 1.055 * np.power(a, 1 / 2.4) - 0.055)
 
 
-def _load(data_dir: Path, path: str, cache: Dict) -> np.ndarray:
+def _load(data_dir: Path, path: str, cache: Dict, assets: Optional[Path] = None,
+          first: Optional[Path] = None) -> np.ndarray:
+    """A texture, found as find_asset finds it: a vanilla one (a kept hair's scalp mask) may be only
+    in the unpacked assets."""
     import uv_transfer
     if path not in cache:
-        cache[path] = uv_transfer.load_image(str(Path(data_dir) / path.replace('\\', os.sep)))
+        found = find_asset(Path(path.replace('\\', '/')), data_dir, assets, first)
+        cache[path] = uv_transfer.load_image(str(found))
     return cache[path]
 
 
@@ -389,7 +393,8 @@ def _sized(image: np.ndarray, h: int, w: int) -> np.ndarray:
                      for i in range(image.shape[-1])], axis=-1)
 
 
-def composite_face(data_dir, base, layers: List[Tuple[str, bytes, int]], cache: Dict) -> np.ndarray:
+def composite_face(data_dir, base, layers: List[Tuple[str, bytes, int]], cache: Dict,
+                   assets: Optional[Path] = None, first: Optional[Path] = None) -> np.ndarray:
     """The baked colour as H x W x 3 uint8. Layers are (texture, NNAM bytes, INTV), bottom first.
 
     base is a texture path, or {path: H x W weight} to blend several. A colour texture (RGBA) lays
@@ -398,12 +403,13 @@ def composite_face(data_dir, base, layers: List[Tuple[str, bytes, int]], cache: 
     isn't an alpha. NNAM 00000000 on a mask is black, not invisible.
     """
     if isinstance(base, dict):
-        out = sum(_srgb_to_linear(_load(data_dir, p, cache)[..., :3]) * w[..., None] for p, w in base.items())
+        out = sum(_srgb_to_linear(_load(data_dir, p, cache, assets, first)[..., :3]) * w[..., None]
+                  for p, w in base.items())
     else:
-        out = _srgb_to_linear(_load(data_dir, base, cache)[..., :3])
+        out = _srgb_to_linear(_load(data_dir, base, cache, assets, first)[..., :3])
     h, w = out.shape[:2]
     for path, color, intensity in layers:
-        image = _sized(_load(data_dir, path, cache), h, w)
+        image = _sized(_load(data_dir, path, cache, assets, first), h, w)
         strength = min(1.0, intensity / FULL_INTENSITY)
         if color != b'\0\0\0\0' or image.shape[-1] < 4:
             alpha = image[..., :1] * strength
@@ -417,6 +423,12 @@ def composite_face(data_dir, base, layers: List[Tuple[str, bytes, int]], cache: 
 
 # Head parts that paint the face through their NAM3: part type (HDPT PNAM) -> (mask group, colour sub).
 FOLLICLE_GROUPS = {4: ('BeardFollicleMask', 'FHCL'), 3: ('HairFollicleMask', 'HCOL')}
+
+
+def mask_painting_parts(parts, kept_hair) -> List:
+    """The parts whose follicle masks are painted: not a kept human hair, whose mask is drawn for
+    the human face's UVs and would land in the wrong place on the race's face."""
+    return [h for h in parts if h.editor_id not in kept_hair]
 
 
 def follicle_layers(parts, npc, avm) -> List[Tuple[str, bytes]]:
@@ -773,14 +785,16 @@ def bake_all(changes, appearances, plugins, data_dir, out_dir, log=print,
                 path = listed[min(change.new_ston, len(listed) - 1)]
                 bases[path] = bases[path] + weight if path in bases else weight
             # Follicle masks (a hair's or beard's NAM3) paint on top of the tints, at full strength.
-            follicles = follicle_layers([h for h, _, _ in baked_parts], change.source, appearance.avm)
+            follicles = follicle_layers(mask_painting_parts([h for h, _, _ in baked_parts], kept),
+                                        change.source, appearance.avm)
             layers = [(t.texture, t.color, t.intensity) for t in change.tints]
             layers += [(path, colour, FULL_INTENSITY) for path, colour in follicles]
-            write_color_dds(tex / f'{ident}_Color.dds', composite_face(data_dir, bases, layers, textures))
+            write_color_dds(tex / f'{ident}_Color.dds', composite_face(data_dir, bases, layers, textures, assets, out_dir))
             for suffix, source_suffix in (('ao', 'ao'), ('rough', 'rough')):
                 channel = maps.blend(source_suffix, region)[..., 0]
                 if suffix == 'rough' and follicles:
-                    channel = follicle_rough(channel, [(_load(data_dir, p, textures), c) for p, c in follicles])
+                    channel = follicle_rough(channel, [(_load(data_dir, p, textures, assets, out_dir), c)
+                                                      for p, c in follicles])
                 _link_or_write(shared, tex / f'{ident}_{suffix}.dds', lambda p, c=channel: write_r8_dds(p, c))
             normals.append((tex / f'{ident}_Normal.dds', maps.blend('normal', region)))
             if len(normals) >= 40:

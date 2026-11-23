@@ -25,6 +25,11 @@ PyNifly extension installed in Blender. esplib comes from pip.
   - A rerun fits only the hairs whose sources changed, and rewrites records in place under their
     FormIDs, so a player's chosen hair survives. A hair no longer wanted loses its records.
   - Hairs with cloth or extra parts aren't fitted yet.
+- **`--log FILE`** (sf_furrify) writes everything printed to a file as well, errors and tracebacks
+  included, headed by the command line.
+- **The FaceGen bake finds vanilla textures in `--assets`**, as it finds vanilla meshes.
+- **No human scalp masks on furry faces.** A human hair's scalp mask (its `NAM3`) is drawn for the
+  human face's UVs. Fitted hairs leave it out, and the bake doesn't paint a kept human hair's.
 - **`--keep-hair` keeps the fitted copy** of an NPC's hair when the load order has one, and says
   how many hairs had none. The FaceGen bake reads the fitted hair from the output folder, so it
   needn't be deployed first.

@@ -97,11 +97,16 @@ def parse_args():
     p.add_argument('--dry-run', action='store_true',
                    help='Classify and assign but do not write the plugin')
     p.add_argument('--verbose', '-v', action='store_true')
+    p.add_argument('--log', type=Path, metavar='FILE',
+                   help='Also write everything printed, errors included, to this file')
     return p.parse_args()
 
 
 def main():
     args = parse_args()
+    if args.log:
+        from fsftools import tee
+        tee.start(args.log)
 
     # Discover data directory: the scheme and race definitions default to the copies a mod
     # deploys there.

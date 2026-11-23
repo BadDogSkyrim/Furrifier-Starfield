@@ -86,6 +86,7 @@ def test_hair_only_fits_the_included_hairs(fitted):
     for edid in ('FSFCanine_Female_Hair_Cropped', 'FSFCanine_Male_Hair_Cropped',
                  'FSFCanine_Female_Hair_Flat_Top', 'FSFCanine_Male_Hair_Flat_Top'):
         hdpt = recs[('HDPT', edid)]
+        assert hdpt.get_subrecord('NAM3') is None, "a scalp mask is drawn for the human face's UVs"
         model = hdpt.get_subrecord('MODL').data.rstrip(b'\0').decode()
         assert (out / 'Meshes' / model.replace('\\', '/')).is_file(), model
         assert ('MRPH', f'MORPH_{edid}') in recs
