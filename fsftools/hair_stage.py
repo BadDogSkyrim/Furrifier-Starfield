@@ -166,6 +166,16 @@ class Assets:
     def shape(self, model: str) -> hair_fit.Shape:
         return hair_fit.load_shape(self.find(Path('Meshes') / model), self.mesh)
 
+    def companion(self, model: str) -> Optional[Path]:
+        """The part's _facebones companion: beside the nif found, else wherever else it is. A loose
+        copy of the nif in Data needn't have its companion beside it."""
+        nif = self.find(Path('Meshes') / model)
+        found = hair_fit.companion_path(nif)
+        for root in [self.data_dir, self.assets]:
+            if found is None and root is not None:
+                found = hair_fit.companion_path(Path(root) / 'Meshes' / model.replace('\\', '/'))
+        return found
+
 
 MORPH_SUBS = {'chargen': 'TCMP', 'performance': 'TMPP'}
 
@@ -206,7 +216,7 @@ def part_files(plugins, assets: Assets, hdpt) -> List[Path]:
     """Every file a part is made of: nif, companion, their meshes, morphs. For digests."""
     nif = assets.find(Path('Meshes') / _text(hdpt.get_subrecord('MODL')))
     files = [nif]
-    companion = hair_fit.companion_path(nif)
+    companion = assets.companion(_text(hdpt.get_subrecord('MODL')))
     if companion is not None:
         files.append(companion)
     files += [assets.mesh(hair_fit.nif_mesh_name(f.read_bytes())) for f in list(files)]
@@ -308,10 +318,9 @@ def fit_hair(plugins, assets: Assets, f: Fitted, source: HeadShape, target: Head
 def _fit_part(plugins, assets: Assets, f: Fitted, shape, part, offsets, source: HeadShape,
               target: HeadShape, ears_move_hair: bool) -> str:
     """One part's files, moved by its offsets (bone space), and its morphs. Returns a note on them."""
-    nif_path = assets.find(Path('Meshes') / _text(f.source.get_subrecord('MODL')))
     rel = Path(f.model.replace('\\', '/'))
     pieces = [(shape, rel)]
-    companion = hair_fit.companion_path(nif_path)
+    companion = assets.companion(_text(f.source.get_subrecord('MODL')))
     if companion is not None:
         other = hair_fit.load_shape(companion, assets.mesh, like=shape)
         if len(other.positions) != len(shape.positions) or \

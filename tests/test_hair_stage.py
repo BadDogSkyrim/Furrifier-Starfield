@@ -38,6 +38,20 @@ def test_race_list_is_named_for_its_races_unless_all():
     assert race_list_edid('FSFCanine', [fox], [fox, hyena]) == 'FSFCanine_HairRaces_FSFFoxRace'
 
 
+def test_a_companion_is_found_where_the_part_is_not(tmp_path):
+    """A loose nif in Data without its _facebones companion: the companion comes from the assets."""
+    from fsftools.hair_stage import Assets
+    data, assets = tmp_path / 'Data', tmp_path / 'assets'
+    (data / 'Meshes/Actors/Hair').mkdir(parents=True)
+    (assets / 'Meshes/actors/hair').mkdir(parents=True)
+    (data / 'Meshes/Actors/Hair/Tail_F.nif').write_bytes(b'loose')
+    (assets / 'Meshes/actors/hair/tail_f.nif').write_bytes(b'vanilla')
+    (assets / 'Meshes/actors/hair/tail_f_facebones.nif').write_bytes(b'vanilla')
+    found = Assets(data, assets).companion('Actors\\Hair\\Tail_F.nif')
+    assert found is not None and found.read_bytes() == b'vanilla'
+    assert Assets(data, None).companion('Actors\\Hair\\Tail_F.nif') is None
+
+
 def races_with(tmp: Path, include, exclude=()):
     """The test races with a [hair] table; crowd manifests made absolute so the copies work."""
     folder = tmp / 'races'
