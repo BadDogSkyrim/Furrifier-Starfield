@@ -252,6 +252,18 @@ def main():
     for r in races.values():
         if r.plugin not in masters:
             masters.append(r.plugin)
+    # Kept hair fitted to a race's head comes from the hair plugin (hair_stage).
+    kept_from = {Path(h.plugin.file_path).name for c in individual_changes for h in c.kept_hair}
+    for name in [n for n in order if n in kept_from]:
+        if name.lower() not in (m.lower() for m in masters):
+            masters.append(name)
+    if args.keep_hair:
+        kept = sum(len(c.kept_hair) for c in individual_changes)
+        unfitted = sorted({e for c in individual_changes for e in c.unfitted_hair})
+        print(f"  Kept hair: {kept - sum(len(c.unfitted_hair) for c in individual_changes)} fitted to "
+              f"the race's head; {len(unfitted)} hairs have no fitted copy and stay human")
+        if unfitted and args.verbose:
+            print('    ' + ', '.join(unfitted))
 
     out_path = data_dir / args.out if not args.out.is_absolute() else args.out
     test_npcs, crowd_counts, crowd_notes = [], {}, []

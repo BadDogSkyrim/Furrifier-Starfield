@@ -40,6 +40,23 @@ class Plugins:
     def resolve_form_id(self, form_id, plugin):
         return self.by_id.get(form_id)
 
+    def get_record_by_edid(self, sig, edid):
+        return next((r for r in self.by_id.values() if r.editor_id == edid), None)
+
+
+def test_kept_hair_is_the_fitted_one_when_there_is_one():
+    """With a head prefix, a human hair is swapped for the copy fitted to that head (by EditorID,
+    as hair_stage names it); a hair with no fitted copy stays as it is."""
+    parts = {1: hdpt('Human_Female_Hair_Bob', 3), 2: hdpt('Human_Female_Hair_Bun', 3),
+             3: hdpt('FSFCanine_Female_Hair_Bob', 3), 4: hdpt('ModHair_Spiky', 3),
+             5: hdpt('FSFCanine_ModHair_Spiky', 3)}
+    npc = Rec('SomeNPC', [Sub('PNAM', struct.pack('<I', i)) for i in (1, 2, 4)])
+    kept = npc_hair_parts(npc, Plugins(parts), fitted_prefix='FSFCanine')
+    assert [p.editor_id for p in kept] == ['FSFCanine_Female_Hair_Bob', 'Human_Female_Hair_Bun',
+                                           'FSFCanine_ModHair_Spiky']
+    assert [p.editor_id for p in npc_hair_parts(npc, Plugins(parts))] == \
+        ['Human_Female_Hair_Bob', 'Human_Female_Hair_Bun', 'ModHair_Spiky'], "no prefix: as before"
+
 
 def test_only_the_hair_part_is_kept():
     parts = {1: hdpt('HumanFemaleHead', 1), 2: hdpt('Hair_Bob', 3), 3: hdpt('Brows_Thin', 6),

@@ -39,6 +39,7 @@ class NpcChange:
     morph_groups: Dict[str, float] = field(default_factory=dict)    # BMPN key -> BMPV
     written: bool = False                # its override made it into the plugin
     kept_hair: List[object] = field(default_factory=list)    # the NPC's own hair parts (--keep-hair)
+    unfitted_hair: List[str] = field(default_factory=list)   # kept hairs with no copy fitted to the head
 
 
 def plan_individual_furrification(npc_rec, appearance: RaceAppearance, breed_name: Optional[str],
@@ -56,7 +57,10 @@ def plan_individual_furrification(npc_rec, appearance: RaceAppearance, breed_nam
                        new_race_edid=appearance.cfg.editorid, breed_name=breed_name, new_ston=skin_tone)
     _plan_head_parts(change, appearance, signature)
     if keep_hair_from is not None:
-        change.kept_hair = npc_hair_parts(npc_rec, keep_hair_from)
+        change.kept_hair = npc_hair_parts(npc_rec, keep_hair_from, race_head_prefix(appearance, sex))
+        own = npc_hair_parts(npc_rec, keep_hair_from)
+        change.unfitted_hair = [h.editor_id for h, o in zip(change.kept_hair, own)
+                                if h is o and h.get_subrecord('MODL') is not None]   # no model: nothing to fit
         change.head_parts += change.kept_hair
     _plan_tints(change, appearance, signature)
     _plan_face(change, appearance, phenotype, signature)
@@ -64,16 +68,36 @@ def plan_individual_furrification(npc_rec, appearance: RaceAppearance, breed_nam
 
 
 HDPT_HAIR = 3     # HDPT PNAM part type
+HDPT_FACE = 1
 
 
-def npc_hair_parts(npc_rec, plugins) -> List[object]:
+def race_head_prefix(appearance, sex: str) -> Optional[str]:
+    """The prefix of the race's head for this sex (FSFCanine_Female_Head -> FSFCanine), which
+    names the hair fitted to it; None if the race has no face part or it isn't named that way."""
+    from fsftools.hair_stage import head_prefix
+    for part in appearance.base_parts.get(sex, []):
+        kind = part.get_subrecord('PNAM')
+        if kind is not None and len(kind.data) == 4 and struct.unpack('<I', bytes(kind.data))[0] == HDPT_FACE:
+            try:
+                return head_prefix(part)
+            except ValueError:
+                return None
+    return None
+
+
+def npc_hair_parts(npc_rec, plugins, fitted_prefix: Optional[str] = None) -> List[object]:
     """The NPC's own hair parts (HDPT type 3). Its eyebrows and beard sit on a human face; only
-    the hair is kept. The hair keeps its human shape: its morph keys aren't the race's."""
+    the hair is kept. With `fitted_prefix` (the race head's, e.g. FSFCanine), a hair is swapped for
+    its copy fitted to that head (hair_stage), when the load order has one; a hair without one keeps
+    its human shape."""
+    from fsftools.hair_stage import fitted_edid
     out = []
     for s in npc_rec.get_subrecords('PNAM'):
         part = plugins.resolve_form_id(s.get_form_id(0), npc_rec.plugin)
         kind = part.get_subrecord('PNAM') if part is not None else None
         if kind is not None and len(kind.data) == 4 and struct.unpack('<I', bytes(kind.data))[0] == HDPT_HAIR:
+            if fitted_prefix:
+                part = plugins.get_record_by_edid('HDPT', fitted_edid(part.editor_id, fitted_prefix)) or part
             out.append(part)
     return out
 

@@ -7,6 +7,17 @@ The tools have a home of their own: `sf_racecheck`, `sf_tintbake`, `uv_transfer`
 through `fsftools/deps.py`: the `PYNIFLY` environment variable, a development checkout, or the
 PyNifly extension installed in Blender. esplib comes from pip.
 
+- **Human hair fitted to a race's head** (`fsftools.hair_stage`, `fsftools.hair_fit`). Each hair
+  is reshaped so it sits on the new head as it sat on the human one, with its `_facebones`
+  companion. It gets a morph key for each of the head's keys that moves it: Bethesda's own key plus
+  the difference between the heads where both have it, otherwise the head's key copied onto the
+  hair. The ears move the hair under every key (`--ears-fixed` stops that); the hair's own shape is
+  fitted with the ears hidden. Races sharing a head share the hairs: `Human_Female_Hair_Bob`
+  becomes `FSFCanine_Female_Hair_Bob`, in a separate hair plugin. Hairs with cloth or extra parts
+  aren't fitted yet.
+- **`--keep-hair` keeps the fitted copy** of an NPC's hair when the load order has one, and says
+  how many hairs had none.
+
 - **`--overlay DIR`** (sf_furrify, sf_racecheck, sf_tintbake): a folder laid out like Data whose
   files win over Data's, like a mod installed but not deployed. Run against an undeployed mod, or
   check FSFPlayer_HYENA while FOX is the deployed one. The tools read through a merged view made of
