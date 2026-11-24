@@ -334,6 +334,27 @@ def TEST_SF_RACECHECK_MATERIAL_EXISTS():
                         [r'used by Actors\FSFTest\Hands_M.nif (Hands)', r'used by Actors\FSFTest\Hands_F.nif (Hands)'],
                         "each nif using it")
 
+    # A mod's copy of a vanilla nif (a fitted hair) naming the material vanilla's nif names: the
+    # material is vanilla's, probably in a DLC database this tool doesn't read. A WARN, naming the
+    # vanilla nif. The archives are faked: the vanilla nif's name, readable in the unpacked assets.
+    dlc = r'\materials\actors\dlc001\human\hair\sfbgs001_short_hair_shared.mat'
+    vanilla_nif = r'meshes\actors\dlc001\human\mesh\hairs\back_buzz\back_buzz_f.nif'
+    with tempfile.TemporaryDirectory() as mod:
+        data = [mod, TT.SF_ASSETS]
+        sf_racecheck._archive_names[tuple(data)] = {vanilla_nif}
+        sf_racecheck._vanilla_nifs.pop(tuple(data), None)
+
+        def check(nif):
+            rep = sf_racecheck.Report()
+            sf_racecheck.check_material(rep, data, dlc, None, {}, user=nif, nif=nif)
+            return rep.findings
+
+        found = check(r'Actors\fsfcanine\Hair\Female\Back_Buzz_F.nif')
+        assert TT.is_eq([lv for lv, *_ in found], [sf_racecheck.WARN], "vanilla's material: a WARN")
+        assert TT.is_eq(any(vanilla_nif in line for line in found[0][3]), True, "naming the vanilla nif")
+        assert TT.is_eq([lv for lv, *_ in check(r'Actors\fsfcanine\Hair\Female\Other_F.nif')],
+                        [sf_racecheck.FAIL], "no vanilla nif of that name: still a FAIL")
+
 
 @TT.requires_assets('SF')
 def TEST_SF_RACECHECK_SKINNED():

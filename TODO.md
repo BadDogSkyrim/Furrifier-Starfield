@@ -60,3 +60,15 @@ normal, and gives particles with different shifts their own copy of the plane. T
 ponytail's one C_Neck plane (particles 0-3) became 4 planes about 1 mm apart. Keep one plane per
 vanilla record instead, shifted by the smallest of its particles' moves, so no particle starts
 closer to the bone than it did in vanilla.
+
+## `sf_racecheck`: read every material database, not just the base game's
+
+**Status:** to do (Bad Dog 2026-11-23: "reading all the archives might be good").
+
+The checker looks materials up in `materials\materialsbeta.cdb` from a loose --data folder only.
+The game's BA2s hold more: `materials\creations\<name>\materialsbeta.cdb` for ShatteredSpace,
+SFBGS003, 007, 008, 00D, 047 and 050 (archive_names lists them). Read each out of its BA2 (GNRL
+entries, zlib; see the BA2 recipe in memory) and look a material up in all of them. Then a DLC
+material is found, not merely excused because vanilla's nif names it. SFBGS001's hair material
+(`materials\actors\dlc001\human\hair\sfbgs001_short_hair_shared.mat`) is in none of the names
+listed so far: find where it lives first.

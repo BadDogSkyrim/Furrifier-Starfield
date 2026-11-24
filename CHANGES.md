@@ -84,7 +84,9 @@ PyNifly extension installed in Blender. esplib comes from pip.
 - **Paths in a race definition are relative to the file,** so a mod's data folder works wherever
   it's deployed. `crowd_manifests = ["../../crowd/fox/CrowdHead_fox_male.variants.json"]`.
 - **`sf_racecheck.py` says which nifs use a material** it reports on: each finding lists
-  `used by <nif> (<shape>)` for every shape that names it.
+  `used by <nif> (<shape>)` for every shape that names it. A material it can't find, that vanilla's
+  nif of the same name names too (a fitted copy of a vanilla hair), is a warning naming that nif,
+  not a failure: it's probably in a DLC's own material database, which the checker doesn't read.
 - **`sf_racecheck.py` and `sf_tintbake.py` warn about vertices with no skin weight** in a crowd
   head or its `_faceBones` companion. The game can't place them, so those parts don't show.
 - **`sf_racecheck.py` fails a race that can't show spacesuits.** Starfield shows a spacesuit

@@ -752,6 +752,38 @@ def asset_exists(data, rel):
     return exists(data, rel) or rel.lower().replace('/', '\\') in archive_names(data)
 
 
+_vanilla_nifs = {}
+
+
+def vanilla_nifs_naming(data, mat_rel, nif_rel):
+    """The vanilla nifs (in the BA2s, readable in an unpacked-assets --data folder) with the same
+    file name as `nif_rel` that name the material too. A mod's copy of a vanilla nif (a hair
+    fitted to another head) keeps vanilla's material, which may be in a database this tool
+    doesn't read."""
+    key = tuple(data)
+    if key not in _vanilla_nifs:
+        index = {}
+        for name in archive_names(data):
+            if name.endswith('.nif'):
+                index.setdefault(name.rsplit('\\', 1)[-1], []).append(name)
+        _vanilla_nifs[key] = index
+    want = mat_rel.lower().replace('/', '\\').lstrip('\\')
+    found = []
+    for rel in _vanilla_nifs[key].get(os.path.basename(nif_rel.replace('\\', '/')).lower(), []):
+        path = data_path(data, rel)
+        if not os.path.exists(path):
+            continue
+        try:
+            from pyn.pynifly import NifFile
+            shapes = NifFile(path).shapes
+        except Exception:
+            continue
+        if any(s.shader and (s.shader.name or '').lower().replace('/', '\\').lstrip('\\') == want
+               for s in shapes):
+            found.append(rel)
+    return found
+
+
 def material_textures(doc):
     """(object name, Data-relative path) for every texture a parsed .mat names."""
     for o in doc.get('Objects', []):
@@ -797,7 +829,7 @@ class _UsedBy:
         self.add(INFO, area, msg, detail)
 
 
-def check_material(rep, data, mat_rel, own_root, seen, user=None):
+def check_material(rep, data, mat_rel, own_root, seen, user=None, nif=None):
     """A shape's `.mat`: does it exist, is it game-valid, do its textures exist?
 
     A material that parses fine but points at a texture nobody produced renders the shape
@@ -805,6 +837,8 @@ def check_material(rep, data, mat_rel, own_root, seen, user=None):
 
     Each material is checked once. `user` (the nif and shape naming it) goes in its findings'
     details; with `seen` a dict, a later user of a material already checked is added to them.
+    `nif`: that nif's Meshes-relative path. A material found nowhere that vanilla's nif of the same
+    name also names is only a WARN (vanilla_nifs_naming).
     """
     if not mat_rel:
         return
@@ -832,6 +866,13 @@ def check_material(rep, data, mat_rel, own_root, seen, user=None):
                      "Add a folder of unpacked vanilla assets to --data to check it.")
         elif db.material_dbid(mat_rel) is not None:
             rep.info('materials', f"{mat_rel}: compiled into materialsbeta.cdb")
+        elif nif and vanilla_nifs_naming(data, mat_rel, nif):
+            vanilla = vanilla_nifs_naming(data, mat_rel, nif)
+            rep.warn('materials', f"{mat_rel}: not in the base game's materialsbeta.cdb, but vanilla's nif "
+                                  f"names it too",
+                     [f"vanilla: {v}" for v in vanilla] +
+                     ["It's probably in a DLC or creation's own database, which this tool doesn't "
+                      "read yet."])
         else:
             rep.fail('materials', f"{mat_rel}: material does not exist",
                      "Not a loose file in any --data folder, and not in the game's "
@@ -924,7 +965,8 @@ def make_nif_reader(own_root):
                          "bones (an eye: all vertices in R_Eye or L_Eye), then re-export.")
             mat = s.shader.name if s.shader else None
             if mat:
-                check_material(rep, data, mat, own_root, seen_materials, user=f'{label} ({s.name})')
+                check_material(rep, data, mat, own_root, seen_materials, user=f'{label} ({s.name})',
+                               nif=label)
                 want = material_id(mat)
                 got = [ed.integer_data for ed in s.extra_data()
                        if type(ed).__name__ == 'NiIntegerExtraData' and ed.name == 'MaterialID']
