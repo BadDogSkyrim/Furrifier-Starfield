@@ -770,15 +770,56 @@ def material_textures(doc):
             yield name, rel
 
 
-def check_material(rep, data, mat_rel, own_root, seen):
+class _UsedBy:
+    """A Report that adds 'used by <who>' to each finding's details, and keeps those details so
+    later users of the same material can be added to them."""
+
+    def __init__(self, rep, details, user):
+        self.rep, self.details, self.user = rep, details, user
+
+    def add(self, level, area, msg, detail=None):
+        lines = list(detail) if isinstance(detail, list) else ([detail] if detail else [])
+        if self.user:
+            lines.append(f'used by {self.user}')
+        self.details.append(lines)
+        self.rep.add(level, area, msg, lines)
+
+    def fail(self, area, msg, detail=None):
+        self.add(FAIL, area, msg, detail)
+
+    def warn(self, area, msg, detail=None):
+        self.add(WARN, area, msg, detail)
+
+    def ok(self, area, msg, detail=None):
+        self.add(OK, area, msg, detail)
+
+    def info(self, area, msg, detail=None):
+        self.add(INFO, area, msg, detail)
+
+
+def check_material(rep, data, mat_rel, own_root, seen, user=None):
     """A shape's `.mat`: does it exist, is it game-valid, do its textures exist?
 
     A material that parses fine but points at a texture nobody produced renders the shape
     black, and nothing in the CK says so.
+
+    Each material is checked once. `user` (the nif and shape naming it) goes in its findings'
+    details; with `seen` a dict, a later user of a material already checked is added to them.
     """
-    if not mat_rel or mat_rel in seen:
+    if not mat_rel:
         return
-    seen.add(mat_rel)
+    if mat_rel in seen:
+        if user and isinstance(seen, dict):
+            for lines in seen[mat_rel]:
+                if f'used by {user}' not in lines:
+                    lines.append(f'used by {user}')
+        return
+    details = []
+    if isinstance(seen, dict):
+        seen[mat_rel] = details
+    else:
+        seen.add(mat_rel)
+    rep = _UsedBy(rep, details, user)
 
     path = data_path(data, mat_rel)
     if not os.path.exists(path):
@@ -852,7 +893,7 @@ def check_material(rep, data, mat_rel, own_root, seen):
 
 def make_nif_reader(own_root):
     """A NIF inspector, or None when the DLL can't be loaded."""
-    seen_materials = set()
+    seen_materials = {}
     seen_nifs = set()
     try:
         from pyn.pynifly import NifFile
@@ -883,7 +924,7 @@ def make_nif_reader(own_root):
                          "bones (an eye: all vertices in R_Eye or L_Eye), then re-export.")
             mat = s.shader.name if s.shader else None
             if mat:
-                check_material(rep, data, mat, own_root, seen_materials)
+                check_material(rep, data, mat, own_root, seen_materials, user=f'{label} ({s.name})')
                 want = material_id(mat)
                 got = [ed.integer_data for ed in s.extra_data()
                        if type(ed).__name__ == 'NiIntegerExtraData' and ed.name == 'MaterialID']

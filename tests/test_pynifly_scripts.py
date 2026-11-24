@@ -324,6 +324,16 @@ def TEST_SF_RACECHECK_MATERIAL_EXISTS():
         assert TT.is_eq((sf_racecheck.FAIL in found, sf_racecheck.WARN in found), (False, True),
                         "with no .cdb to consult, a missing loose material is a WARN")
 
+        # The finding says which nifs use the material: it's checked once, and every user is listed.
+        rep, seen = sf_racecheck.Report(), {}
+        for user in (r'Actors\FSFTest\Hands_M.nif (Hands)', r'Actors\FSFTest\Hands_F.nif (Hands)'):
+            sf_racecheck.check_material(rep, [empty], nosuch, None, seen, user=user)
+        details = [d for _lv, _area, m, d in rep.findings if nosuch in m]
+        assert TT.is_eq(len(details), 1, "one finding for the material")
+        assert TT.is_eq([line for line in details[0] if line.startswith('used by')],
+                        [r'used by Actors\FSFTest\Hands_M.nif (Hands)', r'used by Actors\FSFTest\Hands_F.nif (Hands)'],
+                        "each nif using it")
+
 
 @TT.requires_assets('SF')
 def TEST_SF_RACECHECK_SKINNED():
