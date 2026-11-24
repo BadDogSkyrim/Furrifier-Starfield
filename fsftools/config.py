@@ -138,6 +138,8 @@ class RaceConfig:
     extra_parts_female: List[str] = field(default_factory=list)
     hair_include: List[str] = field(default_factory=list)   # source hair EditorIDs/globs; empty = all
     hair_exclude: List[str] = field(default_factory=list)
+    crowd_hair_include: List[str] = field(default_factory=list)   # crowd hair/hat armor EditorIDs/globs
+    crowd_hair_exclude: List[str] = field(default_factory=list)
     tint_layers: List[TintLayerDef] = field(default_factory=list)
     morph_defaults: Dict[str, Dict[str, MorphRange]] = field(default_factory=dict)
     breeds: List[BreedDef] = field(default_factory=list)
@@ -199,8 +201,10 @@ def _load_one_race(path: Path) -> RaceConfig:
         extra_parts_female=list(r.get('extra_parts_female', [])),
         hair_include=list(raw.get('hair', {}).get('include', [])),
         hair_exclude=list(raw.get('hair', {}).get('exclude', [])),
+        crowd_hair_include=list(raw.get('hair', {}).get('crowd_include', [])),
+        crowd_hair_exclude=list(raw.get('hair', {}).get('crowd_exclude', [])),
     )
-    unknown = set(raw.get('hair', {})) - {'include', 'exclude'}
+    unknown = set(raw.get('hair', {})) - {'include', 'exclude', 'crowd_include', 'crowd_exclude'}
     if unknown:
         cfg.problems.append(f"[hair]: unknown setting {sorted(unknown)}")
 

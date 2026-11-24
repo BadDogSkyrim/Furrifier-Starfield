@@ -19,6 +19,15 @@ female model, as vanilla's do, so the sexes share lists; each is paired with a v
 sex in the same breed, whatever its tone, since an actor only ever shows its own sex's. The tail addon
 likewise has each sex's tail in that sex's tone. Everything is on HumanCrowdRace. The textures and nifs come
 from sf_tintbake's manifests, one per sex, named in the race's TOML.
+
+With --keep-hair, furry heads wear the outfit's hair list too. When the crowd hair was fitted
+(crowd_hair.fit, sf_furrify --hair), each breed wears its own copy of that list, of copies of the hair
+and hat armors whose addons name the nifs fitted to the breed's heads:
+
+        FSF_LL_Crowd_FSFFoxRace_Heads_Hairs_Hats_Akila      pick one, entries in the breeds' ratio
+          FSF_LL_Crowd_FSFFoxRace_red_fox_Heads_Hairs_Hats_Akila    Use All:
+            FSF_LL_Crowd_Heads_FSFFoxRace_red_fox                     the breed's heads
+            FSF_LL_Crowd_Hairs_Hats_Akila_<heads>                     its fitted hair list
 """
 import fnmatch
 import json
@@ -243,9 +252,13 @@ def crowd_outfits(plugins, order) -> list:
 # ---------------------------------------------------------------- the records
 
 class CrowdBuilder:
-    def __init__(self, out, plugins, order, masters, data_dir, plan: CrowdPlan, keep_hair=False):
+    def __init__(self, out, plugins, order, masters, data_dir, plan: CrowdPlan, keep_hair=False,
+                 crowd_hair=None):
         self.out, self.plugins, self.order, self.masters = out, plugins, order, masters
         self.keep_hair = keep_hair
+        self.crowd_hair = crowd_hair if keep_hair else None
+        self.breed_lists = {}        # race -> body type -> breed -> the breed's head list
+        self.fitted = {}             # (kind, heads, EditorID) -> a fitted hair record
         self.data_dir, self.plan = Path(data_dir), plan
         self.vanilla = plugins.get_plugin(masters[0])
         self.crowd_race = self.vanilla.get_record_by_editor_id(CROWD_RACE)
@@ -490,6 +503,7 @@ class CrowdBuilder:
                           for pair in plan.heads[breed]]
                 breed_list = self._new_list(f'FSF_LL_Crowd_Heads_{race_edid}_{breed}{BODY_EDID[body]}',
                                             [self._local_ref(a) for a in armors])
+                self.breed_lists.setdefault(race_edid, {}).setdefault(body, {})[breed] = breed_list
                 entries += [self._local_ref(breed_list)] * share
             lists[body] = self._new_list(f'FSF_LL_Crowd_Heads_{race_edid}{BODY_EDID[body]}', entries)
         return lists
@@ -540,6 +554,16 @@ class CrowdBuilder:
             if race == HUMAN:
                 human = self._new_list(f'FSF_LL_Crowd_Human_{name}', [head_ref, hair_ref], use_all=True)
                 entries += [self._local_ref(human)] * share
+            elif self.crowd_hair is not None:
+                # Each breed's heads with its own fitted copy of the outfit's hair list.
+                breeds = []
+                for breed, breed_share in self.plan.races[race].breed_shares.items():
+                    heads = self._local_ref(self.breed_lists[race][body][breed])
+                    hairs = self._fitted_hair_list(race, breed, hair, hair_ref)
+                    both = self._new_list(f'FSF_LL_Crowd_{race}_{breed}_{name}',
+                                          [heads] + ([hairs] if hairs else []), use_all=True)
+                    breeds += [self._local_ref(both)] * breed_share
+                entries += [self._local_ref(self._new_list(f'FSF_LL_Crowd_{race}_{name}', breeds))] * share
             elif self.keep_hair:
                 # The race's head with the outfit's own human hair (--keep-hair).
                 both = self._new_list(f'FSF_LL_Crowd_{race}_{name}',
@@ -548,6 +572,81 @@ class CrowdBuilder:
             else:
                 entries += [self._local_ref(race_lists[race][body])] * share
         return self._new_list(f'FSF_LL_Crowd_Mix_{name}', entries)
+
+    # -- fitted crowd hair
+
+    def _vanilla(self, rec) -> bool:
+        """Is the record's winning version in the first master? Copies of others would need their
+        FormIDs remapped, which isn't built yet."""
+        if Path(rec.plugin.file_path).name.lower() == self.masters[0].lower():
+            return True
+        self.notes.append(f"{rec.editor_id}: winning override is in {rec.plugin.file_path.name}; FormID "
+                          f"remapping isn't built yet, so furry crowds wear it unfitted")
+        return False
+
+    def _fitted_hair_list(self, race, breed, hair, hair_ref):
+        """The breed's copy of a hair list, as a reference: the armors the race takes, as fitted to
+        the breed's heads. None if it takes none of them."""
+        heads = self.crowd_hair.breeds[(race, breed)]
+        key = ('LVLI', heads, hair.editor_id, race)
+        if key in self.fitted:
+            return self.fitted[key]
+        if not self._vanilla(hair):
+            self.fitted[key] = hair_ref
+            return hair_ref
+        takes = set(self.crowd_hair.armors[race])
+        refs = []
+        for sr in hair.get_subrecords('LVLO'):
+            raw = struct.unpack_from('<I', bytes(sr.data), 4)[0]
+            armor = self.plugins.resolve_form_id(FormID(raw), hair.plugin)
+            if armor is not None and armor.editor_id in takes:
+                refs.append(self._local_ref(self._fitted_armor(heads, armor)) if self._vanilla(armor) else raw)
+        found = None
+        if refs:
+            found = self._new_copy(hair, f'FSF_{hair.editor_id}_{race}_{heads[0]}_{heads[1]}')
+            subs = [s for s in found.subrecords if s.signature != 'LVLO']
+            at = next(i for i, s in enumerate(subs) if s.signature == 'LLCT') + 1
+            subs[at - 1].data = bytes([len(refs)])
+            subs[at:at] = [SubRecord('LVLO', u32(1) + u32(ref) + u32(1)) for ref in refs]
+            found.subrecords[:] = subs
+            self._count('LVLI')
+            found = self._local_ref(found)
+        self.fitted[key] = found
+        return found
+
+    def _fitted_armor(self, heads, armor):
+        """A hair or hat armor whose addons are the fitted ones."""
+        key = ('ARMO', heads, armor.editor_id)
+        if key not in self.fitted:
+            stem = armor.editor_id.removesuffix('_NOTPLAYABLE')
+            copy = self._new_copy(armor, f'FSF_{stem}_{heads[0]}_{heads[1]}_NOTPLAYABLE')
+            for sr in copy.get_subrecords('MODL'):
+                addon = self.plugins.resolve_form_id(FormID(struct.unpack('<I', bytes(sr.data)[:4])[0]), armor.plugin)
+                if addon is not None and self._vanilla(addon):
+                    sr.data = u32(self._local_ref(self._fitted_addon(heads, addon)))
+            self._count('ARMO')
+            self.fitted[key] = copy
+        return self.fitted[key]
+
+    def _fitted_addon(self, heads, addon):
+        """A copy of the addon naming each sex's nif as fitted to that sex's head."""
+        key = ('ARMA', heads, addon.editor_id)
+        if key not in self.fitted:
+            stem = addon.editor_id.removesuffix('_NOTPLAYABLE')
+            copy = self._new_copy(addon, f'FSF_{stem}_{heads[0]}_{heads[1]}_NOTPLAYABLE')
+            for (sex, sig), head in zip(MODEL.items(), heads):
+                model = copy.get_subrecord(sig)
+                if model is None or not model.get_string():
+                    continue
+                fitted = self.crowd_hair.model(head, model.get_string())
+                if fitted is None:
+                    self.notes.append(f"{addon.editor_id}: {model.get_string()} wasn't fitted to {head}; "
+                                      f"it stays as it is")
+                    continue
+                self._set(copy, sig, z(fitted))
+            self._count('ARMA')
+            self.fitted[key] = copy
+        return self.fitted[key]
 
     # -- the test NPCs
 
@@ -573,10 +672,12 @@ class CrowdBuilder:
             self._set(npc, 'DOFT', u32(self._local_ref(outfit)))
 
 
-def add_crowd(out, plugins, order, masters, data_dir, plan: CrowdPlan, test_npcs=False, keep_hair=False):
+def add_crowd(out, plugins, order, masters, data_dir, plan: CrowdPlan, test_npcs=False, keep_hair=False,
+              crowd_hair=None):
     """Add the crowd records to the output plugin. Returns (test NPCs, counts, notes). keep_hair:
-    furry heads wear the outfit's own human hair list too."""
-    builder = CrowdBuilder(out, plugins, order, masters, data_dir, plan, keep_hair)
+    furry heads wear the outfit's own human hair list too, as fitted to each breed when `crowd_hair`
+    (a crowd_hair.CrowdHairFit) is given."""
+    builder = CrowdBuilder(out, plugins, order, masters, data_dir, plan, keep_hair, crowd_hair)
     npcs = builder.build(test_npcs)
     return npcs, builder.counts, list(dict.fromkeys(builder.notes))
 

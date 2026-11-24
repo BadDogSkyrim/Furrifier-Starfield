@@ -288,3 +288,50 @@ def test_cloth_moves_with_the_hair():
                         clear_before = gap
                     else:
                         assert (gap >= np.minimum(clear_before, 0) - 1e-5).all(), (rel, col.name)
+
+
+# ----- LODs: crowd hair and hats carry LOD meshes in the shape's other slots ----------------------
+
+CROWD_HAIR = r'actors\human_crowd\mesh\male\hairs\business_m_crowd.nif'
+CROWD_HEAD = r'actors\human_crowd\mesh\male\crowd_head_af_md1.nif'
+
+
+@tt.requires_assets('SF')
+def test_a_nif_lists_its_lod_meshes():
+    data = (A / 'Meshes' / CROWD_HAIR).read_bytes()
+    names = hair_fit.nif_mesh_names(data)
+    assert len(set(names)) > 1, names          # a mesh may fill more than one slot
+    assert all(vanilla_mesh(n).is_file() for n in names)
+    assert hair_fit.patch_nif(data, names, 0.0) == data
+    new = ['%020d\\%020d' % (i, i) for i in range(len(names))]
+    assert hair_fit.nif_mesh_names(hair_fit.patch_nif(data, new, 0.0)) == new
+
+
+@tt.requires_assets('SF')
+def test_lods_share_the_shape_s_bind():
+    lods = hair_fit.load_lods(A / 'Meshes' / CROWD_HAIR, vanilla_mesh)
+    names = hair_fit.nif_mesh_names((A / 'Meshes' / CROWD_HAIR).read_bytes())
+    assert len(lods) == len(names)
+    assert len(lods[0].positions) > len(lods[-1].positions), 'LOD0 is the finest'
+    for s in lods[1:]:
+        assert np.allclose(s.rotation, lods[0].rotation) and np.allclose(s.translation, lods[0].translation)
+
+
+@tt.requires_assets('SF')
+def test_fit_lods_moves_every_lod_and_names_them():
+    """Each LOD is fitted on its own and the nif names the fitted meshes, in slot order. Moving
+    onto the same head changes nothing."""
+    head = hair_fit.head_in_bone_space(hair_fit.load_lods(A / 'Meshes' / CROWD_HEAD, vanilla_mesh)[0])
+    lods = hair_fit.load_lods(A / 'Meshes' / CROWD_HAIR, vanilla_mesh)
+    nif, meshes, fits = hair_fit.fit_lods(lods, head, head)
+    assert list(dict.fromkeys(hair_fit.nif_mesh_names(nif))) == list(meshes)
+    assert all(not f.offsets.any() for f in fits)
+    assert list(meshes.values()) == list(dict.fromkeys(s.mesh for s in lods))
+    bigger = hair_fit.Head(head.verts * 1.05, head.tris)
+    nif, meshes, fits = hair_fit.fit_lods(lods, head, bigger)
+    assert len(hair_fit.nif_mesh_names(nif)) == len(lods)
+    unique = list({s.mesh: s for s in lods}.values())
+    for s, (name, mesh) in zip(unique, meshes.items()):
+        assert hair_fit.mesh_name(mesh) == name
+        moved = hair_fit.mesh_arrays(mesh)[1]
+        assert len(moved) == len(s.positions) and np.abs(moved - s.positions).max() > 0.002

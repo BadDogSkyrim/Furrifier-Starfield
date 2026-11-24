@@ -36,6 +36,14 @@ PyNifly extension installed in Blender. esplib comes from pip.
     piece, so a tie stays on its ponytail. The fitted hair names the fitted parts.
   - A part with no morph keys of a kind gets no morph file for it: an empty `morph.dat` crashes
     the CK.
+  - **Crowd hair and hats are fitted too**, when the crowds are furry. Each breed's first crowd
+    head of each sex (md1 before md2) gets every crowd hair and hat, every LOD; breeds with the same
+    first heads share the fit, and the breed's other heads wear it. The source is vanilla's first
+    crowd head. Crowd heads have no HideEar morph, so the fit folds their ears as the race's own
+    head's HideEar folds its ears, and leaves out the arms. With `--keep-hair`, each breed's heads come with
+    its own copy of the outfit's hair list, of copies of the armors naming the fitted nifs.
+    `[hair] crowd_include` / `crowd_exclude` pick the armors (EditorID globs). Files go in
+    `Meshes\Actors\<crowd head folder>\Hair\<head>`.
 - **`--log FILE`** (sf_furrify) writes everything printed to a file as well, errors and tracebacks
   included, headed by the command line.
 - **The FaceGen bake finds vanilla textures in `--assets`**, as it finds vanilla meshes.

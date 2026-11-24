@@ -94,33 +94,54 @@ def _geometry(nif: NifLayout) -> int:
     return found[0]
 
 
-def _mesh_slot(geo: bytes) -> Tuple[int, int, int]:
-    """(offset of slot 0's BSGeometryMesh, its name's offset, name length); the other slots empty."""
+LOD_SLOTS = 4                  # a BSGeometry's mesh slots: LOD0 and three coarser
+
+
+def _mesh_slots(geo: bytes) -> List[Tuple[int, int]]:
+    """(name offset, name length) of each filled mesh slot, LOD0 first. A slot is a flag byte and,
+    when filled, index count, vertex count, flags, then the name."""
     from fsftools.facegen import _geometry_fields
-    f = _geometry_fields(geo)
-    o = f['mesh']
-    n = struct.unpack_from('<I', geo, o + 12)[0]
-    rest = geo[o + 16 + n:]
-    if rest[:3] != b'\0\0\0':
-        raise ValueError('more than one LOD slot')
-    return o, o + 16, n
+    o = _geometry_fields(geo)['mesh'] - 1
+    out = []
+    for _ in range(LOD_SLOTS):
+        filled = geo[o]
+        o += 1
+        if filled:
+            n = struct.unpack_from('<I', geo, o + 12)[0]
+            out.append((o + 16, n))
+            o += 16 + n
+    return out
+
+
+def nif_mesh_names(data: bytes) -> List[str]:
+    """The .mesh names of the nif's one shape, LOD0 first."""
+    nif = nif_layout(data)
+    geo = nif.block(_geometry(nif))
+    return [geo[at:at + n].decode('latin1') for at, n in _mesh_slots(geo)]
 
 
 def nif_mesh_name(data: bytes) -> str:
-    nif = nif_layout(data)
-    geo = nif.block(_geometry(nif))
-    _, at, n = _mesh_slot(geo)
-    return geo[at:at + n].decode('latin1')
+    """The .mesh of a nif with one LOD."""
+    names = nif_mesh_names(data)
+    if len(names) != 1:
+        raise ValueError('more than one LOD slot')
+    return names[0]
 
 
-def patch_nif(data: bytes, mesh_name: str, grow: float) -> bytes:
-    """The nif pointing at another .mesh, its bones' bounding spheres grown by `grow` metres."""
+def patch_nif(data: bytes, mesh_names, grow: float) -> bytes:
+    """The nif pointing at other .meshes (a name, or one per LOD slot), its bones' bounding spheres
+    grown by `grow` metres."""
     nif = nif_layout(data)
     gi = _geometry(nif)
     geo = nif.block(gi)
-    slot, at, n = _mesh_slot(geo)
-    name = mesh_name.encode('latin1')
-    new_geo = geo[:at - 4] + struct.pack('<I', len(name)) + name + geo[at + n:]
+    names = [mesh_names] if isinstance(mesh_names, str) else list(mesh_names)
+    slots = _mesh_slots(geo)
+    if len(names) != len(slots):
+        raise ValueError(f'{len(names)} mesh names for {len(slots)} LOD slots')
+    new_geo = geo
+    for (at, n), mesh_name in reversed(list(zip(slots, names))):     # last first: offsets hold
+        name = mesh_name.encode('latin1')
+        new_geo = new_geo[:at - 4] + struct.pack('<I', len(name)) + name + new_geo[at + n:]
     from fsftools.facegen import _geometry_fields
     skin = _geometry_fields(geo)['skin']
     bone_data = struct.unpack_from('<I', nif.block(skin), 4)[0]
@@ -238,6 +259,24 @@ def load_shape(nif_path: Path, mesh_path_for, like: Optional[Shape] = None) -> S
     return Shape(nif, mesh, pos, tris, np.array(xf.rotation).reshape(3, 3), float(xf.scale), t)
 
 
+def load_lods(nif_path: Path, mesh_path_for, count: Optional[int] = None) -> List[Shape]:
+    """A one-shape nif's LOD meshes, LOD0 first, each a Shape with the shape's bind; the first
+    `count` of them if given."""
+    from pyn.pynifly import NifFile
+    nif = Path(nif_path).read_bytes()
+    shape = NifFile(str(nif_path)).shapes[0]
+    if BONE not in list(shape.bone_names or []):
+        raise ValueError(f'{nif_path}: not skinned to {BONE}')
+    xf = shape.get_shape_skin_to_bone(BONE)
+    t = np.array(xf.translation[:], np.float64) / HAVOC_SCALE_FACTOR
+    out = []
+    for name in nif_mesh_names(nif)[:count]:
+        mesh = Path(mesh_path_for(name)).read_bytes()
+        _, pos, tris = mesh_arrays(mesh)
+        out.append(Shape(nif, mesh, pos, tris, np.array(xf.rotation).reshape(3, 3), float(xf.scale), t))
+    return out
+
+
 @dataclass
 class Head:
     verts: np.ndarray          # bone space, metres
@@ -350,6 +389,23 @@ def fit_files(shape: Shape, offsets_bone: np.ndarray) -> Tuple[bytes, str, bytes
     name = mesh_name(mesh)
     grow = float(np.linalg.norm(offsets_bone, axis=1).max()) / shape.scale if len(offsets_bone) else 0.0
     return patch_nif(shape.nif, name, grow), name, mesh
+
+
+def fit_lods(lods: List[Shape], source: Head, target: Head) -> Tuple[bytes, Dict[str, bytes], List[Fit]]:
+    """A part with LODs fitted: (nif bytes, {mesh name: mesh bytes} in slot order, each mesh's Fit).
+    Each LOD is fitted on its own: the offset field is the heads', so the LODs agree. A fit that
+    moves nothing keeps the mesh as it was."""
+    fits, names, meshes, done = [], [], {}, {}
+    for s in lods:
+        if s.mesh not in done:          # vanilla may put one mesh in two slots
+            fit = fit_offsets(source, target, s.to_bone(s.positions), s.tris)
+            mesh = write_mesh(s.mesh, fitted_positions(s, fit.offsets)) if fit.offsets.any() else s.mesh
+            done[s.mesh] = mesh_name(mesh)
+            meshes[done[s.mesh]] = mesh
+            fits.append(fit)
+        names.append(done[s.mesh])
+    grow = max(float(np.linalg.norm(f.offsets, axis=1).max()) if len(f.offsets) else 0.0 for f in fits)
+    return patch_nif(lods[0].nif, names, grow / lods[0].scale), meshes, fits
 
 
 def companion_path(nif_path: Path) -> Optional[Path]:

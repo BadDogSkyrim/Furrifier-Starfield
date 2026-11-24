@@ -184,6 +184,7 @@ def main():
             print(f"  WARNING: {line}")
 
     # Hair first: --keep-hair takes the fitted copies, so they must be in the load order.
+    crowd_hair = None
     if args.hair or args.hair_only:
         from fsftools import hair_stage
         from fsftools.plugin_loader import use_plugin_file
@@ -193,7 +194,12 @@ def main():
             hair_plugin = hair_stage.run(plugins, data_dir, list(races.values()), out_dir, assets=args.assets,
                                          ears_move_hair=not args.ears_fixed, dry_run=args.dry_run,
                                          verbose=args.verbose)
-        except ValueError as e:
+            if crowds and crowds.races:
+                from fsftools import crowd_hair as crowd_hair_stage
+                crowd_hair = crowd_hair_stage.fit(plugins, order, data_dir, crowds, races, out_dir,
+                                                  assets=args.assets, dry_run=args.dry_run,
+                                                  verbose=args.verbose)
+        except (ValueError, CrowdError) as e:
             print(f"ERROR: {e}")
             return 2
         print(f"  ({time.time() - t_hair:.0f}s)")
@@ -314,7 +320,7 @@ def main():
         if crowds:
             test_npcs, crowd_counts, crowd_notes = add_crowd(
                 out, plugins, order, masters, data_dir, crowds, test_npcs=args.crowd_test,
-                keep_hair=args.keep_hair)
+                keep_hair=args.keep_hair, crowd_hair=crowd_hair)
 
     try:
         written, errors = write_output(
