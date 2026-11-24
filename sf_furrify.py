@@ -361,8 +361,12 @@ def main():
         from fsftools.facegen import bake_all
         bakeable = [c for c in individual_changes if c.written]
         t2 = time.time()
-        baked, problems = bake_all(bakeable, appearances, plugins, data_dir, out_dir,
-                                   assets=args.assets)
+        try:
+            baked, problems = bake_all(bakeable, appearances, plugins, data_dir, out_dir,
+                                       assets=args.assets)
+        except ValueError as e:
+            print(f"\nERROR: FaceGen bake stopped: {e}")
+            return 2
         print(f"\nFaceGen: baked {baked} of {len(individual_changes)} NPCs in {time.time()-t2:.1f}s under {out_dir}")
         for line in problems:
             print(f"  WARNING: {line}")

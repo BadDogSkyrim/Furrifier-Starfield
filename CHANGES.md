@@ -47,6 +47,9 @@ PyNifly extension installed in Blender. esplib comes from pip.
 - **`--log FILE`** (sf_furrify) writes everything printed to a file as well, errors and tracebacks
   included, headed by the command line.
 - **The FaceGen bake finds vanilla textures in `--assets`**, as it finds vanilla meshes.
+- **A head part whose chargen morph doesn't fit its mesh stops the bake with its name**, the morph
+  folder and the nif, instead of an IndexError from deep in the bake. A bake that stops prints an
+  `ERROR:` line, not a traceback.
 - **No human scalp masks on furry faces.** A human hair's scalp mask (its `NAM3`) is drawn for the
   human face's UVs. Fitted hairs leave it out, and the bake doesn't paint a kept human hair's.
 - **`--keep-hair` keeps the fitted copy** of an NPC's hair when the load order has one, and says

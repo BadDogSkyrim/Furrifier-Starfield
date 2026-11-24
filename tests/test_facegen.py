@@ -278,6 +278,27 @@ def test_unmorphed_part_stays_close_to_the_ck(world):
     assert baked.name.replace('\\', '') == __import__('hashlib').sha1(baked.data).hexdigest()
 
 
+
+def test_a_morph_that_does_not_fit_its_mesh_names_the_part(world, tmp_path):
+    """A part whose chargen morph.dat was made for another mesh stops the bake with a message naming
+    the part, the morph and the nif, not an IndexError from deep in the bake. Here the male head's
+    morph folder (in the run's output, which wins) holds the female head's morph."""
+    male, female = part_named(world, 'FSFCanine_Male_Head'), part_named(world, 'FSFCanine_Female_Head')
+
+    def tcmp(hdpt):
+        mrph = world['plugins'].resolve_reference(hdpt, 'MNAM')
+        return facegen._text(mrph.get_subrecord('TCMP'))
+
+    wrong = facegen.find_asset(Path(tcmp(female)) / 'morph.dat', world['data'], None)
+    here = tmp_path / tcmp(male).replace('\\', '/') / 'morph.dat'
+    here.parent.mkdir(parents=True)
+    here.write_bytes(wrong.read_bytes())
+    with pytest.raises(ValueError) as e:
+        facegen.load_part_source(world['data'], male, world['plugins'], first=tmp_path)
+    message = str(e.value)
+    assert 'FSFCanine_Male_Head' in message and tcmp(male) in message, message
+    assert facegen._text(male.get_subrecord('MODL')) in message, message
+
 def run_cli(out_dir, *only):
     plugin = out_dir / 'mod' / 'test.esm'          # the FaceGen goes beside it
     cmd = [sys.executable, str(ROOT / 'sf_furrify.py'), '--data', str(game_data()), '--plugin', 'FSF.esm', '--out', str(plugin),

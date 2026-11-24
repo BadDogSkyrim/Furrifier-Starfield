@@ -229,6 +229,12 @@ def load_part_source(data_dir: Path, hdpt, plugins, assets: Optional[Path] = Non
         tcmp = mrph.get_subrecord('TCMP') if mrph is not None else None
         path = find_asset(Path(_text(tcmp)) / 'morph.dat', data_dir, assets, first) if tcmp is not None else None
         if path is not None and path.exists():
+            from pyn.sf_morph import MorphFile
+            morph_verts = MorphFile.from_file(str(path)).num_vertices
+            if morph_verts != num_verts:
+                raise ValueError(f"{hdpt.editor_id}: its chargen morph {_text(tcmp)}\\morph.dat has {morph_verts} "
+                                 f"vertices, but its nif {modl} (mesh {mesh_name}) has {num_verts}. The morph was "
+                                 f"made for another mesh: export the part and its morphs together.")
             source.morphs = _load_morphs(path)
     return source
 
