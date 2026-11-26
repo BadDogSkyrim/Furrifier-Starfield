@@ -10,8 +10,9 @@ PyNifly extension installed in Blender. esplib comes from pip.
 - **The hair plugin's records are numbered for a light plugin.** FSFHair.esm numbered its new
   records after vanilla's chargen lists, which it overrides (3D9B1 and up). A light plugin's own
   records must be 800-FFF, so the game and the CK read the NPCs' hair as other records: no hair
-  in the CK, a REFR in xEdit. A rerun renumbers an existing plugin's records into the range.
-  Rerun the furrifier after it so the NPCs point at the new numbers.
+  in the CK, a REFR in xEdit. A rerun renumbers an existing plugin's records into the range, and
+  the NPCs furrified in the same run use the new numbers. After `--hair-only`, rerun the
+  furrifier so the NPCs follow.
 - **`--hair` puts the fitted hair on the NPCs.** It now implies `--keep-hair`. Alone it used to
   fit the hair and leave every furrified NPC bald.
 - **Facial hair has a chance, and stays within its race.** A race's TOML can set

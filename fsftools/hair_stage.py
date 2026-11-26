@@ -589,8 +589,8 @@ def _light_ids(out) -> int:
                     ref = struct.unpack('<I', sr.data)[0]
                     if ref in moved:
                         sr.data = struct.pack('<I', moved[ref])
-        print(f'  Hair plugin: {len(moved)} records renumbered into the light range '
-              f'(rerun the furrifier so its NPCs follow)')
+        print(f'  Hair plugin: {len(moved)} records renumbered into the light range. The NPCs '
+              f'furrified in this run use the new numbers; after --hair-only, rerun the furrifier')
     return next_id
 
 
