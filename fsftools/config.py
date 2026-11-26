@@ -136,6 +136,9 @@ class RaceConfig:
     skin_tones_female: Optional[List[int]] = None                 # else skin_tones serves both
     extra_parts_male: List[str] = field(default_factory=list)     # parts not in RACE HEAD
     extra_parts_female: List[str] = field(default_factory=list)
+    # Chance (0-1) an NPC gets a facial-hair part. None means unset: always, if the race has any.
+    facial_hair_male: Optional[float] = None
+    facial_hair_female: Optional[float] = None
     hair_include: List[str] = field(default_factory=list)   # source hair EditorIDs/globs; empty = all
     hair_exclude: List[str] = field(default_factory=list)
     crowd_hair_include: List[str] = field(default_factory=list)   # crowd hair/hat armor EditorIDs/globs
@@ -156,6 +159,11 @@ class RaceConfig:
         if female and self.skin_tones_female is not None:
             return self.skin_tones_female
         return self.skin_tones
+
+    def facial_hair_chance(self, sex: str) -> float:
+        """The chance an NPC of this sex gets a facial-hair part. Sex in either case."""
+        chance = self.facial_hair_female if sex.upper() == 'FEMALE' else self.facial_hair_male
+        return 1.0 if chance is None else chance
 
 
 def _morph_table(raw, where: str, problems: List[str]) -> Dict[str, Dict[str, MorphRange]]:
@@ -199,11 +207,18 @@ def _load_one_race(path: Path) -> RaceConfig:
         skin_tones_female=r.get('skin_tones_female'),
         extra_parts_male=list(r.get('extra_parts_male', [])),
         extra_parts_female=list(r.get('extra_parts_female', [])),
+        facial_hair_male=r.get('facial_hair_male'),
+        facial_hair_female=r.get('facial_hair_female'),
         hair_include=list(raw.get('hair', {}).get('include', [])),
         hair_exclude=list(raw.get('hair', {}).get('exclude', [])),
         crowd_hair_include=list(raw.get('hair', {}).get('crowd_include', [])),
         crowd_hair_exclude=list(raw.get('hair', {}).get('crowd_exclude', [])),
     )
+    for key in ('facial_hair_male', 'facial_hair_female'):
+        chance = r.get(key)
+        if chance is not None and (isinstance(chance, bool) or not isinstance(chance, (int, float))
+                                   or not 0 <= chance <= 1):
+            cfg.problems.append(f"[race] {key} = {chance!r}: must be a number from 0 to 1")
     unknown = set(raw.get('hair', {})) - {'include', 'exclude', 'crowd_include', 'crowd_exclude'}
     if unknown:
         cfg.problems.append(f"[hair]: unknown setting {sorted(unknown)}")

@@ -107,10 +107,14 @@ def _pick(options, signature: str, salt: str):
 
 
 def _plan_head_parts(change, appearance, signature):
-    """The race's parts for this sex, plus one random facial-hair part if the sex has any."""
+    """The race's parts for this sex, plus one random facial-hair part if the sex has any and the
+    NPC passes the race's facial-hair chance. Every PNAM is rewritten, so a miss drops any beard."""
     change.head_parts = list(appearance.base_parts[change.sex])
     candidates = appearance.facial_hair[change.sex]
     if not candidates:
+        return
+    chance = appearance.cfg.facial_hair_chance(change.sex)
+    if chance < 1.0 and (_stable_hash(f'{signature}:facial_hair_chance') % 1000) / 1000.0 >= chance:
         return
     part = _pick(candidates, signature, 'hair')
     change.head_parts.append(part)

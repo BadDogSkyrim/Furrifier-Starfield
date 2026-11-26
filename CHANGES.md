@@ -7,6 +7,12 @@ The tools have a home of their own: `sf_racecheck`, `sf_tintbake`, `uv_transfer`
 through `fsftools/deps.py`: the `PYNIFLY` environment variable, a development checkout, or the
 PyNifly extension installed in Blender. esplib comes from pip.
 
+- **Facial hair has a chance, and stays within its race.** A race's TOML can set
+  `facial_hair_male` and `facial_hair_female` (0-1) in `[race]`. An NPC who misses gets no
+  facial-hair part, and loses any vanilla beard. Unset is always, as before. A part is a candidate
+  only if its RNAM lists the race or its crowd race, so a part with no RNAM is never picked, and a
+  hyena no longer draws parts made for the fox alone. A chance above 0 with no parts to pick stops
+  the run at startup.
 - **sf_furrify's output goes in one folder.** `--out` is that folder, or a plugin in it: a folder
   gets `FSFNPC.esm`, a plugin name alone still goes in Data, and no `--out` is Data as before.
   Everything a run writes goes there. So **`--facegen` and `--crowd-skeleton` no longer take a

@@ -250,3 +250,8 @@ FSF	Textures\Actors\FSFHyena\faces\chargen\postblenddetails\dermaesthetic\male_h
 FSF	Textures\Actors\FSFHyena\faces\chargen\postblenddetails\Dermaesthetic\male_hyena_derm06_color.dds
 FSF	Textures\Actors\FSFHyena\faces\chargen\postblenddetails\Dermaesthetic\male_hyena_derm07_color.dds
 FSF	Textures\Actors\FSFHyena\faces\chargen\postblenddetails\Dermaesthetic\male_hyena_derm08_color.dds
+
+# Added by hand 2026-11-26, not by make_snapshot.py: the facial-hair race filter changed which
+# ruff the facegen CLI test NPCs draw. Copied from the live FSF mod (files dated 2026-11-23).
+FSF	Meshes\Actors\fsffox\Mesh\beards\FSFFox_Ruff07.nif
+FSF	Geometries\FSF\FSFFox_Ruff07.mesh

@@ -1,5 +1,21 @@
 # FSFTools TODO
 
+## In-game test: is NNAM required in a facial-hair colour SimpleGroup?
+
+**Status:** waiting for Bad Dog to test (added 2026-11-26).
+
+`SimpleGroup_FSFCanine_Crowd_Beard_Colors` was made in xEdit and five entries had no NNAM.
+Wright added the five missing NNAMs, each 4 zero bytes. The canine colours didn't work until the
+group was also registered in `ComplexGroup_FacialHairColor_FSFFox_AVMDEXT`, so it's still
+unknown whether NNAM matters. The current FSF.esm has every NNAM.
+
+**Test:** remove the canine group's NNAMs from a copy of FSF.esm, deploy it, and check that the
+hyena beards still take the canine colours. Keep the current FSF.esm as the backup.
+
+**Then:** a `sf_racecheck` check that every HDPT `NAM2` resolves through
+`ComplexGroup_FacialHairColor` or an `_AVMDEXT` of it. That check would have caught the missing
+registration. Add the NNAM rule too if the test shows it matters.
+
 ## `sf_racecheck`: check every head part's morphs, not just the face's
 
 **Status:** done 2026-10-23 (uncommitted): `check_part_morphs` on every head part

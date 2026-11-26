@@ -98,6 +98,24 @@ def _part_flags(hdpt) -> int:
     return data.data[0] if data is not None and data.data else 0
 
 
+def _part_races(hdpt, plugins) -> set:
+    """EditorIDs of the races a head part's RNAM allows: a FormList of races, or one race."""
+    rnam = hdpt.get_subrecord('RNAM')
+    if rnam is None or len(rnam.data) != 4:
+        return set()
+    target = plugins.resolve_form_id(rnam.get_form_id(0), hdpt.plugin)
+    if target is None:
+        return set()
+    if target.signature == 'RACE':
+        return {target.editor_id}
+    races = set()
+    for sr in target.get_subrecords('LNAM'):
+        rec = plugins.resolve_form_id(sr.get_form_id(0), target.plugin)
+        if rec is not None and rec.signature == 'RACE':
+            races.add(rec.editor_id)
+    return races
+
+
 @dataclass
 class TintOption:
     slot: str
@@ -150,8 +168,10 @@ class RaceAppearance:
         return parts
 
     def _load_facial_hair(self, plugins):
-        """Playable facial-hair parts per sex, from the race's plugin. Extra parts can't stand alone."""
+        """Playable facial-hair parts per sex, from the race's plugin, that list this race (or its
+        crowd race) in their RNAM. Extra parts can't stand alone; a part with no RNAM is for no race."""
         out = {'MALE': [], 'FEMALE': []}
+        ours = {self.cfg.editorid, self.cfg.crowd_race_editorid} - {None}
         plugin = plugins.get_plugin(self.cfg.plugin)
         for hdpt in plugin.get_records_by_signature('HDPT'):
             kind = hdpt.get_subrecord('PNAM')
@@ -160,11 +180,18 @@ class RaceAppearance:
             flags = _part_flags(hdpt)
             if flags & FLAG_EXTRA_PART or not flags & FLAG_PLAYABLE:
                 continue
+            if not ours & _part_races(hdpt, plugins):
+                continue
             for sex in out:
                 if flags & sex_flag(sex):
                     out[sex].append(hdpt)
         for parts in out.values():
             parts.sort(key=lambda h: h.editor_id)
+        for sex, parts in out.items():
+            chance = self.cfg.facial_hair_female if sex == 'FEMALE' else self.cfg.facial_hair_male
+            if chance and not parts:
+                self.problems.append(f"facial_hair_{sex.lower()} = {chance}, but no {sex.lower()} "
+                                     f"facial-hair part in {self.cfg.plugin} lists this race in its RNAM")
         return out
 
     def _load_part_colors(self, avm):
