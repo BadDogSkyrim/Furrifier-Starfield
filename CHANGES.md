@@ -13,6 +13,9 @@ PyNifly extension installed in Blender. esplib comes from pip.
   only if its RNAM lists the race or its crowd race, so a part with no RNAM is never picked, and a
   hyena no longer draws parts made for the fox alone. A chance above 0 with no parts to pick stops
   the run at startup.
+  - The crowd heads follow the same chance: sf_tintbake reads `facial_hair_<sex>` from the
+    recipe's `race_config` as its `[beards] percent` (0.7 is 70). Set there, the recipe must not
+    set `percent` as well. Unset, the recipe's `percent` works as before.
 - **sf_furrify's output goes in one folder.** `--out` is that folder, or a plugin in it: a folder
   gets `FSFNPC.esm`, a plugin name alone still goes in Data, and no `--out` is Data as before.
   Everything a run writes goes there. So **`--facegen` and `--crowd-skeleton` no longer take a

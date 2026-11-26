@@ -1355,6 +1355,53 @@ skin_tone_override = [0]
             assert TT.is_true('Missing.toml' in str(e), f"names it: {e}")
 
 
+def TEST_SF_TINTBAKE_BEARD_CHANCE():
+    """sf_tintbake's beard percent comes from the race: facial_hair_male / facial_hair_female in
+    the race_config, the same chance the furrifier gives individual NPCs. One number, one place:
+    a recipe that also sets [beards] percent is refused, and so is a chance the recipe can't bake
+    (no [beards]). With the race's chance unset, the recipe's percent is used as before."""
+    import tempfile
+    B = _tintbake()
+    breed = '[[breeds]]\nname = "b"\ncrowd_heads = ["*"]\n'
+
+    with tempfile.TemporaryDirectory() as d:
+        def load(sex, race_line='', beards='[beards]\n'):
+            with open(os.path.join(d, 'Race.toml'), 'w', encoding='utf-8') as f:
+                f.write(f'[race]\neditorid = "R"\nskin_tones = [0]\n{race_line}\n{breed}')
+            p = os.path.join(d, 'r.toml')
+            with open(p, 'w', encoding='utf-8') as f:
+                f.write(f'race = "R"\nphenotype = "{sex}_fox_md1"\ndata = ["."]\nheads = "h"\n'
+                        'uvmap = "u.npz"\nrace_config = "Race.toml"\n'
+                        '[eyes]\ncode = "e"\n[[layers]]\nslot = "Dermaesthetic"\ncode = "d"\n'
+                        f'[parts]\n"Head" = "face"\n{beards}')
+            return B.load_recipe(p)
+
+        def refused(why, *args, **kw):
+            try:
+                load(*args, **kw)
+            except B.RecipeError as e:
+                return str(e)
+            raise AssertionError(f"should be refused: {why}")
+
+        both = 'facial_hair_male = 0.7\nfacial_hair_female = 0.25'
+        assert TT.is_eq(load('male', both)['beards']['percent'], 70, "male: facial_hair_male")
+        assert TT.is_eq(load('female', both)['beards']['percent'], 25, "female: facial_hair_female")
+        assert TT.is_eq(load('male', 'facial_hair_male = 0')['beards']['percent'], 0, "0 is never")
+        assert TT.is_eq(load('male', '', '[beards]\npercent = 10\n')['beards']['percent'], 10,
+                        "unset in the race: the recipe's own percent, as before")
+        assert TT.is_eq(load('male', 'facial_hair_female = 0.5', '[beards]\npercent = 10\n')
+                        ['beards']['percent'], 10, "only the recipe's own sex counts")
+        assert TT.is_true('beards' not in load('male', 'facial_hair_male = 0', ''),
+                          "a chance of 0 needs no [beards]")
+
+        e = refused("set in both places", 'male', both, '[beards]\npercent = 10\n')
+        assert TT.is_true('facial_hair_male' in e and 'percent' in e, f"names both: {e}")
+        e = refused("a chance with no [beards] to bake it", 'male', both, '')
+        assert TT.is_true('facial_hair_male' in e and '[beards]' in e, f"says why: {e}")
+        e = refused("a chance outside 0-1", 'male', 'facial_hair_male = 1.5')
+        assert TT.is_true('facial_hair_male' in e, f"names it: {e}")
+
+
 def TEST_SF_TINTBAKE_HEADS_PATTERN():
     """sf_tintbake's `heads` is a folder (every head nif in it) or a pattern on the nif names.
 

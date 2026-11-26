@@ -83,7 +83,9 @@ The recipe (TOML; relative paths are relative to the recipe file):
 
     [beards]                          # optional: a beard per variant, fitted to its head
     code = "b"
-    percent = 50                      # about how many variants have one: 100 all, 0 none
+    percent = 50                      # about how many variants have one: 100 all, 0 none.
+                                      # Leave it out when race_config sets facial_hair_<sex>:
+                                      # that chance is used instead (0.7 -> 70)
     folder = "Beards"                 # under `heads`: <head>_<beard>[_thin|_overweight].nif
     colors = "FSFFox_Crowd_Beard_Colors"   # the Simple AVM group its addon names (colour)
 
@@ -233,6 +235,7 @@ def load_recipe(path, out=None):
     if 'race_config' in r:
         r['race_config'] = recipe_path(r, r['race_config'])
         r['breeds'] = race_breeds(r['race_config'], r['sex'])
+        apply_race_beard_chance(r)
     if 'beards' in r:
         r['beards'].setdefault('code', 'b')
         r['beards'].setdefault('percent', 50)
@@ -406,6 +409,28 @@ def race_tail(R, plugins, r, simple):
 
 
 # --- the variants ---------------------------------------------------------------------------
+
+def apply_race_beard_chance(r):
+    """The race_config's facial_hair_<sex> (0-1), the furrifier's chance for individual NPCs, is the
+    crowd's too: it becomes [beards] percent. Set there, the recipe mustn't set percent as well, and
+    a chance above 0 needs a [beards] table to bake with. Unset, the recipe's percent stands."""
+    key = f"facial_hair_{r['sex']}"
+    with open(r['race_config'], 'rb') as f:
+        chance = tomllib.load(f).get('race', {}).get(key)
+    if chance is None:
+        return
+    if isinstance(chance, bool) or not isinstance(chance, (int, float)) or not 0 <= chance <= 1:
+        raise RecipeError(f"{r['race_config']}: {key} = {chance!r} must be a number from 0 to 1")
+    if 'beards' not in r:
+        if chance > 0:
+            raise RecipeError(f"{r['race_config']} sets {key} = {chance}, but the recipe has no "
+                              f"[beards] to bake them with")
+        return
+    if 'percent' in r['beards']:
+        raise RecipeError(f"[beards] percent = {r['beards']['percent']}, but {r['race_config']} sets "
+                          f"{key} = {chance}: the chance is set in one place, so drop percent")
+    r['beards']['percent'] = round(chance * 100)
+
 
 def race_breeds(path, sex):
     """[(breed name, crowd_heads globs, tones)] from the furrifier's race file, for `sex`.
