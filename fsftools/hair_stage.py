@@ -38,6 +38,7 @@ PART_HAIR = 3
 HIDE_EAR = 'HideEar'
 SEXES = ('MALE', 'FEMALE')
 FIRST_ID = 0x800
+LAST_ID = 0xFFF                 # a light plugin's own object IDs
 SOURCE_RACE = 'HumanRace'
 HAIR_PLUGIN = 'FSFHair.esm'
 # The head parts the character creator offers, by sex (Starfield.esm FLSTs). A race sees those
@@ -429,8 +430,7 @@ def write_records(path: Path, masters: List[str], groups, plugins, strings_for, 
     masters = list(out.header.masters)
     remapper = Remapper(masters, plugins)
     existing = {(r.signature, r.editor_id): r for r in out}
-    next_id = max([FIRST_ID, out.header.next_object_id or 0]
-                  + [(int(r.form_id.value) & 0xFFFFFF) + 1 for r in out])
+    next_id = _light_ids(out)
     pending = []
 
     def put(sig: str, edid: str, subs) -> int:
@@ -540,6 +540,12 @@ def write_records(path: Path, masters: List[str], groups, plugins, strings_for, 
                     (rec.signature == 'FLST' and e.startswith(f'{prefix}_HairRaces')):
                 out.remove_record(rec)
     out.header.next_object_id = next_id
+    own = len(out.header.masters)
+    wide = [r.editor_id for r in out if int(r.form_id.value) >> 24 == own
+            and not FIRST_ID <= int(r.form_id.value) & 0xFFFFFF <= LAST_ID]
+    if wide or next_id > LAST_ID + 1:
+        raise ValueError(f'{path.name} is a light plugin, its own FormIDs {FIRST_ID:03X}-{LAST_ID:03X}: '
+                         f'out of room, or out of range ({wide[:5]})')
     from fsftools import safe_write
     path.parent.mkdir(parents=True, exist_ok=True)
     with safe_write.replacing(path) as scratch:
@@ -553,6 +559,39 @@ def _home(value: int, plugin) -> str:
     have = list(plugin.header.masters)
     index = value >> 24
     return have[index] if index < len(have) else Path(plugin.file_path).name
+
+
+def _light_ids(out) -> int:
+    """The next object ID for the plugin's own new records, FIRST_ID-LAST_ID (it's a light
+    plugin). Only its own records count: overrides keep their masters' IDs (vanilla's chargen
+    lists are 3D9AF/3D9B0), and counting them numbered new records 3D9B1 and up, which the game
+    and the CK read as other records. Own records left out of range by that are renumbered into
+    it, and the plugin's references to them follow."""
+    from esplib.utils import FormID
+    own = len(out.header.masters)
+    mine = [r for r in out if int(r.form_id.value) >> 24 == own]
+    ok = {int(r.form_id.value) & 0xFFFFFF for r in mine
+          if FIRST_ID <= int(r.form_id.value) & 0xFFFFFF <= LAST_ID}
+    stored = out.header.next_object_id or 0
+    next_id = max([FIRST_ID] + [v + 1 for v in ok] + ([stored] if stored <= LAST_ID + 1 else []))
+    moved = {}
+    for r in sorted(mine, key=lambda r: int(r.form_id.value)):
+        value = int(r.form_id.value)
+        if value & 0xFFFFFF in ok:
+            continue
+        moved[value] = (own << 24) | next_id
+        r.form_id = FormID(moved[value])
+        next_id += 1
+    if moved:
+        for r in out:
+            for sr in r.subrecords:
+                if sr.signature in ('RNAM', 'MNAM', 'LNAM', 'HNAM') and len(sr.data) == 4:
+                    ref = struct.unpack('<I', sr.data)[0]
+                    if ref in moved:
+                        sr.data = struct.pack('<I', moved[ref])
+        print(f'  Hair plugin: {len(moved)} records renumbered into the light range '
+              f'(rerun the furrifier so its NPCs follow)')
+    return next_id
 
 
 def _grow_masters(out, masters: List[str]):

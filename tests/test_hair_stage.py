@@ -122,6 +122,40 @@ def test_hair_only_fits_the_included_hairs(fitted):
     assert (out / 'FSFTools' / 'hair_fit' / 'FSFHair.json').is_file()
 
 
+def own_ids(plugin):
+    """{(signature, EDID): object ID} of the records a plugin defines itself."""
+    own = len(plugin.header.masters)
+    return {(r.signature, r.editor_id): int(r.form_id.value) & 0xFFFFFF for r in plugin
+            if int(r.form_id.value) >> 24 == own}
+
+
+def references_resolve(plugin):
+    """Every RNAM/MNAM/HNAM/LNAM naming the plugin itself lands on one of its own records."""
+    own = len(plugin.header.masters)
+    mine = {int(r.form_id.value) for r in plugin if int(r.form_id.value) >> 24 == own}
+    bad = []
+    for r in plugin:
+        for sr in r.subrecords:
+            if sr.signature in ('RNAM', 'MNAM', 'HNAM', 'LNAM') and len(sr.data) == 4:
+                v = int.from_bytes(sr.data, 'little')
+                if v >> 24 == own and v not in mine:
+                    bad.append((r.editor_id, sr.signature, f'{v:08X}'))
+    return bad
+
+
+def test_own_formids_are_light(fitted):
+    """The hair plugin is light: its own records must be 800-FFF. They were numbered from after
+    the highest FormID in the plugin, overrides included -- vanilla's chargen lists, 3D9B0 -- so
+    they came out 3D9B1 and up, which the game and the CK read as other records (11-26: an NPC's
+    hair was a REFR in xEdit, and no hair showed in the CK)."""
+    _, out, _ = fitted
+    plugin, _ = records(out / 'FSFHair.esm')
+    ids = own_ids(plugin)
+    assert ids and all(0x800 <= v <= 0xFFF for v in ids.values()), \
+        sorted(f'{v:06X}' for v in ids.values())
+    assert 0x800 <= plugin.header.next_object_id <= 0x1000
+
+
 CHARGEN_LISTS = {'MALE': 0x3D9AF, 'FEMALE': 0x3D9B0}     # HeadPartsChargenOptionsMale/Female
 
 
@@ -202,3 +236,57 @@ def test_an_excluded_hair_loses_its_records(fitted):
     ids = chargen_list(recs, CHARGEN_LISTS['FEMALE'])
     assert int(recs[('HDPT', 'FSFCanine_Female_Hair_Cropped')].form_id.value) in ids
     assert before[('HDPT', 'FSFCanine_Female_Hair_Flat_Top')] not in ids, 'a dropped hair leaves chargen'
+
+
+def test_a_hair_added_on_a_rerun_is_light(fitted):
+    """Flat_Top, dropped by the test above, comes back on a rerun: its new records are numbered
+    800-FFF, though the plugin now overrides vanilla's chargen lists (3D9AF, 3D9B0)."""
+    tmp, out, _ = fitted
+    third = tmp / 'third'
+    third.mkdir()
+    hair_only(out, races_with(third, HAIRS))
+    plugin, recs = records(out / 'FSFHair.esm')
+    assert ('HDPT', 'FSFCanine_Female_Hair_Flat_Top') in recs
+    ids = own_ids(plugin)
+    assert all(0x800 <= v <= 0xFFF for v in ids.values()), sorted(f'{v:06X}' for v in ids.values())
+    assert references_resolve(plugin) == []
+
+
+def test_a_plugin_numbered_past_the_light_range_is_repaired(fitted):
+    """A hair plugin written before the fix -- own records 3D9B1 and up, next object ID after
+    them -- is renumbered into 800-FFF on the next run, its references following."""
+    from esplib import Plugin
+    from fsftools.plugin_writer import _patch_sf_light_flag
+    from esplib.utils import FormID
+    tmp, out, _ = fitted
+    path = out / 'FSFHair.esm'
+    Plugin._load_string_tables = lambda self: None
+    plugin = Plugin.load(str(path))
+    own = len(plugin.header.masters) << 24
+    moved = {}
+    for i, r in enumerate(sorted((r for r in plugin if int(r.form_id.value) & 0xFF000000 == own),
+                                 key=lambda r: int(r.form_id.value))):
+        moved[int(r.form_id.value)] = own | (0x3D9B1 + i)
+        r.form_id = FormID(moved[int(r.form_id.value)])
+    for r in plugin:
+        for sr in r.subrecords:
+            if sr.signature in ('RNAM', 'MNAM', 'HNAM', 'LNAM') and len(sr.data) == 4:
+                v = int.from_bytes(sr.data, 'little')
+                if v in moved:
+                    sr.data = moved[v].to_bytes(4, 'little')
+    plugin.header.next_object_id = 0x3D9B1 + len(moved)
+    plugin.save(str(path))
+    _patch_sf_light_flag(path)
+    broken, _ = records(path)
+    assert max(own_ids(broken).values()) > 0xFFF and not references_resolve(broken)
+
+    hair_only(out, tmp / 'again')                    # the races from the exclude test
+    plugin, recs = records(path)
+    ids = own_ids(plugin)
+    assert all(0x800 <= v <= 0xFFF for v in ids.values()), sorted(f'{v:06X}' for v in ids.values())
+    assert len(set(ids.values())) == len(ids)
+    assert references_resolve(plugin) == []
+    assert 0x800 <= plugin.header.next_object_id <= 0x1000
+    hair = recs[('HDPT', 'FSFCanine_Female_Hair_Cropped')]
+    assert int.from_bytes(hair.get_subrecord('MNAM').data, 'little') == \
+        int(recs[('MRPH', 'MORPH_FSFCanine_Female_Hair_Cropped')].form_id.value)

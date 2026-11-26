@@ -54,7 +54,7 @@ HERE = Path(__file__).resolve().parent
 TOOLS_DATA = Path('FSFTools') / 'furrify'
 
 
-def parse_args():
+def parse_args(argv=None):
     p = argparse.ArgumentParser(description="Starfield Furrifier")
     p.add_argument('--scheme', type=Path, default=None,
                    help=f'Scheme TOML (probabilities, pins, excludes). Default: Data\\{TOOLS_DATA}\\scheme.toml')
@@ -84,13 +84,15 @@ def parse_args():
                    help='Also bake each NPC\'s FaceGen, in the output folder')
     p.add_argument('--hair', action='store_true',
                    help='Fit the human hair to each race\'s head first, into the output folder and its '
-                        'hair plugin (only the hairs whose sources changed are fitted again)')
+                        'hair plugin (only the hairs whose sources changed are fitted again); '
+                        'implies --keep-hair')
     p.add_argument('--hair-only', action='store_true', help='Fit the hair and stop')
     p.add_argument('--ears-fixed', action='store_true',
                    help='The fitted hair doesn\'t follow the ears (default: it does)')
     p.add_argument('--keep-hair', action='store_true',
                    help='Furrified NPCs keep their own hair, fitted to the race\'s head where the load '
-                        'order has a fitted copy (--hair makes them), and crowds their outfit\'s hair list')
+                        'order has a fitted copy (--hair makes them), and crowds their outfit\'s hair '
+                        'list. Without it or --hair, they get no hair')
     p.add_argument('--assets', type=Path, metavar='DIR',
                    help='Unpacked vanilla assets, laid out like Data: the FaceGen bake reads vanilla '
                         'parts (a kept hair) from here when they aren\'t loose in Data')
@@ -99,7 +101,11 @@ def parse_args():
     p.add_argument('--verbose', '-v', action='store_true')
     p.add_argument('--log', type=Path, metavar='FILE',
                    help='Also write everything printed, errors included, to this file')
-    return p.parse_args()
+    args = p.parse_args(argv)
+    # Fitting the hair is for wearing it: --hair alone used to fit it and put it on no one.
+    if args.hair:
+        args.keep_hair = True
+    return args
 
 
 def main():

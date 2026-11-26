@@ -4,7 +4,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT))
-from sf_furrify import DEFAULT_PLUGIN, resolve_out  # noqa: E402
+from sf_furrify import DEFAULT_PLUGIN, parse_args, resolve_out  # noqa: E402
 
 DATA = Path('C:/Game/Data')
 
@@ -29,3 +29,12 @@ def test_a_dot_in_a_folder_name_is_not_an_extension():
 def test_a_plugin_name_alone_goes_in_data():
     """As before: --out FSFNPC_test.esm writes the plugin into the game's Data folder."""
     assert resolve_out(Path('FSFNPC_test.esm'), DATA) == (DATA, 'FSFNPC_test.esm')
+
+
+def test_hair_keeps_the_hair():
+    """--hair implies --keep-hair: fitting the hair and putting it on no one was a trap (Bad Dog
+    ran --hair alone on 11-26 and got bald NPCs)."""
+    assert parse_args(['--hair']).keep_hair
+    assert parse_args(['--keep-hair']).keep_hair
+    assert not parse_args([]).keep_hair
+    assert not parse_args(['--hair-only']).keep_hair
