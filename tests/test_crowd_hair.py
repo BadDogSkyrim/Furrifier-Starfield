@@ -35,16 +35,32 @@ def races_taking(tmp: Path, armors):
     return folder
 
 
-def furrify(work: Path, races: Path):
+def run_furrifier(work: Path, races: Path, assets=True):
     (work / 'scheme.toml').write_text(scheme((FOX, 100)), encoding='utf-8')
     out = work / 'mod' / 'crowdhair.esm'
     cmd = [sys.executable, str(ROOT / 'sf_furrify.py'), '--data', str(game_data()), '--plugin', 'FSF.esm',
            '--out', str(out), '--scheme', str(work / 'scheme.toml'), '--builtin', str(BUILTIN),
-           '--races', str(races), '--only', 'NoSuchNPC', '--crowd-test', '--hair', '--keep-hair',
-           '--assets', tt.SF_ASSETS]
-    proc = subprocess.run(cmd, capture_output=True, text=True, cwd=ROOT)
+           '--races', str(races), '--only', 'NoSuchNPC', '--crowd-test', '--hair', '--keep-hair']
+    if assets:
+        cmd += ['--assets', tt.SF_ASSETS]
+    return out, subprocess.run(cmd, capture_output=True, text=True, cwd=ROOT)
+
+
+def furrify(work: Path, races: Path):
+    out, proc = run_furrifier(work, races)
     assert proc.returncode == 0, proc.stdout + proc.stderr
     return out, proc.stdout
+
+
+def test_without_assets_it_says_to_give_them(tmp_path):
+    """The vanilla crowd heads are in a BA2. Without --assets the crowd hair fit stops with an
+    error saying so, not a traceback (Bad Dog's run 11-26 died in a FileNotFoundError)."""
+    _, proc = run_furrifier(tmp_path, races_taking(tmp_path, ARMORS), assets=False)
+    said = proc.stdout + proc.stderr
+    assert proc.returncode == 2, said
+    assert 'Traceback' not in said, said
+    error = next((line for line in said.splitlines() if line.startswith('ERROR:')), '')
+    assert 'crowd_head' in error and 'give --assets' in error, said
 
 
 @pytest.fixture(scope='module')

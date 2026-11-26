@@ -164,9 +164,17 @@ def fit(plugins, order, data_dir: Path, plan, races, out_dir: Path, assets: Opti
             raise ValueError(f'{race_edid} has no {sex} head')
         return load_head(plugins, files, head, log)
 
+    def found(model):
+        """The nif under Meshes, or an error that says where it looked and how to give it."""
+        path = files.find(Path('Meshes') / model)
+        if not path.exists():
+            raise ValueError(f'{model} not found' + (' in Data or the unpacked assets' if assets else
+                                                     ' (give --assets for nifs in BA2s)'))
+        return path
+
     sources = {}
     for sex, nif in source_heads(plugins).items():
-        shape = hair_fit.load_lods(files.find(Path('Meshes') / nif), files.mesh, count=1)[0]
+        shape = hair_fit.load_lods(found(nif), files.mesh, count=1)[0]
         head, kept = cut_head(shape, own_head(SOURCE_RACE, sex))
         sources[sex] = (head, _digest(shape.nif, shape.mesh), nif)
         if verbose:
@@ -210,10 +218,7 @@ def fit(plugins, order, data_dir: Path, plan, races, out_dir: Path, assets: Opti
                 rel = str(Path('Actors') / head_folder(variant) / 'Hair' / key /
                           Path(model.replace('\\', '/')).name).replace('/', '\\')
                 result.models[(key.lower(), model.lower())] = rel
-                nif = files.find(Path('Meshes') / model)
-                if not nif.exists():
-                    raise ValueError(f'{model} not found' + (' in Data or the unpacked assets' if assets else
-                                                             ' (give --assets for nifs in BA2s)'))
+                nif = found(model)
                 lods = hair_fit.load_lods(nif, files.mesh)
                 digest = _digest(head_digest, nif, *dict.fromkeys(files.mesh(n) for n in
                                                                   hair_fit.nif_mesh_names(lods[0].nif)))
