@@ -396,9 +396,11 @@ def race_list_edid(prefix: str, races, all_races) -> str:
     return f'{prefix}_HairRaces_' + '_'.join(names)
 
 
-def _open_plugin(path: Path, masters: List[str], author: str):
-    """The hair plugin, loaded if it exists, its masters grown to hold `masters`."""
+def _open_plugin(path: Path, masters: List[str], author: str, plugins):
+    """The hair plugin, loaded if it exists, its masters grown to hold `masters`. Its masters'
+    kinds come from the load order: they're in Data, not beside the plugin."""
     from esplib import Plugin
+    from fsftools import formids
     if not path.exists():
         out = Plugin()
         out.file_path = path
@@ -408,11 +410,13 @@ def _open_plugin(path: Path, masters: List[str], author: str):
         out.header.is_esl = True
         out.header.is_esm = True
         out.header.author = author
+        formids.settle(out, plugins)
         return out
     out = Plugin.load(str(path))
+    formids.settle(out, plugins)
     have = list(out.header.masters)
     lowered = [m.lower() for m in have]
-    return _grow_masters(out, have + [m for m in masters if m.lower() not in lowered])
+    return _grow_masters(out, have + [m for m in masters if m.lower() not in lowered], plugins)
 
 
 def write_records(path: Path, masters: List[str], groups, plugins, strings_for, author: str,
@@ -426,7 +430,7 @@ def write_records(path: Path, masters: List[str], groups, plugins, strings_for, 
     from fsftools.formid_remap import Remapper
     from fsftools.plugin_writer import _output_form_id, _patch_sf_light_flag
 
-    out = _open_plugin(path, masters, author)
+    out = _open_plugin(path, masters, author, plugins)
     masters = list(out.header.masters)
     remapper = Remapper(masters, plugins)
     existing = {(r.signature, r.editor_id): r for r in out}
@@ -521,12 +525,11 @@ def write_records(path: Path, masters: List[str], groups, plugins, strings_for, 
             overrides.append(rec)
         rec.subrecords[:] = subs
     # The remapper adds masters for hairs from other plugins; our records follow.
-    _grow_masters(out, masters)
+    _grow_masters(out, masters, plugins)
     for rec in overrides:
         out.add_record(rec)
-    own = len(masters) << 24
     for rec in pending:
-        rec.form_id = FormID(own | int(rec.form_id.value))
+        rec.form_id = FormID(out.encode_form_id(None, int(rec.form_id.value)))
         out.add_record(rec)
     for sub, target in refs:
         sub.data = struct.pack('<I', int(target.form_id.value))
@@ -540,9 +543,9 @@ def write_records(path: Path, masters: List[str], groups, plugins, strings_for, 
                     (rec.signature == 'FLST' and e.startswith(f'{prefix}_HairRaces')):
                 out.remove_record(rec)
     out.header.next_object_id = next_id
-    own = len(out.header.masters)
-    wide = [r.editor_id for r in out if int(r.form_id.value) >> 24 == own
-            and not FIRST_ID <= int(r.form_id.value) & 0xFFFFFF <= LAST_ID]
+    from fsftools import formids
+    wide = [r.editor_id for r in formids.own_records(out)
+            if not FIRST_ID <= formids.object_id(int(r.form_id.value), out) <= LAST_ID]
     if wide or next_id > LAST_ID + 1:
         raise ValueError(f'{path.name} is a light plugin, its own FormIDs {FIRST_ID:03X}-{LAST_ID:03X}: '
                          f'out of room, or out of range ({wide[:5]})')
@@ -556,9 +559,8 @@ def write_records(path: Path, masters: List[str], groups, plugins, strings_for, 
 
 def _home(value: int, plugin) -> str:
     """The file a FormID in `plugin` belongs to."""
-    have = list(plugin.header.masters)
-    index = value >> 24
-    return have[index] if index < len(have) else Path(plugin.file_path).name
+    from fsftools import formids
+    return formids.home(value, plugin)
 
 
 def _light_ids(out) -> int:
@@ -568,18 +570,18 @@ def _light_ids(out) -> int:
     and the CK read as other records. Own records left out of range by that are renumbered into
     it, and the plugin's references to them follow."""
     from esplib.utils import FormID
-    own = len(out.header.masters)
-    mine = [r for r in out if int(r.form_id.value) >> 24 == own]
-    ok = {int(r.form_id.value) & 0xFFFFFF for r in mine
-          if FIRST_ID <= int(r.form_id.value) & 0xFFFFFF <= LAST_ID}
+    from fsftools import formids
+    mine = formids.own_records(out)
+    ok = {formids.object_id(int(r.form_id.value), out) for r in mine}
+    ok = {v for v in ok if FIRST_ID <= v <= LAST_ID}
     stored = out.header.next_object_id or 0
     next_id = max([FIRST_ID] + [v + 1 for v in ok] + ([stored] if stored <= LAST_ID + 1 else []))
     moved = {}
     for r in sorted(mine, key=lambda r: int(r.form_id.value)):
         value = int(r.form_id.value)
-        if value & 0xFFFFFF in ok:
+        if formids.object_id(value, out) in ok:
             continue
-        moved[value] = (own << 24) | next_id
+        moved[value] = out.encode_form_id(None, next_id)
         r.form_id = FormID(moved[value])
         next_id += 1
     if moved:
@@ -594,17 +596,25 @@ def _light_ids(out) -> int:
     return next_id
 
 
-def _grow_masters(out, masters: List[str]):
+def _grow_masters(out, masters: List[str], plugins):
     """The plugin with its master list grown to `masters` (new names appended). Its own records'
-    FormIDs, and references to them, follow the master count; their object IDs, which name them in
-    the game (it's a light plugin), stay."""
+    FormIDs, and references to them, follow the own index (Starfield: the count of full masters, so
+    only a new full master moves it); their object IDs, which name them in the game (it's a light
+    plugin), stay. Appending doesn't change how the earlier masters are written."""
     from esplib.utils import FormID
+    from fsftools import formids
     have = list(out.header.masters)
     if [m.lower() for m in masters[:len(have)]] != [m.lower() for m in have]:
         raise ValueError(f'masters {masters} would reorder {have}')
     if len(masters) == len(have):
         return out
-    old, new = len(have) << 24, len(masters) << 24
+    old = out.own_file_index() << 24
+    out.header.masters = list(masters)
+    out.header.master_sizes = [0] * len(masters)
+    formids.settle(out, plugins)
+    new = out.own_file_index() << 24
+    if new == old:
+        return out
     for rec in out:
         value = int(rec.form_id.value)
         if value & 0xFF000000 == old:
@@ -614,8 +624,6 @@ def _grow_masters(out, masters: List[str]):
                 ref = struct.unpack('<I', sr.data)[0]
                 if ref & 0xFF000000 == old:
                     sr.data = struct.pack('<I', new | (ref & 0xFFFFFF))
-    out.header.masters = list(masters)
-    out.header.master_sizes = [0] * len(masters)
     return out
 
 
@@ -626,7 +634,8 @@ def _list_entries(rec) -> Dict:
     out = {}
     for sr in rec.get_subrecords('LNAM'):
         raw = struct.unpack('<I', sr.data[:4])[0]
-        out.setdefault((_home(raw, rec.plugin).lower(), raw & 0xFFFFFF), (raw, rec.plugin))
+        from fsftools import formids
+        out.setdefault(formids.key(raw, rec.plugin), (raw, rec.plugin))
     return out
 
 

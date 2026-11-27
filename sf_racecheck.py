@@ -2366,7 +2366,10 @@ def find_race(plugins, edid):
 def is_new_record(rec):
     """True if `rec` is defined by its own plugin rather than overriding a master's record."""
     p = rec.plugin
-    return p is not None and rec.form_id.file_index >= len(p.header.masters)
+    if p is None:
+        return False
+    from fsftools import formids
+    return formids.is_own(int(rec.form_id.value), p)
 
 
 # --- main -------------------------------------------------------------------------------------

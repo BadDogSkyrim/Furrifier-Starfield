@@ -1,8 +1,9 @@
 """Rewrite an NPC's FormIDs for our plugin, when its winning record is in a DLC or a mod.
 
-A FormID's top byte indexes the master list of the file holding it, or past the end the file itself.
-Starfield.esm is index 0 everywhere, so a vanilla reference needs nothing. Any other has to be looked
-up through the source file's list and given its index in ours, which grows to hold it.
+A FormID's top byte names a master of the file holding it, or the file itself, by Starfield's
+numbering by kind (fsftools.formids). Starfield.esm is 0 everywhere, so a vanilla reference needs
+nothing. Any other has to be decoded through the source file's list and encoded for ours, which
+grows to hold it.
 
 There's no sf1 schema in esplib, so the fields come from the sf1 NPC_ and ARMO definitions, checked
 against every NPC and outfit in the game. A reference we don't know about would quietly point at something else, so any other
@@ -11,6 +12,8 @@ subrecord holding what could be one refuses that NPC, unless the definition says
 import struct
 from pathlib import Path
 from typing import List
+
+from fsftools import formids
 
 # Subrecord -> (bytes per entry, offsets of the references in an entry).
 _ONE = (4, (0,))
@@ -57,9 +60,7 @@ def _name(plugin) -> str:
 
 
 def _home_name(value: int, plugin) -> str:
-    masters = list(plugin.header.masters)
-    index = value >> 24
-    return masters[index] if index < len(masters) else _name(plugin)
+    return formids.home(value, plugin)
 
 
 def _loaded(plugins, name):
@@ -87,6 +88,7 @@ class Remapper:
     def __init__(self, masters: List[str], plugins):
         self.masters = masters       # the caller's list, which this extends
         self.plugins = plugins
+        self.encoder = formids.encoder_for(masters, plugins)
 
     def _index(self, home: str) -> int:
         lowered = [m.lower() for m in self.masters]
@@ -101,12 +103,13 @@ class Remapper:
     def remap(self, value: int, source) -> int:
         if value == 0:
             return 0
-        return (self._index(_home_name(value, source)) << 24) | (value & 0xFFFFFF)
+        home, obj = formids.decode(value, source)
+        return self.encoder.at(self._index(home), obj)
 
 
 def _could_be_reference(value: int, source) -> bool:
     """Would this value change if it were a reference? A vanilla one is right as it stands."""
-    return 1 <= value >> 24 <= len(source.header.masters) and value & 0xFFFFFF >= 0x800
+    return formids.could_be_reference(value, source)
 
 
 def _remap_at(new: bytearray, off: int, remapper, source):

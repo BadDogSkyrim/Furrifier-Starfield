@@ -745,7 +745,8 @@ def bake_all(changes, appearances, plugins, data_dir, out_dir, log=print,
                 problems.append(f"{who}: skin tone {change.new_ston} is past the {len(base_list)} of {change.phenotype}")
                 continue
             home = defining_plugin(change.source, plugins).file_path.name
-            ident = f'{int(change.source.form_id.value) & 0xFFFFFF:08X}'
+            from fsftools import formids
+            ident = f'{formids.object_id(int(change.source.form_id.value), change.source.plugin):08X}'
 
             shapes, baked_parts = [], []
             weights = _weights(change)

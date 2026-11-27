@@ -27,16 +27,14 @@ def _plugin_name(plugin) -> str:
 
 
 def _output_form_id(rec, masters: List[str]) -> int:
-    """rec's FormID as the output plugin writes it: its home file's index in our master list."""
-    plugin = rec.plugin
-    value = int(rec.form_id.value)
-    index = value >> 24
-    source_masters = list(plugin.header.masters)
-    home = source_masters[index] if index < len(source_masters) else _plugin_name(plugin)
-    lowered = [m.lower() for m in masters]
-    if home.lower() not in lowered:
+    """rec's FormID as the output plugin writes it: its home file as a master of ours, numbered
+    the Starfield way (fsftools.formids)."""
+    from fsftools import formids
+    home, obj = formids.decode(int(rec.form_id.value), rec.plugin)
+    enc = formids.encoder_for(masters, rec.plugin.plugin_set)
+    if enc.index(home) is None:
         raise ValueError(f"{rec.editor_id} lives in {home}, which is not a master of the output")
-    return (lowered.index(home.lower()) << 24) | (value & 0xFFFFFF)
+    return enc.ref(home, obj)
 
 
 def write_output(out_path: Path, changes: List[NpcChange], plugins, masters: List[str],
@@ -75,6 +73,9 @@ def write_output(out_path: Path, changes: List[NpcChange], plugins, masters: Lis
     out.header.author = 'Bad Dog (SF Furrifier)'
     out.header.next_object_id = 0x800
 
+    from fsftools import formids
+    formids.encoder_for(masters, plugins)          # the masters' kinds come from the load order
+
     # Resolve race FormIDs once
     race_ids: Dict[str, int] = {}
     for change in changes:
@@ -101,6 +102,7 @@ def write_output(out_path: Path, changes: List[NpcChange], plugins, masters: Lis
     out.header.master_sizes = [0] * len(masters)
     if extend:
         extend(out)
+    formids.settle(out, plugins)                    # esplib stamps our own FormIDs at save
     # Saved whole or not at all: a stopped run leaves the last plugin, never half of one.
     from fsftools import safe_write
     with safe_write.replacing(out_path) as scratch:

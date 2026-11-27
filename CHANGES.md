@@ -7,6 +7,14 @@ The tools have a home of their own: `sf_racecheck`, `sf_tintbake`, `uv_transfer`
 through `fsftools/deps.py`: the `PYNIFLY` environment variable, a development checkout, or the
 PyNifly extension installed in Blender. esplib comes from pip.
 
+- **FormIDs are written the Starfield way.** A Starfield plugin numbers its masters by kind: full
+  masters among themselves, its own records at the count of full masters, a small (light) master as
+  `FE…` and a medium one as `FD…`. The tools wrote every master by its position, as Skyrim and
+  Fallout 4 do, so once FSFNPC.esm mastered the small FSFHair.esm (or the medium SFBGS003.esm),
+  every reference after it pointed one or more plugins off: the NPCs' hair read as SFBGS00D's
+  records in xEdit and the CK, and overrides of NPCs from the DLCs and mods missed their NPCs.
+  esplib now reads and writes the Starfield numbering, and every FSFTools reader and writer goes
+  through `fsftools/formids.py`. **Rerun the furrifier** to rewrite FSFNPC.esm and FSFHair.esm.
 - **The hair plugin's records are numbered for a light plugin.** FSFHair.esm numbered its new
   records after vanilla's chargen lists, which it overrides (3D9B1 and up). A light plugin's own
   records must be 800-FFF, so the game and the CK read the NPCs' hair as other records: no hair

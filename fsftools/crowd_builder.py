@@ -276,8 +276,10 @@ class CrowdBuilder:
 
     def _local_ref(self, rec) -> int:
         """A record of this plugin as a reference is written: esplib only finalizes the record's own
-        formID at save, not raw reference bytes."""
-        return (len(self.masters) << 24) | (int(rec.form_id.value) & 0xFFFFFF)
+        formID at save, not raw reference bytes. Starfield's own index is the count of full masters
+        (fsftools.formids); the masters have settled by the time the crowd is built."""
+        from fsftools import formids
+        return formids.encoder_for(self.masters, self.plugins).own(int(rec.form_id.value) & 0xFFFFFF)
 
     def _new_copy(self, source, new_edid, name=None):
         """A new record from a source record. A vanilla FULL is a string-table ID, meaningless here."""
@@ -489,9 +491,12 @@ class CrowdBuilder:
     def _race_head_lists(self, race_edid, plan: RacePlan) -> Dict[str, object]:
         """{body type: the race's head list}: a pick-one over breed lists, in the breeds' ratio."""
         plugin = self.plugins.get_plugin(plan.config.plugin)
-        if self.masters.index(plan.config.plugin) != 1 or list(plugin.header.masters) != [self.masters[0]]:
-            raise CrowdError(f"{plan.config.plugin} must be the output's second master and master only "
-                             f"{self.masters[0]}: copies of its addons keep their FormIDs")
+        # Copies of its addons keep their FormIDs, so they must mean the same in the output: the
+        # race plugin a full master, the output's first after Starfield.esm, and master only that.
+        if self.masters.index(plan.config.plugin) != 1 or list(plugin.header.masters) != [self.masters[0]] \
+                or plugin.header.is_esl or plugin.header.is_medium:
+            raise CrowdError(f"{plan.config.plugin} must be a full plugin, the output's second master, and "
+                             f"master only {self.masters[0]}: copies of its addons keep their FormIDs")
         tails = {tones: self._tail_addon(plugin, race_edid, plan.tail_addon, tones, by_sex)
                  for tones, by_sex in plan.tail_nifs.items()}
         colors = plan.beard_colors

@@ -24,22 +24,31 @@ EXPECT_DLC = {'UC_NA_Muria': 'SFBGS00D.esm', 'SFBGS001_LvlVaruun_BECrew_Crew': '
               'SFTER_LvlTerran_BECrew_Captain': 'SFBGS050.esm'}
 
 
-class FakePlugin:
-    def __init__(self, name, masters):
-        self.file_path = Path(name)
-
-        class Header:
-            pass
-        self.header = Header()
-        self.header.masters = masters
+def FakePlugin(name, masters, kind='full'):
+    """A Starfield plugin with no records: its name, masters and kind are all the remapper reads
+    (FormIDs decode by Starfield's numbering, which needs each master's kind)."""
+    from esplib import Plugin
+    p = Plugin()
+    p.file_path = Path(name)
+    p.header.version = 0.96
+    p.header.masters = list(masters)
+    p.header.is_esl = kind == 'small'
+    p.header.is_medium = kind == 'medium'
+    return p
 
 
 class FakeSet:
     def __init__(self, *plugins):
         self.by_name = {p.file_path.name.lower(): p for p in plugins}
+        self._plugins = {p.file_path.name: p for p in plugins}
+        for p in plugins:
+            p.plugin_set = self
 
     def get_plugin(self, name):
         return self.by_name.get(name.lower())
+
+    def _resolve_plugin_path(self, name):
+        return None
 
 
 VANILLA = FakePlugin('Starfield.esm', [])

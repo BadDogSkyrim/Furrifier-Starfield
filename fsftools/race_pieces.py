@@ -22,7 +22,7 @@ The outfit overrides start from each outfit's winning record, so other mods' cha
 import struct
 from pathlib import Path
 
-from fsftools.formid_remap import Remapper, _home_name, remap_record
+from fsftools.formid_remap import Remapper, remap_record
 from fsftools.plugin_loader import winning_records
 
 IS_SKIN = 0x80
@@ -31,7 +31,8 @@ IS_SKIN_HANDS = 0x100
 
 def _key(value: int, plugin) -> tuple[str, int]:
     """A reference as (home file, lowercased; object ID): the same record whichever file holds it."""
-    return _home_name(value, plugin).lower(), value & 0xFFFFFF
+    from fsftools import formids
+    return formids.key(value, plugin)
 
 
 def _rec_key(rec):
@@ -148,8 +149,9 @@ def _with_copies(armo, source, copies, masters, remapper, given=None):
 def copy_ref(copy, masters, remapper) -> int:
     """The copy as the output refers to it."""
     if remapper is None:
-        home = _home_name(int(copy.form_id.value), copy.plugin)
-        return ([m.lower() for m in masters].index(home.lower()) << 24) | (int(copy.form_id.value) & 0xFFFFFF)
+        from fsftools import formids
+        home, obj = formids.decode(int(copy.form_id.value), copy.plugin)
+        return formids.encoder_for(masters, copy.plugin.plugin_set).ref(home, obj)
     return remapper.remap(int(copy.form_id.value), copy.plugin)
 
 
@@ -256,4 +258,6 @@ def add_race_pieces(out, plugins, order, masters: list[str], data_dir, races: li
 
     out.header.masters = list(masters)
     out.header.master_sizes = [0] * len(masters)
+    from fsftools import formids
+    formids.settle(out, plugins)               # its FormIDs read by its masters' kinds
     return counts, notes

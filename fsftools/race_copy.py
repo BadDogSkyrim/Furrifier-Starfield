@@ -155,8 +155,8 @@ def _case_like(found: str, new: str) -> str:
 
 
 def _own(plugin):
-    own = len(plugin.header.masters)
-    return [r for r in plugin if int(r.form_id.value) >> 24 == own]
+    from fsftools import formids
+    return formids.own_records(plugin)
 
 
 def _add_race(rec, sig, race: int, insert_before, keep_sorted=True):
@@ -188,7 +188,7 @@ def copy_species(main: Plugin, player: Plugin, cfg) -> dict:
     'player_changed' EditorIDs."""
     rw = Rewriter(cfg)
     own = _own(main)
-    index = len(main.header.masters) << 24
+    index = main.own_file_index() << 24
     by_edid = {r.editor_id: r for r in own}
 
     for fix in cfg.get('fix', []):
@@ -264,17 +264,21 @@ def copy_species(main: Plugin, player: Plugin, cfg) -> dict:
     # The player plugin: overrides of copied records become overrides of their copies; overrides of
     # dropped ones go; the rest (vanilla records) are rewritten but keep their EditorIDs.
     # References are re-pointed by value, so main's records must read the same in both plugins.
+    # In Starfield's numbering (fsftools.formids) that holds while main is a full plugin that player
+    # lists right after main's own masters, so it has the same index in both.
+    from fsftools import formids
     masters = [m.lower() for m in player.header.masters]
-    if masters.index(cfg['plugin'].lower()) != len(main.header.masters):
-        raise ValueError(f"{cfg['player_from']} doesn't list {cfg['plugin']} after its masters")
+    at = masters.index(cfg['plugin'].lower())
+    if at != len(main.header.masters) or main.header.is_esl or main.header.is_medium \
+            or player.encode_form_id(at, 0) >> 24 != main.own_file_index():
+        raise ValueError(f"{cfg['player_from']} doesn't list {cfg['plugin']}, a full plugin, after its masters")
     keep = set(cfg.get('player', {}).get('keep', []))
     changed = []
     for rec in list(player):
         fid = int(rec.form_id.value)
-        home = fid >> 24
-        is_main = home < len(player.header.masters) and \
-            player.header.masters[home].lower() == cfg['plugin'].lower()
-        local = (index | (fid & 0xFFFFFF)) if is_main else None
+        home, obj = formids.decode(fid, player)
+        is_main = home.lower() == cfg['plugin'].lower()
+        local = (index | obj) if is_main else None
         if local is not None and local in rw.dropped:
             player.remove_record(rec)
             continue
