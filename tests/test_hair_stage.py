@@ -280,7 +280,10 @@ def test_a_plugin_numbered_past_the_light_range_is_repaired(fitted):
     broken, _ = records(path)
     assert max(own_ids(broken).values()) > 0xFFF and not references_resolve(broken)
 
-    hair_only(out, tmp / 'again')                    # the races from the exclude test
+    light = tmp / 'light'
+    light.mkdir(exist_ok=True)
+    log = hair_only(out, races_with(light, HAIRS, ['*Flat_Top']))    # as the exclude test left it
+    assert 'renumbered into the light range' in log, log
     plugin, recs = records(path)
     ids = own_ids(plugin)
     assert all(0x800 <= v <= 0xFFF for v in ids.values()), sorted(f'{v:06X}' for v in ids.values())
