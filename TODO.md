@@ -67,16 +67,6 @@ weighting there isn't a bake-time choice -- it would have to be written into the
 builder makes (repeated entries, or a trimmed group per breed). Design one syntax that serves
 both: labels as the group's LNAMs (case as in the plugin), 0 = never, unnamed = 50.
 
-## Hair fit: one cloth bone plane, not one per particle
-
-**Status:** to do (Bad Dog 2026-11-23). Works in game as is; tidy-up.
-
-`hair_fit.fit_cloth` shifts each bone-plane record by its particle's move along the plane's
-normal, and gives particles with different shifts their own copy of the plane. The female
-ponytail's one C_Neck plane (particles 0-3) became 4 planes about 1 mm apart. Keep one plane per
-vanilla record instead, shifted by the smallest of its particles' moves, so no particle starts
-closer to the bone than it did in vanilla.
-
 ## `sf_racecheck`: read every material database, not just the base game's
 
 **Status:** to do (Bad Dog 2026-11-23: "reading all the archives might be good").

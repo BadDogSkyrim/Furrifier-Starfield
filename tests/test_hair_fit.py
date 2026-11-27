@@ -212,6 +212,7 @@ def test_canine_fit_keeps_the_gap():
 # A head capsule; two neck capsules and three skin bones; bone planes (182) and a head capsule.
 CLOTH_HAIRS = [r'actors\human\mesh\hairs\bob\bob_f.nif', r'actors\human\mesh\hairs\shaggy\shaggy_m.nif',
                r'actors\human\mesh\hairs\choppy_bob\choppy_bob_f.nif']
+PONYTAIL = r'actors\human\mesh\hairs\ponytail\ponytail_hairmesh_f.nif'   # one C_Neck plane, 4 particles
 
 
 def cloth_case(rel):
@@ -288,6 +289,32 @@ def test_cloth_moves_with_the_hair():
                         clear_before = gap
                     else:
                         assert (gap >= np.minimum(clear_before, 0) - 1e-5).all(), (rel, col.name)
+
+
+@tt.requires_assets('SF')
+def test_cloth_planes_stay_one_per_vanilla_record():
+    """An uneven fit (each vertex pushed out from the head's centre, 5%) moves the particles of one
+    plane by different amounts. The plane stays one record, shifted by the least of its particles'
+    moves along its normal: no particle starts closer to its plane than in vanilla, and the one that
+    moved least keeps its distance. (Before 11-27 a plane split into a record per distinct move:
+    the female ponytail's one C_Neck plane became four, about 1 mm apart.)"""
+    from pyn import sf_cloth
+    # The two vanilla ponytails are the only hairs with a plane record of several particles.
+    for rel in [PONYTAIL] + CLOTH_HAIRS:
+        hair, blob, before = cloth_case(rel)
+        pts = hair.to_bone(hair.positions)
+        fit = hair_fit.fit_cloth(blob, pts, pts * 0.05)
+        after = sf_cloth.read_model(fit.blob)
+        assert fit.moved > 0.001, rel
+        assert [len(s.planes) for s in after.sims] == [len(s.planes) for s in before.sims], rel
+        a, b = plane_values(before), plane_values(after)
+        assert set(a) == set(b), rel
+        assert all(b[k] >= a[k] - 1e-5 for k in a), \
+            (rel, min(b[k] - a[k] for k in a))
+        for s in after.sims:
+            for p in s.planes:
+                gaps = [b[(i, p['bone'])] - a[(i, p['bone'])] for i in p['particles']]
+                assert min(gaps) < 1e-5, (rel, p['bone'], gaps)
 
 
 # ----- LODs: crowd hair and hats carry LOD meshes in the shape's other slots ----------------------

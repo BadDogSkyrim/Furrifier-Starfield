@@ -581,8 +581,9 @@ def fit_cloth(blob: bytes, part_bone: np.ndarray, offsets_bone: np.ndarray, k: i
     offsets, in the bone's (C_Head's) space.
 
     - Each particle moves by the inverse-distance mean offset of its k nearest part vertices.
-    - Each bone-plane record shifts by its particle's move along the plane's normal, so the particle
-      keeps its distance from the plane.
+    - Each bone-plane record shifts by the least of its particles' moves along the plane's normal. It
+      stays one record, as in vanilla; no particle starts closer to the plane than it did, and the
+      one that moved least keeps its distance.
     - A capsule's radius changes by the median change in its particles' distance from its axis, but
       never so far that a particle starts inside it that didn't before.
     - The builder recomputes the rest: skinning, links, hinges, and each driven bone's place on its
@@ -611,12 +612,8 @@ def fit_cloth(blob: bytes, part_bone: np.ndarray, offsets_bone: np.ndarray, k: i
             n, d = np.array(plane['equation'][:3]), plane['equation'][3]
             frame = binds[names.index(plane['bone'])] if plane['bone'] in names else head
             to_plane = np.linalg.inv(frame)[:3, :3]
-            groups: Dict[float, list] = {}
-            for i in plane['particles']:
-                shift = float(n @ (to_plane @ o_model[i]))
-                groups.setdefault(round(shift, 7), []).append(i)
-            for shift, particles in groups.items():
-                planes.append(dict(plane, equation=tuple(n) + (d - shift,), particles=particles))
+            shift = min((float(n @ (to_plane @ o_model[i])) for i in plane['particles']), default=0.0)
+            planes.append(dict(plane, equation=tuple(n) + (d - shift,)))
         sim.planes = planes
     capsules = []
     for c, col in enumerate(model.collidables):
