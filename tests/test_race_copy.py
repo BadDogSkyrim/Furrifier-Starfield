@@ -233,3 +233,17 @@ def test_new_formids_are_unused(result):
     ids = [int(r.form_id.value) for r in fsf]
     assert len(ids) == len(set(ids))
     assert fsf.header.next_object_id > max(i & 0xFFFFFF for i in ids if i >> 24 == 1)
+
+
+def test_a_morph_record_s_chargen_path_is_rewritten():
+    """An MRPH's chargen morph path (TCMP) is rewritten like its performance path (TMPP). The wolf,
+    copied from the hyena on 11-27, kept the hyena's tail morphs: TCMP ...\\Chargen\\HyenaMaleTail."""
+    from esplib import Record, SubRecord
+    from fsftools.race_copy import Rewriter
+    rec = Record('MRPH')
+    rec.subrecords += [SubRecord('EDID', b'MORPH_FSFHyena_Male_Tail\0'),
+                       SubRecord('TCMP', rb'meshes\morphs\FSFCanine\Male\Chargen\HyenaMaleTail' + b'\0'),
+                       SubRecord('TMPP', rb'meshes\morphs\FSFCanine\Male\Performance\HyenaMaleTail' + b'\0')]
+    Rewriter({'words': {'hyena': 'wolf'}, 'copy': {}}).record(rec)
+    assert _strings(rec, 'TCMP') == [r'meshes\morphs\FSFCanine\Male\Chargen\WolfMaleTail']
+    assert _strings(rec, 'TMPP') == [r'meshes\morphs\FSFCanine\Male\Performance\WolfMaleTail']

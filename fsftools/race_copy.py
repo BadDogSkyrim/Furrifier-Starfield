@@ -32,7 +32,7 @@ STRING_SUBS = {
     'AVMD': {'EDID', 'YNAM', 'TNAM', 'LNAM', 'VNAM'},
     'ARMA': {'EDID', 'MOD2', 'MOD3', 'MOD4', 'MOD5'},
     'ARMO': {'EDID', 'FULL'},
-    'MRPH': {'EDID', 'TMPP'},
+    'MRPH': {'EDID', 'TMPP', 'TCMP'},
     'NPC_': {'EDID', 'FULL', 'TNAM', 'QNAM', 'VNAM', 'BMPN'},
     'FLST': {'EDID'},
     'CNDF': {'EDID'},
