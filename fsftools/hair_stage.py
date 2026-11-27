@@ -668,14 +668,18 @@ def chargen_lists(plugins, plugin_name: str, player_plugins=()) -> Dict:
     return out
 
 
-def player_plugins(races, data_dir: Path) -> List:
-    """Each race's player (tint) plugin, loaded for its FLSTs."""
+def player_plugins(races, data_dir: Path, plugins) -> List:
+    """Each race's player (tint) plugin, loaded for its FLSTs. It's read from its own mod folder,
+    where its masters aren't, so their kinds come from the load order (`plugins`)."""
     from esplib import Plugin
+    from fsftools import formids
     from fsftools.race_data import tint_plugin_path
     out = []
     for cfg in races:
         if cfg.tint_plugin:
-            out.append(Plugin.load(str(tint_plugin_path(cfg.tint_plugin, data_dir)), only_signatures={'FLST'}))
+            p = Plugin.load(str(tint_plugin_path(cfg.tint_plugin, data_dir)), only_signatures={'FLST'})
+            formids.settle(p, plugins)
+            out.append(p)
     return out
 
 
@@ -787,7 +791,7 @@ def run(plugins, data_dir: Path, races, out_dir: Path, plugin_name: str = HAIR_P
             return tables[stem]
     write_records(plugin_path, masters, [(p, a, f) for p, (a, f) in sorted(by_prefix.items())],
                   plugins, strings_for, 'FSFTools hair fit', prune=list(by_prefix),
-                  chargen=chargen_lists(plugins, plugin_name, player_plugins(races, data_dir)))
+                  chargen=chargen_lists(plugins, plugin_name, player_plugins(races, data_dir, plugins)))
     manifest_path.parent.mkdir(parents=True, exist_ok=True)
     manifest_path.write_text(json.dumps(dict(sorted(fresh.items())), indent=1), encoding='utf-8')
     log(f'  Hair: {total} fitted hairs in {plugin_path} ({refit} refitted, {kept} up to date); '

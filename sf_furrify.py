@@ -180,6 +180,8 @@ def main():
             if r.tint_plugin:
                 path = tint_plugin_path(r.tint_plugin, data_dir)
                 tint = Plugin.load(str(path), only_signatures={'AVMD'})
+                from fsftools import formids
+                formids.settle(tint, plugins)        # read from its own folder, without its masters
                 print(f"  {edid}: tints from {path}")
             appearances[edid] = RaceAppearance(r, plugins, race_avm(base_avm, tint), data_dir)
     except ValueError as e:

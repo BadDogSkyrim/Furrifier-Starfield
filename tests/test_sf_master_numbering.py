@@ -155,6 +155,28 @@ def test_own_records_take_the_count_of_full_masters(output):
     assert {fid >> 24 for _, _, fid in own} == {n_full}, sorted({f'{fid >> 24:02X}' for _, _, fid in own})
 
 
+def test_a_tint_plugin_in_its_own_folder_reads(tmp_path):
+    """A race's tint plugin is read from its own mod folder (Mods\\FSFPlayer_Fox\\...), where its
+    master FSF.esm isn't: its masters' kinds come from the load order. Bad Dog's 11-26 run stopped:
+    'FSFPlayer_FOX.esm: can't tell whether its master FSF.esm is a full, small or medium plugin'."""
+    import shutil
+    from types import SimpleNamespace
+    from fsftools import formids
+    from fsftools.hair_stage import chargen_lists, player_plugins
+    from fsftools.plugin_loader import load_order_for_plugin, load_plugins
+    alone = tmp_path / 'FSFPlayer_Fox'
+    alone.mkdir()
+    shutil.copy2(Path(game_data()) / 'FSFPlayer_FOX.esm', alone / 'FSFPlayer_FOX.esm')
+    plugins = load_plugins(game_data(), load_order_for_plugin(game_data(), 'FSF.esm'))
+    players = player_plugins([SimpleNamespace(tint_plugin=str(alone / 'FSFPlayer_FOX.esm'))], game_data(),
+                             plugins)
+    refs = [(sr, rec) for rec in players[0].get_records_by_signature('FLST') for sr in rec.get_subrecords('LNAM')]
+    assert refs, 'the player plugin overrides chargen lists'
+    for sr, rec in refs:
+        formids.home(struct.unpack('<I', sr.data)[0], players[0])
+    chargen_lists(plugins, 'FSFHair.esm', players)
+
+
 def test_every_reference_resolves_through_the_load_order(output):
     """Read back by esplib through the load order, every NPC head part is an HDPT and every
     override names its own record: the encoding read as the game reads it."""
