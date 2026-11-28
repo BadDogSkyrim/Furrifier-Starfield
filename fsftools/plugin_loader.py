@@ -1,4 +1,5 @@
 """Load Starfield plugins via esplib and enumerate NPCs."""
+import struct
 from pathlib import Path
 from typing import List
 
@@ -13,6 +14,7 @@ GROUPS = {
     'AVMD', 'FLST', 'OTFT', 'LVLI',
     'FACT', 'KYWD',  # for classification
     'GBFM',          # crowd regions
+    'BMMO',          # biome markers: wildlife templates take their traits from one
 }
 
 # Bethesda's own plugins (always present, assets in BA2)
@@ -170,8 +172,21 @@ def npc_sex(npc) -> str:
     return 'FEMALE' if (acbs.get_uint32() & 1) else 'MALE'
 
 
+def _is_wildlife_template(plugins: PluginSet, npc) -> bool:
+    """A planet's wildlife template: HumanRace is only Bethesda's placeholder. Its traits come from
+    a biome marker (BMMO), which the planet fills with one of its creatures."""
+    acbs, tpta = npc.get_subrecord('ACBS'), npc.get_subrecord('TPTA')
+    if acbs is None or tpta is None or len(acbs.data) < 16:
+        return False
+    if not struct.unpack_from('<H', acbs.data, 14)[0] & 1:      # Traits isn't taken from the template
+        return False
+    target = plugins.resolve_form_id(tpta.get_form_id(0), npc.plugin)
+    return target is not None and target.signature == 'BMMO'
+
+
 def enumerate_human_npcs(plugins: PluginSet, order: List[str] = None, verbose: bool = False):
-    """Yield (npc_record, race_edid) for all HumanRace and HumanCrowdRace NPCs."""
+    """Yield (npc_record, race_edid) for all HumanRace and HumanCrowdRace NPCs, leaving out
+    wildlife templates."""
     human = find_race(plugins, 'HumanRace', order)
     crowd = find_race(plugins, 'HumanCrowdRace', order)
 
@@ -187,7 +202,7 @@ def enumerate_human_npcs(plugins: PluginSet, order: List[str] = None, verbose: b
         if race is None:
             continue
         race_edid = target_races.get(id(race))
-        if race_edid:
+        if race_edid and not _is_wildlife_template(plugins, npc):
             count += 1
             yield npc, race_edid
 
